@@ -7,30 +7,30 @@
 
 MaxBankProcess::MaxBankProcess()
 {	
-	TheButtons::Instance()->SetButtonActivity(false, "Start");
-	TheButtons::Instance()->SetButtonActivity(false, "OnePound");
-	TheButtons::Instance()->SetButtonActivity(false, "TwoPound");
-	TheButtons::Instance()->SetButtonActivity(false, "Menu");
+	GET_BUTTONS->SetButtonActivity(false, "FrontStart");
+	GET_BUTTONS->SetButtonActivity(false, "Stake");
+	GET_BUTTONS->SetButtonActivity(false, "TopStart");
+	GET_BUTTONS->SetButtonActivity(false, "Menu");
 	
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");	
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");	
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 	TheObjectHandler::Instance()->GetObject2D("RGMaxBank")->SetVisible(true);	
-	TheButtons::Instance()->SetButtonActivity(true, "Collect", LAMP_FLASH);
-	TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
+	GET_BUTTONS->SetButtonActivity(true, "Collect", LAMP_FLASH);
+	GET_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
 	if(GetCredits() < GetVariableValue(MAX_CREDITS))
 	{
-		TheButtons::Instance()->SetButtonActivity(true, "Transfer", LAMP_FLASH);
-		TheButtons::Instance()->SetOSButtonActivity(true, "HoldTransferButton", LAMP_FLASH);
+		GET_BUTTONS->SetButtonActivity(true, "Transfer", LAMP_FLASH);
+		GET_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton", LAMP_FLASH);
 	}
 	else
 	{		
-		TheButtons::Instance()->SetButtonActivity(false, "Transfer");
-		TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
+		GET_BUTTONS->SetButtonActivity(false, "Transfer");
+		GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 	}
 }
 
@@ -42,10 +42,10 @@ MaxBankProcess::~MaxBankProcess()
 void MaxBankProcess::Complete()
 {
 	TheObjectHandler::Instance()->GetObject2D("RGMaxBank")->SetVisible(false);	
-	TheButtons::Instance()->SetButtonActivity(false, "Transfer");
-	TheButtons::Instance()->SetButtonActivity(false, "Collect");	
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
+	GET_BUTTONS->SetButtonActivity(false, "Transfer");
+	GET_BUTTONS->SetButtonActivity(false, "Collect");	
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
 }
 
 void MaxBankProcess::Update()
@@ -54,26 +54,26 @@ void MaxBankProcess::Update()
 		return;
 
 	TheObjectHandler::Instance()->GetObject2D("RGMaxBank")->SetVisible(true);
-	TheButtons::Instance()->SetButtonActivity(true, "Collect", LAMP_FLASH);
-	TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
+	GET_BUTTONS->SetButtonActivity(true, "Collect", LAMP_FLASH);
+	GET_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
 	if(GetCredits() < GetVariableValue(MAX_CREDITS))
 	{
-		TheButtons::Instance()->SetButtonActivity(true, "Transfer", LAMP_FLASH);		
-		TheButtons::Instance()->SetOSButtonActivity(true, "HoldTransferButton", LAMP_FLASH);
+		GET_BUTTONS->SetButtonActivity(true, "Transfer", LAMP_FLASH);		
+		GET_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton", LAMP_FLASH);
 	}
 	else
 	{	
-		TheButtons::Instance()->SetButtonActivity(false, "Transfer");
-		TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
+		GET_BUTTONS->SetButtonActivity(false, "Transfer");
+		GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 	}
 	
-	if(TheButtons::Instance()->ButtonPressed("Transfer") ||
-	   TheButtons::Instance()->OSButtonPressed("HoldTransferButton"))
+	if(GET_BUTTONS->ButtonPressed("Transfer") ||
+	   GET_BUTTONS->OSButtonPressed("HoldTransferButton"))
 	{
 		ThePokerGame::Instance()->SetTransferBankToCredits(true);		
 	}
-	else if(TheButtons::Instance()->ButtonPressed("Collect") ||
-		    TheButtons::Instance()->OSButtonPressed("CollectButton"))
+	else if(GET_BUTTONS->ButtonPressed("Collect") ||
+		    GET_BUTTONS->OSButtonPressed("CollectButton"))
 	{
 		TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new CollectProcess);
 		SetCompleted();

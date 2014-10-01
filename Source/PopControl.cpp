@@ -68,8 +68,8 @@ void PopControl::ChangeStake(unsigned int stakeID)
 		mPopOptionsVisible = false;						
 	}
 
-	//TheButtons::Instance()->DisableButtons();
-	TheButtons::Instance()->DisableOSButtons();
+	//GET_BUTTONS->DisableButtons();
+	GET_BUTTONS->DisableOSButtons();
 
 	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
 }
@@ -82,9 +82,9 @@ void PopControl::ShowHide(unsigned int stakeID)
 		type = HIDE_OPTIONS;
 	}
 	
-	//TheButtons::Instance()->DisableButtons();
-	TheButtons::Instance()->DisableOSButtons();
-
+	//GET_BUTTONS->DisableButtons();
+	GET_BUTTONS->DisableOSButtons();
+	
 	mPopOptionsVisible = !mPopOptionsVisible;
 
 	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));

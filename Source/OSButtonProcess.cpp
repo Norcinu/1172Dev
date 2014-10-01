@@ -30,7 +30,7 @@ OSButtonProcess::~OSButtonProcess()
 void OSButtonProcess::Complete()
 {	
 	mButton->Clear();
-	TheButtons::Instance()->SetButtonProcessEnded();
+	GET_BUTTONS->SetButtonProcessEnded();
 }
 
 void OSButtonProcess::Update()

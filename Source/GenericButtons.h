@@ -118,5 +118,7 @@ private:
 
 typedef Singleton<Buttons> TheButtons;
 
+#define GET_BUTTONS TheButtons::Instance()
+
 #endif
 

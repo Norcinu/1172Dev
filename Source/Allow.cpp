@@ -68,11 +68,10 @@ void PokerGame::InitialHiloRptTab(unsigned char HigherChance)
 		}
 	}
 
-/*DEBUG
+/*DEBUG*/
 
 	for (i=0; i<Level-StartLevel; i++)
 		HiloRepeatTab[i] = 1;
-*/
 }
 
 unsigned char PokerGame::AllowGambleReflexValue(unsigned char JokerWin)

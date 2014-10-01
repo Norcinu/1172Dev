@@ -27,21 +27,21 @@ void GoldenJokerState::Enter()
 	ThePokerGame::Instance()->GoldenJokerStage = 1;
 	ThePokerGame::Instance()->GoldenJokerHeldProcessEnd = false;
 
-	TheButtons::Instance()->SetButtonActivity(false, "Start");
-	TheButtons::Instance()->SetButtonActivity(false, "OnePound");
-	TheButtons::Instance()->SetButtonActivity(false, "TwoPound");
-	TheButtons::Instance()->SetButtonActivity(false, "Menu");
-	TheButtons::Instance()->SetButtonActivity(false, "Collect");
-	TheButtons::Instance()->SetButtonActivity(false, "Transfer");
+	GET_BUTTONS->SetButtonActivity(false, "FrontStart");
+	GET_BUTTONS->SetButtonActivity(false, "Stake");
+	GET_BUTTONS->SetButtonActivity(false, "TopStart");
+	GET_BUTTONS->SetButtonActivity(false, "Menu");
+	GET_BUTTONS->SetButtonActivity(false, "Collect");
+	GET_BUTTONS->SetButtonActivity(false, "Transfer");
 
-	TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 	ThePokerGame::Instance()->SetActiveCardButton(false,0);
 	ThePokerGame::Instance()->SetActiveCardButton(false,1);
@@ -52,11 +52,11 @@ void GoldenJokerState::Enter()
 
 void GoldenJokerState::Exit()
 {	
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 
 	ThePokerGame::Instance()->SetActiveCardButton(false,0);
 	ThePokerGame::Instance()->SetActiveCardButton(false,1);

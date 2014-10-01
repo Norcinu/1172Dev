@@ -19,6 +19,6 @@ void UpdateProcess::Update()
 	ThePokerGame::Instance()->DrawRemoveHelds();
 	ThePokerGame::Instance()->DrawHiloCards();
 	ThePokerGame::Instance()->DrawHiloState();	
-	TheButtons::Instance()->UpdateButtons();
+	GET_BUTTONS->UpdateButtons();
 	
 }

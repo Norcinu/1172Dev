@@ -30,7 +30,7 @@ HoldStartState::~HoldStartState()
 void HoldStartState::Enter()
 {
 	ThePokerGame::Instance()->InitializeCardButtonArray();
-
+	
 	ThePokerGame::Instance()->SetActiveCardButton(true,0);
 	ThePokerGame::Instance()->SetActiveCardButton(true,1);
 	ThePokerGame::Instance()->SetActiveCardButton(true,2);
@@ -47,21 +47,21 @@ void HoldStartState::Exit()
 
 	ThePokerGame::Instance()->TagHeldCards();
 	
-	TheButtons::Instance()->SetButtonActivity(false, "Start");
-	TheButtons::Instance()->SetButtonActivity(false, "OnePound");
-	TheButtons::Instance()->SetButtonActivity(false, "TwoPound");
-	TheButtons::Instance()->SetButtonActivity(false, "Menu");
-	TheButtons::Instance()->SetButtonActivity(false, "Collect");
-	TheButtons::Instance()->SetButtonActivity(false, "Transfer");
+	GET_BUTTONS->SetButtonActivity(false, "FrontStart");
+	GET_BUTTONS->SetButtonActivity(false, "Stake");
+	GET_BUTTONS->SetButtonActivity(false, "TopStart");
+	GET_BUTTONS->SetButtonActivity(false, "Menu");
+	GET_BUTTONS->SetButtonActivity(false, "Collect");
+	GET_BUTTONS->SetButtonActivity(false, "Transfer");
 
-	TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 	ThePokerGame::Instance()->SetActiveCardButton(false,0);
 	ThePokerGame::Instance()->SetActiveCardButton(false,1);
@@ -70,7 +70,7 @@ void HoldStartState::Exit()
 	ThePokerGame::Instance()->SetActiveCardButton(false,4);
 
 	if(!TheGame::Instance()->GetAutoplay())	
-		TheButtons::Instance()->SetButtonActivity(false, "AutoPlay");
+		GET_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	
 
 	TheObjectHandler::Instance()->GetObject2D("HoldStartMsg")->SetVisible(false);
@@ -91,50 +91,38 @@ void HoldStartState::Update()
 	{
 		return;
 	}
-
+	
 	if(!global_quit)
 	{
-		
 		TheObjectHandler::Instance()->GetObject2D("HoldStartMsg")->SetVisible(true);
 
-		TheButtons::Instance()->HoldStartButtons();
+		GET_BUTTONS->HoldStartButtons();
 		ThePokerGame::Instance()->HoldCardButtons();
 		ThePokerGame::Instance()->UpdatePokerHelds();
 		ThePokerGame::Instance()->SetHoldStartLamps();
 			
 		bool startGame = false;
-
+		
 #ifdef SOAK_BUILD
 		startGame = true;
 #endif
-		if(TheGame::Instance()->GetStake() == MINIMUM_BET)
-		{			
-			if(TheButtons::Instance()->ButtonPressed("OnePound") ||
-				TheButtons::Instance()->OSButtonPressed("DealStart1PndButton"))							
-			{
-				startGame = true;
-			}				
-		}
-		else
-		{
-			if(TheButtons::Instance()->ButtonPressed("TwoPound") ||
-				TheButtons::Instance()->OSButtonPressed("DealStart2PndButton"))
-			{
-				startGame = true;
-			}
-		}
-
-		if((TheButtons::Instance()->ButtonPressed("Start") || TheGame::Instance()->GetAutoplay() || 
-			TheGame::Instance()->GetAutoplay() || startGame))
+		if (GET_BUTTONS->ButtonPressed("TopStart") || GET_BUTTONS->ButtonPressed("FrontStart") ||
+			GET_BUTTONS->OSButtonPressed("DealStart1PndButton") || GET_BUTTONS->OSButtonPressed("DealStart2PndButton"))
+			startGame = true;
+		
+		if ((GET_BUTTONS->ButtonPressed("FrontStart") || 
+			 GET_BUTTONS->ButtonPressed("TopStart") ||
+			 TheGame::Instance()->GetAutoplay() || 
+			 TheGame::Instance()->GetAutoplay() || 
+			 startGame))
 		{
 			TheEngine::Instance()->StateTransition("DrawHand");
 		}
-		else if((TheButtons::Instance()->ButtonPressed("AutoPlay") || TheButtons::Instance()->OSButtonPressed("AutoplayButton")) && 
+		else if((GET_BUTTONS->ButtonPressed("AutoPlay") || GET_BUTTONS->OSButtonPressed("AutoplayButton")) && 
 				    !TheGame::Instance()->GetAutoplay())
 		{
 			TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
 			TheGame::Instance()->SetAutoplay(true);
 		}
 	}
-	
 }

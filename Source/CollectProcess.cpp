@@ -26,16 +26,16 @@ void CollectProcess::Complete()
 
 void CollectProcess::Init()
 {
-	TheButtons::Instance()->DisableHWButtons();	
+	GET_BUTTONS->DisableHWButtons();	
 
-	TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	
 	if(GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
 		&& GetCredits() + GetBankDeposit() >= GetMinPayoutValue())

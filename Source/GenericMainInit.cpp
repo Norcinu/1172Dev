@@ -38,7 +38,7 @@ bool Game::Setup(HINSTANCE hinstance)
 
 	TheEngine::Instance()->SetWriteablePath("D:\\machine\\game_data\\");
 
-	TheButtons::Instance()->LampsOff();
+	GET_BUTTONS->LampsOff();
 
 	if(GetDoorStatus() 
 		|| GetCurrentError() 

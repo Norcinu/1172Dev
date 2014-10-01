@@ -9,7 +9,7 @@ bool Game::GameInit()
 {
 	m_autoplay = false;
 	mDemoMode = false;
-	m_isHD = false;
+	m_isHD = true;
 
 	m_finalWinValue = 0;
 	m_featureWinValue = 0;
@@ -46,7 +46,7 @@ bool Game::GameInit()
 	mStake = FIXED_POP;
 #endif
 
-	TheButtons::Instance()->Initialise();
+	GET_BUTTONS->Initialise();
 
 	ThePokerGame::Instance()->PokerGameInit();
 

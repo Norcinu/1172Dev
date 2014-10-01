@@ -343,7 +343,7 @@ public:
 	unsigned char HiloGambleStage;
 			float HiloDelayTimer;
 	unsigned char ActivateHiloGambleGraphics;
-	/**********PlayHiloGamble Start**********/
+	/**********PlayHiloGamble FrontStart**********/
 	unsigned char Lo,Hi,Col,CardValue,NextCard,NewCard;
 	unsigned char Tag,AllowSwap,OldCard,CompleteCard;
 	unsigned char GamblesLeft, NumCards;

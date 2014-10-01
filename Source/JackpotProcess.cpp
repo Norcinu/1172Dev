@@ -53,9 +53,9 @@ float NewImageWidth, NewImageHeight;
 
 	NewImageWidth  = mImageWidth-mStepWidth*mCurrentStep;
 	NewImageHeight = mImageHeight-mStepHeight*mCurrentStep;
-
-	mX = (1920 -  NewImageWidth)/2 ;
-	mY = (1080 - NewImageHeight)/2;
+	
+	mX = (1920 -  NewImageWidth) / 2;
+	mY = (1080 - NewImageHeight) / 2;
 
 	mXScale = NewImageWidth/mImageWidth;
 	mYScale = NewImageHeight/mImageHeight;

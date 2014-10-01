@@ -33,7 +33,7 @@ void StandbyState::Enter()
 void StandbyState::Exit()
 {
 	m_standbyFlash->SetCompleted();
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 }
 
 void StandbyState::Update()
@@ -53,7 +53,7 @@ void StandbyState::Update()
 #ifdef SOAK_BUILD
 		SetAutoCreditFlag();
 #endif
-		TheButtons::Instance()->StandbyButtons();
+		GET_BUTTONS->StandbyButtons();
 
 		TheGame::Instance()->UpdateDigits();
 
@@ -74,19 +74,19 @@ void StandbyState::Update()
 			TheEngine::Instance()->StateTransition("DealStart");
 		}
 
-		if(TheButtons::Instance()->OSButtonPressed("HoldInfoButton"))
+		if(GET_BUTTONS->OSButtonPressed("HoldInfoButton"))
 		{
 			TheEngine::Instance()->StateTransition("Help");
 			return;
 		}
-		else if(TheButtons::Instance()->ButtonPressed("Menu"))
+		else if(GET_BUTTONS->ButtonPressed("Menu"))
 		{
 			TheGame::Instance()->QuitToMainMenu();
 		}
 
 		if((GetCredits()+GetBankDeposit()>0))
 		{
-			if(TheButtons::Instance()->ButtonPressed("Collect") || TheButtons::Instance()->OSButtonPressed("CollectButton"))
+			if(GET_BUTTONS->ButtonPressed("Collect") || GET_BUTTONS->OSButtonPressed("CollectButton"))
 			{
 				TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new CollectProcess);	
 			}

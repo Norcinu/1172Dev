@@ -23,19 +23,19 @@ HiloGambleState::~HiloGambleState()
 
 void HiloGambleState::Enter()
 {
-	TheButtons::Instance()->SetButtonActivity(false, "Start");
-	TheButtons::Instance()->SetButtonActivity(false, "OnePound");	
-	TheButtons::Instance()->SetButtonActivity(false, "TwoPound");	
-	TheButtons::Instance()->SetButtonActivity(false, "Collect");
+	GET_BUTTONS->SetButtonActivity(false, "FrontStart");
+	GET_BUTTONS->SetButtonActivity(false, "Stake");	
+	GET_BUTTONS->SetButtonActivity(false, "TopStart");	
+	GET_BUTTONS->SetButtonActivity(false, "Collect");
 
-	TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldInfoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold3Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HoldTransferButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 	ThePokerGame::Instance()->HiloGambleStage = 1;
 	ThePokerGame::Instance()->HiloDelayTimer = 0;
@@ -45,12 +45,12 @@ void HiloGambleState::Exit()
 {
 	ThePokerGame::Instance()->HiloGambleStage = 0;
 	ThePokerGame::Instance()->ActivateHiloGambleGraphics = 0;
-	TheButtons::Instance()->SetOSButtonActivity(false, "LoButton");
-	TheButtons::Instance()->SetOSButtonActivity(false, "HiButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "LoButton");
+	GET_BUTTONS->SetOSButtonActivity(false, "HiButton");
 	if (ThePokerGame::Instance()->GetGameIndex() == Game200p)
-		TheButtons::Instance()->SetOSButtonActivity(false, "Swop2PndButton");
+		GET_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton");
 	else
-		TheButtons::Instance()->SetOSButtonActivity(false, "Swop1PndButton");
+		GET_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton");
 }
 
 #include <sstream>

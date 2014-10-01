@@ -154,25 +154,13 @@ Buttons::Buttons(void)
 
 void Buttons::Initialise()
 {
-	if(GetCabinetType()==TS22)
-	{
-		mButtons["Start"] = new HardwareButton("Start",LH7_BUTTON, LH7_LAMP);
-		mButtons["OnePound"] = new HardwareButton("OnePound",LH5_BUTTON, LH5_LAMP);
-		mButtons["TwoPound"] = new HardwareButton("TwoPound",LH6_BUTTON, LH6_LAMP);
-		mButtons["Transfer"] = new HardwareButton("Transfer",LH4_BUTTON, LH4_LAMP);
-		mButtons["AutoPlay"] = new HardwareButton("AutoPlay",LH3_BUTTON, LH3_LAMP);
-		mButtons["Menu"] = new HardwareButton("Menu",LH2_BUTTON, LH2_LAMP);
-		mButtons["Collect"] = new HardwareButton("Collect",LH1_BUTTON, LH1_LAMP);
-	}
-	else
-	{
-		mButtons["OnePound"] = new HardwareButton("OnePound",LH7_BUTTON, LH7_LAMP);
-		mButtons["TwoPound"] = new HardwareButton("TwoPound",LH8_BUTTON, LH8_LAMP);
-		mButtons["Transfer"] = new HardwareButton("Transfer",LH6_BUTTON, LH6_LAMP);
-		mButtons["AutoPlay"] = new HardwareButton("AutoPlay",LH5_BUTTON, LH5_LAMP);
-		mButtons["Menu"]     = new HardwareButton("Menu"    ,LH2_BUTTON, LH2_LAMP);
-		mButtons["Collect"]  = new HardwareButton("Collect" ,LH1_BUTTON, LH1_LAMP);
-	}
+	mButtons["FrontStart"] = new HardwareButton("FrontStart",LH7_BUTTON, LH7_LAMP);
+	mButtons["Stake"] = new HardwareButton("Stake",LH5_BUTTON, LH5_LAMP);
+	mButtons["TopStart"] = new HardwareButton("TopStart",LH6_BUTTON, LH6_LAMP);
+	mButtons["Transfer"] = new HardwareButton("Transfer",LH4_BUTTON, LH4_LAMP);
+	mButtons["AutoPlay"] = new HardwareButton("AutoPlay",LH3_BUTTON, LH3_LAMP);
+	mButtons["Menu"] = new HardwareButton("Menu",LH2_BUTTON, LH2_LAMP);
+	mButtons["Collect"] = new HardwareButton("Collect",LH1_BUTTON, LH1_LAMP);
 		
 	mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
 	mOSButtons["DealStart2PndButton"] = new OSButton("GraphicalButton08","Legend2DealDrawLit","Legend2DealDrawNlit");
@@ -324,9 +312,9 @@ void Buttons::SetOSButtonActivity(bool active, const char* buttonName, unsigned 
 	{
 		if (it->second->CheckPressed() && it->second->IsActive())
 		{
-			if (it->second->GetName() == "OnePound" && buttonName == "DealStart1PndButton")
+			if (it->second->GetName() == "Stake" && buttonName == "DealStart1PndButton")
 				state = LAMP_ON;
-			else if (it->second->GetName() == "TwoPound" && buttonName == "DealStart2PndButton")
+			else if (it->second->GetName() == "TopStart" && buttonName == "DealStart2PndButton")
 				state = LAMP_ON;
 			else if (it->second->GetName() == "AutoPlay" && buttonName == "AutoplayButton")
 				state = LAMP_ON;
@@ -380,23 +368,23 @@ void Buttons::SetLampState(unsigned char Lamp, unsigned char State)
 void Buttons::StandbyButtons()
 {
 	if(GetTerminalFormat() > 1)
-		TheButtons::Instance()->SetButtonActivity(true, "Menu", LAMP_ON);
+		GET_BUTTONS->SetButtonActivity(true, "Menu", LAMP_ON);
 	else
-		TheButtons::Instance()->SetButtonActivity(false, "Menu", LAMP_OFF);
-	TheButtons::Instance()->SetOSButtonActivity(true, "HoldInfoButton", LAMP_ON);
+		GET_BUTTONS->SetButtonActivity(false, "Menu", LAMP_OFF);
+	GET_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton", LAMP_ON);
 
 
 	if(((GetCredits()+GetBankDeposit() >= GetMinPayoutValue()) ||
 		(GetCredits()+GetBankDeposit()>0 && GetTerminalType() !=HOPPER))
 		&& !GetDoorStatus())
 	{
-		TheButtons::Instance()->SetButtonActivity(true, "Collect", LAMP_ON);
-		TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton", LAMP_ON);
+		GET_BUTTONS->SetButtonActivity(true, "Collect", LAMP_ON);
+		GET_BUTTONS->SetOSButtonActivity(true, "CollectButton", LAMP_ON);
 	}
 	else
 	{
-		TheButtons::Instance()->SetButtonActivity(false, "Collect");
-		TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton");
+		GET_BUTTONS->SetButtonActivity(false, "Collect");
+		GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
 	}
 
 	unsigned int bdelay = 16; //needs this delay in standby, otherwise too slow??
@@ -508,23 +496,23 @@ void Buttons::DealStartButtons(float DelayTimer)
 	
 	if(GetCredits() >= MAXIMUM_BET)
 	{
-		SetButtonActivity(true, "Start", LAMP_FLASH);
-		SetButtonActivity(true, "OnePound",LAMP_ON);
-		SetButtonActivity(true, "TwoPound", LAMP_ON);
+		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
+		SetButtonActivity(true, "Stake",LAMP_ON);
+		SetButtonActivity(true, "TopStart", LAMP_ON);
 		SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
 		SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
 	}
 	else if(GetCredits() >= MINIMUM_BET)
 	{
-		SetButtonActivity(true, "Start", LAMP_FLASH);
-		SetButtonActivity(true, "OnePound",LAMP_ON);
+		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
+		SetButtonActivity(true, "Stake",LAMP_ON);
 		SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
 	}
 	else
 	{
-		SetButtonActivity(false, "Start");
-		SetButtonActivity(false, "OnePound");
-		SetButtonActivity(false, "TwoPound");
+		SetButtonActivity(false, "FrontStart");
+		SetButtonActivity(false, "Stake");
+		SetButtonActivity(false, "TopStart");
 		SetOSButtonActivity(false, "DealStart1PndButton");
 		SetOSButtonActivity(false, "DealStart2PndButton");
 	}
@@ -566,9 +554,9 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetOSButtonActivity(false, "AutoplayButton");
 	}
 
-
+	
 	if(((GetCredits()+GetBankDeposit() >= GetMinPayoutValue()) ||
-	(GetCredits()+GetBankDeposit()>0 && GetTerminalType() != HOPPER))
+		(GetCredits()+GetBankDeposit()>0 && GetTerminalType() != HOPPER))
 	&& !GetDoorStatus())
 	{
 		SetButtonActivity(true, "Collect", LAMP_ON);
@@ -594,25 +582,22 @@ void Buttons::HoldStartButtons()
 	PROFILE(__FUNCTION__);
 #ifndef FAST_PLAY
 	
-	SetButtonActivity(true, "Start", LAMP_FLASH);
-
-	if(TheGame::Instance()->GetStake() == MAXIMUM_BET)
-	{				
-		SetButtonActivity(true, "TwoPound", LAMP_ON);
+	SetButtonActivity(true, "FrontStart", LAMP_FLASH);
+	SetButtonActivity(true, "TopStart", LAMP_ON);
+	SetButtonActivity(false, "Stake");				
+	
+	if (TheGame::Instance()->GetStake() == MAXIMUM_BET)
+	{
 		SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
-
-		SetButtonActivity(false, "OnePound");				
 		SetOSButtonActivity(false, "DealStart1PndButton");
-	}	
+	}
 	else
-	{		
-		SetButtonActivity(true, "OnePound", LAMP_ON);				
-		SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
-
-		SetButtonActivity(false, "TwoPound");
+	{
+		SetOSButtonActivity(true, "DealStart1PndButton", LAMP_ON);
 		SetOSButtonActivity(false, "DealStart2PndButton");
 	}
 
+	
 	if(GetCredits() >= TheGame::Instance()->GetStake())
 	{
 		if (TheGame::Instance()->GetAutoplay())

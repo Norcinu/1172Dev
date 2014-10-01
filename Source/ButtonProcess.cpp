@@ -17,7 +17,7 @@ ButtonProcess::~ButtonProcess()
 void ButtonProcess::Complete()
 {
 	mButton->Clear();
-	TheButtons::Instance()->SetButtonProcessEnded();
+	GET_BUTTONS->SetButtonProcessEnded();
 }
 
 void ButtonProcess::Update()
