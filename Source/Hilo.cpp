@@ -1,0 +1,1033 @@
+#include "PokerGame.h"
+#include "Game.h"
+#include "VariableSoundProcess.h"
+#include <ObjectHandler.h>
+
+extern unsigned char global_quit;
+extern   signed long HiloStoreMinValue[MaxSelectableGames];
+
+void PokerGame::EnterHiloGambleInitialize(unsigned char JokerWin)
+{
+	if (AutoPlayFlag)
+		ResetAutoPlayFlag = 1;
+	AutoPlayFlag = 0;
+
+	TheGame::Instance()->SetAutoplay(false);
+	TheButtons::Instance()->SetButtonActivity(false, "AutoPlay");
+	TheButtons::Instance()->SetOSButtonActivity(false, "AutoplayButton");
+
+	if(AllowGambleReflexValue(JokerWin))
+	{
+		GambleReflexValue = Pay;
+	}
+
+	InitialHiloRptTab(JokerWin|ModeGameIn[GameIndex]);
+	SelectInitialCard();
+}
+
+void PokerGame::EnterHiloGambleShowAward(unsigned char JokerWin)
+{
+	SelectInitialCard();
+
+	AwardLevel = FindWinLevel(Pay);
+
+	SetAwardValueLitState(AwardLevel,MLAMP_ON);
+
+	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new VariableSoundProcess("WINTOTAL",WINTOTAL,2));
+
+	/* find number of gambles need to reach jackpot */
+	NumGambles = FunctionMaxLevels() - AwardLevel;
+}
+
+bool PokerGame::EnterHiloGambleEntry(unsigned char JokerWin)
+{
+static int StartOnce=0;
+bool EntryFlag=false;
+
+	if (GetGameIndex() == Game200p)
+		DealDraw2PndPbLamp(MLAMP_ON); 
+	else
+		DealDraw1PndPbLamp(MLAMP_ON);
+
+	if (!StartOnce)
+	{
+		TheAudioManager::Instance()->GetAudioSample("HILOSND")->Play(true);
+		StartOnce = 1;
+	}
+
+	if (GetGameIndex() == Game200p)
+	{
+#ifdef SOAK_BUILD
+		if(SoakBuildPressButton(&PokerGame::ReadDealDraw2PndPb,Get200pStake(),Game200p))
+#else
+		if (ReadTS22StartPb() || ReadDealDraw2PndPb())
+#endif
+			EntryFlag = true;
+	}
+	else
+	{
+#ifdef SOAK_BUILD
+		if(SoakBuildPressButton(&PokerGame::ReadDealDraw1PndPb,Get100pStake(),Game100p))
+#else
+		if (ReadTS22StartPb() || ReadDealDraw1PndPb())		
+#endif
+			EntryFlag = true;
+	}
+
+	if (EntryFlag)
+		StartOnce = 0;
+
+	return(EntryFlag);
+}
+
+void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
+{
+	DealDraw2PndPbLamp(MLAMP_OFF); 
+	DealDraw1PndPbLamp(MLAMP_OFF);
+
+	if (GetGameIndex() == Game200p)
+	{		
+		TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
+		Swop2PndPbLamp(MLAMP_OFF);
+	}
+	else
+	{		
+		TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton",NO_LEGEND);
+		Swop1PndPbLamp(MLAMP_OFF);
+	}
+
+	TheButtons::Instance()->SetOSButtonActivity(false, "Hold2Button",NO_LEGEND);
+	TheButtons::Instance()->SetOSButtonActivity(false, "Hold4Button",NO_LEGEND);
+		
+	for (i=0; i<NUM_CARDS_IN_HAND;i++)
+		RemoveCard(i);
+				
+	/* Max cards displayable on screen is five		*/
+	/* so display max cards if gambles to jackpot	*/
+	/* are greater than 5 otherwise display less	*/		
+	if (NumGambles < 4)
+	{
+		for (i=0; i < NumGambles+1; i++)			
+			HiloPutCard(i,HiloStatusArray[i]);		
+	}
+	else
+	{
+		for(i=0; i<5; i++)					
+			HiloPutCard(i,HiloStatusArray[i]);		
+	}
+
+	HiloGambleFlag = 1;
+	LevelCtr = 0;
+	Hgamble = 0;	
+}
+
+void PokerGame::HiloGamble(unsigned char JokerWin)
+{
+
+	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < HiloDelayTimer)
+		return;
+
+	HiloDelayTimer = 0;
+	switch (HiloGambleStage)
+	{
+		case 1: EnterHiloGambleInitialize(JokerWin);	
+				HiloGambleStage = 2;
+				break;
+		case 2: EnterHiloGambleShowAward(JokerWin);	
+				HiloGambleStage = 3;
+				break;				
+		case 3: if (EnterHiloGambleEntry(JokerWin))	
+				{
+					ActivateHiloGambleGraphics = 1;
+					HiloGambleStage = 4;
+				}
+				break;
+		case 4: EnterHiloGambleScreen(JokerWin);	
+				HiloGambleStage = 5;
+				break;
+		case 5:	PlayHiloGambleInitializeGame(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]);
+				HiloGambleStage = 6;
+				break;
+		case 6:	if (PlayHiloGambleSelection(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]))				
+					HiloGambleStage = 7;
+				break;
+		case 7:	PlayHiloGambleProcessSelection(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]);
+				HiloGambleStage = 8;
+				break;
+		case 8:	if (PlayHiloGambleRepeat(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]))
+					HiloGambleStage = 5;
+			    else
+					HiloGambleStage = 9;
+				break;
+		case 9:	PlayHiloGambleGetPayment(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]);
+			    HiloGambleStage = 10;
+				break;
+		default:break;
+	}
+}
+
+unsigned char PokerGame::PlayHiloGambleInitializeGame(unsigned char *HiloStatusArray,unsigned char JokerWin)
+{
+	i = 0;
+	Hi = Lo = Col = 0;
+	// find element of hilo_status_array
+	// into which the next card is to be placed
+	for(i=0;HiloStatusArray[i];i++);
+	
+	SetAwardValueLitState(AwardLevel+LevelCtr,MLAMP_ON);
+	SetAwardValueLitState(AwardLevel+LevelCtr+1,MLAMP_FLASH);
+
+	CollectPbLamp(MLAMP_FLASH);
+
+	/* draw additional cards for gamble involving more than five*/
+	/* gambles */
+	if (i==5)
+	{
+		/* erase all displayed cards */
+		for (j=0;j<NUM_CARDS_IN_HAND;j++)
+			HiloRemoveCard(j);
+			
+		HiloStatusArray[5] = HiloStatusArray[4];
+
+		GamblesLeft = NumGambles - 4;
+
+		if (GamblesLeft > 4)
+			NumCards = 5;
+		else
+			NumCards = GamblesLeft+1;
+
+		/* draw back of remaining cards */
+		for (j=0;j<NumCards;j++)
+			HiloPutCard(j,HiloStatusArray[5+j]);
+		i=6;
+	}
+	else if (i==10)
+	{
+		/* erase all displayed cards */
+		for (j=0;j<NUM_CARDS_IN_HAND;j++)
+			HiloRemoveCard(j);
+
+		HiloStatusArray[10] = HiloStatusArray[9];
+		
+		// Remaining Gambles (after two HiLo screens [8 Cards])
+		GamblesLeft = NumGambles - 8;
+
+		if (GamblesLeft > 4)
+			NumCards = 5;
+		else
+			NumCards = GamblesLeft+1;
+		
+		// Draws remaining HiLo cards on the screen
+		for (j=0;j<NumCards;j++)
+			HiloPutCard(j,HiloStatusArray[10+j]);
+		i=11;
+	}
+
+
+	CardValue = (HiloStatusArray[i-1]&0x3f);	// ditch suite
+
+	if (CardValue == JOKER_CARD)
+		NoJokerFlag = 1;
+	else
+		NoJokerFlag = 0;
+
+	if (CardValue != JOKER_CARD)
+	{
+		do{
+			if(CardValue > 13)
+				CardValue -=13;
+		}while(CardValue > 13);
+	}
+	
+	if(CardValue > 5 && CardValue < 10)	
+	{
+		if (!LevelCtr)
+			Perct = 20;
+		else
+			Perct = 90;
+		
+
+		if( GetLocalCharRandomNumber(100) < Perct 
+			&& (HiloRepeatTab[LevelCtr]||GetLocalCharRandomNumber(100)<5) 
+			&& JokerWin 
+			&& HiloStore[GameIndex] > HiloStoreMinValue[GameIndex])		
+		{
+			AllowSwap = ExternAllowSwap = 1;
+			if (GetGameIndex() == Game200p)				
+				Swop2PndPbLamp(MLAMP_FLASH);
+			else
+				Swop1PndPbLamp(MLAMP_FLASH);
+
+			TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();
+
+			if (GetGameIndex() == Game200p)				
+				Swop2PndPbLamp(MLAMP_FLASH);
+			else
+				Swop1PndPbLamp(MLAMP_FLASH);
+		}
+		else
+			AllowSwap = ExternAllowSwap = 0;
+	}
+	else
+		AllowSwap = ExternAllowSwap = 0;
+
+
+	AllowHiPb = 0;
+	AllowLoPb = 0;
+
+	return(0);
+}
+
+
+unsigned char PokerGame::PlayHiloGambleSelection(unsigned char *HiloStatusArray,unsigned char JokerWin)
+{
+	if (AllowSwap)
+	{
+		if (GetGameIndex() == Game200p)				
+			Swop2PndPbLamp(MLAMP_FLASH);
+		else
+			Swop1PndPbLamp(MLAMP_FLASH);
+	}
+
+	CollectPbLamp(MLAMP_FLASH); //Added 24/9/13
+
+	if (CardValue==1)
+	{
+		AllowHiPb = 1;
+
+		HiPbLamp(MLAMP_FLASH);
+		LoPbLamp(MLAMP_OFF);
+
+#ifdef SOAK_BUILD
+		if (1) //Modification for InnoCore.			
+		{
+			if (NmiHiloStrategy == SensibleStrategy || NmiHiloStrategy == AggressiveStrategy)
+				Hi = 1; 
+			else
+				Col = 1;			
+		} 		                
+#else
+        if (Hi = ReadHiPb()) 
+		{			
+			HiPbLamp(MLAMP_ON);
+		}
+#endif
+	}
+	else if (CardValue == 13)
+	{			
+		AllowLoPb = 1;
+
+		HiPbLamp(MLAMP_OFF);
+		LoPbLamp(MLAMP_FLASH);			
+
+#ifdef SOAK_BUILD
+		if (1) //Modification for InnoCore.			
+		{
+			if (NmiHiloStrategy == SensibleStrategy || NmiHiloStrategy == AggressiveStrategy)
+				Lo = 1;
+			else
+				Col = 1;		
+		}
+#else
+        if ((Lo = ReadLoPb())) 
+		{	
+			LoPbLamp(MLAMP_ON);			
+		}
+#endif
+	}
+	else
+	{
+		AllowHiPb = 1;
+		AllowLoPb = 1;
+
+		HiPbLamp(MLAMP_FLASH);
+		LoPbLamp(MLAMP_AFLASH);			
+
+#ifdef SOAK_BUILD
+		if (!AllowSwap) //Modification for Innocore.			
+		{
+			if (NmiHiloStrategy == SensibleStrategy)
+			{
+				if (ModeGameIn[GameIndex])
+				{
+					if(CardValue <= 6)
+					{
+						Hi = 1;						
+					}
+					else 
+					{
+						Lo = 1;						
+					}
+				}
+				else
+				{
+					if(CardValue <=4)
+					{
+						Hi = 1;						
+					}
+					else if(CardValue >= 9)
+					{
+						Lo = 1;
+					}
+					else
+					{
+						Col = 1;
+					}
+				}
+			}
+			else if (NmiHiloStrategy == AggressiveStrategy)
+			{
+				if(CardValue <= 6)
+				{
+					Hi = 1;
+				}
+				else 
+				{
+					Lo = 1;
+				}
+			}
+			else if (NmiHiloStrategy == CollectStrategy)
+			{
+				Col = 1;
+			}
+		}		
+#else
+        if ((Hi = ReadHiPb()) || (Lo = ReadLoPb())) 
+		{
+			//LightsOff();
+			if (Hi) HiPbLamp(MLAMP_ON);
+			if (Lo) LoPbLamp(MLAMP_ON);			
+		}
+#endif
+	}
+
+	if(AllowSwap)
+	{	
+#ifdef SOAK_BUILD
+		if (1)
+#else
+		if(SpecialSwopCardPb() || ReadTS22StartPb())
+#endif
+
+		{
+			if (GetGameIndex() == Game200p)
+			{
+				Swop2PndPbLamp(MLAMP_ON);
+				Swop2PndPbLamp(MLAMP_OFF);
+			}
+			else
+			{
+				Swop1PndPbLamp(MLAMP_ON);
+				Swop1PndPbLamp(MLAMP_OFF);
+			}
+				
+			OldCard = (HiloStatusArray[i-1]&0x3f);
+				
+			if (OldCard != JOKER_CARD)
+			{
+				do{
+					if(OldCard > 13)
+					OldCard -=13;
+				}while(OldCard > 13);
+			}
+				
+
+			do{
+				if (HiloRepeatTab[LevelCtr])
+					NewCard = DecWinSwap(OldCard);						
+				else
+					NewCard = DecLoseSwap(OldCard);
+			}while(!(NewCard=PermitSelection(NewCard,HiloStatusArray)));
+
+			NewCard = SwopToJoker(NewCard);
+					
+			HiloStatusArray[i-1] = NewCard; //0xc0; Tag swap
+			TheAudioManager::Instance()->GetAudioSample("CFLIP")->Play();
+
+			HiloPutCard(i-1,HiloStatusArray[i-1]);
+			AllowSwap = 0;
+			NewCard = (HiloStatusArray[i-1]&0x3f);
+				
+			if (NewCard != JOKER_CARD)
+			{
+				do{
+					if(NewCard > 13)
+						NewCard -=13;
+				}while(NewCard > 13);
+			}
+
+			AllowSwap = ExternAllowSwap = 0;
+					
+			CardValue = NewCard; //I have moved this could this have caused a % problem
+				
+			if(NewCard == 1) //Ace
+			{
+				LoPbLamp(MLAMP_OFF);
+			}
+			if(NewCard == 13) //King
+			{
+				HiPbLamp(MLAMP_OFF);
+			}			
+#ifdef SOAK_BUILD
+			if (1) //Modification for InnoCore.				
+			{
+				if (NmiHiloStrategy == SensibleStrategy)
+				{
+					if (ModeGameIn[GameIndex])
+					{
+						if(CardValue <= 6)
+						{
+							Hi = 1;		
+						}
+						else 
+						{
+							Lo = 1;
+						}
+					}
+					else
+					{
+						if(CardValue <=4)
+						{
+							Hi = 1;
+						}
+						else if(CardValue >= 9)
+						{
+							Lo = 1;
+						}
+						else
+						{
+							Col = 1;
+						}
+					}
+				}
+				else if (NmiHiloStrategy == AggressiveStrategy)
+				{
+					if(CardValue <= 6)
+					{
+						Hi = 1;						
+					}
+					else 
+					{
+						Lo = 1;
+					}
+				}
+				else if (NmiHiloStrategy == CollectStrategy)
+				{
+					Col = 1;			
+				}
+			}
+#endif
+		}
+	}
+
+	if(ReadCollectPb())
+		Col = 1;	
+       
+	if (Hi || Lo || Col)
+		return(1);
+	else
+		return(0);
+}
+
+
+unsigned char PokerGame::PlayHiloGambleProcessSelection(unsigned char *HiloStatusArray,unsigned char JokerWin)
+{
+	CardValue = (HiloStatusArray[i-1]&0x3f);	// ditch suite
+
+	if (CardValue != JOKER_CARD)
+	{
+		do{
+			if(CardValue > 13)
+				CardValue -=13;
+		}while(CardValue > 13);
+	}
+
+	if (GetGameIndex() == Game200p)
+		Swop2PndPbLamp(MLAMP_OFF);
+	else
+		Swop1PndPbLamp(MLAMP_OFF);
+	
+	CollectPbLamp(MLAMP_OFF);
+	if(Lo)
+	{
+		Tag = LO_SELECTED;
+		HiPbLamp(MLAMP_OFF);		
+		LoPbLamp(MLAMP_ON);		
+	}
+	else if (Hi)
+	{
+		Tag = HI_SELECTED;	
+		HiPbLamp(MLAMP_ON);		
+		LoPbLamp(MLAMP_OFF);		
+	}
+	else if(Col)
+	{	
+		HiPbLamp(MLAMP_OFF);
+		LoPbLamp(MLAMP_OFF);		
+		CollectPbLamp(MLAMP_ON);
+		SetAwardValueLitState(AwardLevel+LevelCtr+1,MLAMP_OFF);
+		GameType = COLLECT_WIN;
+		CollectPbLamp(MLAMP_OFF);
+	}
+
+	if (!Col)
+	{
+		do
+		{
+			if(!HiloRepeatTab[LevelCtr]) /* losing gamble */
+			{
+				PrimeWinSnd = 0;
+				if(Lo)
+				{
+					NextCard = DecLoseLo(CardValue);
+					if ((NextCard < CardValue) || (CardValue == JOKER_CARD))
+					{
+						PrimeWinSnd = 1;
+						ExtraWin += AwardTable[GameIndex][AwardLevel + LevelCtr];
+					}
+				}
+				else // player gone Hi
+				{
+					NextCard = DecLoseHi(CardValue);
+					if ((NextCard > CardValue) || (CardValue == JOKER_CARD)) 
+					{
+						PrimeWinSnd = 1;
+						ExtraWin += AwardTable[GameIndex][AwardLevel + LevelCtr];
+					}
+				}
+			}
+			else // player must win
+			{
+				PrimeWinSnd = 1;
+				if(Lo)
+				{
+					if(HiloRepeatTab[LevelCtr+1]) /* next repeat is win */
+					{
+					       NextCard = DecLoWinWin(CardValue);						  
+					}
+					else
+					{
+					       NextCard = DecLoWinLose(CardValue);
+					}
+
+					if ((NextCard > CardValue) && (NextCard != JOKER_CARD) && (CardValue != JOKER_CARD))
+						PrimeWinSnd = 0;
+				}
+				else // player gone Hi
+				{
+					if(HiloRepeatTab[LevelCtr+1]) /* next repeat is win */
+					{
+					       NextCard = DecHiWinWin(CardValue);						   
+					}
+					else
+					{
+					       NextCard = DecHiWinLose(CardValue);
+					}
+
+					if ((NextCard < CardValue) && (CardValue != JOKER_CARD))
+						PrimeWinSnd = 0;
+				}
+
+			}
+
+		}while(!(CompleteCard=PermitSelection(NextCard,HiloStatusArray)));
+		HiloStatusArray[i]= (CompleteCard|Tag);//store this games card
+
+		SetAwardValueLitState(AwardLevel+LevelCtr,MLAMP_OFF);
+
+		TheAudioManager::Instance()->GetAudioSample("CFLIP")->Play();
+		HiloPutCard(i,HiloStatusArray[i]);
+
+		if(PrimeWinSnd)
+		{
+			SetAwardValueLitState(AwardLevel+LevelCtr+1,MLAMP_ON);			
+			if (AwardLevel+LevelCtr+1 < (unsigned char)FunctionMaxLevels())
+			{
+				TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();			
+			}
+			GameType = FEATURE_WIN;
+		}
+		else
+		{		
+			SetAwardValueLitState(AwardLevel+LevelCtr+1,MLAMP_OFF);
+			GameType = FEATURE_LOSE;
+		}
+
+		if (++Hgamble > 3)			
+			Hgamble = 0;
+
+		HiloDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime();
+		HiloDelayTimer +=ThePokerGame::Instance()->GetSoundDelay(CFLIP,0);
+		if (GameType == FEATURE_WIN)										
+			HiloDelayTimer +=ThePokerGame::Instance()->GetSoundDelay(WOLF_SND,0);
+#ifdef SOAK_BUILD
+		HiloDelayTimer = 0;
+#endif
+
+	}
+	return(0);
+}
+
+unsigned char PokerGame::PlayHiloGambleRepeat(unsigned char *HiloStatusArray,unsigned char JokerWin)
+{
+	if (GameType == FEATURE_WIN && !HiloRepeatTab[LevelCtr] && !JokerWin )
+		ExtraWinCtr++;
+
+	if (GameType == FEATURE_WIN)
+		LevelCtr++;
+	
+
+	if((GameType == FEATURE_WIN && LevelCtr < NumGambles) && !global_quit)
+		return(1);
+	else
+		return(0);
+}
+
+unsigned char PokerGame::PlayHiloGambleGetPayment(unsigned char *HiloStatusArray,unsigned char JokerWin)
+{
+	TheAudioManager::Instance()->GetAudioSample("HILOSND")->Stop();
+
+	if (GameType == FEATURE_WIN || GameType == COLLECT_WIN)
+	{
+		Pay = AwardTable[GameIndex][AwardLevel + LevelCtr];		
+	}
+	else
+		Pay = 0;
+
+	return(0);
+}
+
+
+void PokerGame::SelectInitialCard(void)
+{
+unsigned char FirstCard;
+unsigned char i;
+
+	for(i=0;i<15;i++)
+	{
+		HiloStatusArray[i]=0;
+	}
+
+
+	FirstCard = DecInitialCardValue();
+
+	i = GetLocalCharRandomNumber(4);
+	if(i==1)
+		FirstCard += 13;
+	else if(i==2)
+		FirstCard += 26;
+	else if(i==3)
+		FirstCard += 39;
+			
+	HiloStatusArray[0] = FirstCard;
+
+}
+
+unsigned char PokerGame::PermitSelection(unsigned char NextCard, unsigned char * HiloStatusArray)
+{
+unsigned char ReturnValue;
+unsigned char i;
+	
+	if (NextCard == JOKER_CARD)
+		return(NextCard);
+	else
+	{
+		i = GetLocalCharRandomNumber(4);
+		if(i==1)
+			NextCard += 13;
+		else if(i==2)
+			NextCard += 26;
+		else if(i==3)
+			NextCard += 39;
+
+		ReturnValue = NextCard;
+
+		for(i=0;i<= FunctionMaxLevels()-FindWinLevel(Pay);i++)
+		{
+			if((HiloStatusArray[i]&0x3f)==NextCard)
+				ReturnValue = 0;
+		}
+		return(ReturnValue);
+	}
+}
+
+unsigned char PokerGame::SwopToJoker(unsigned char Card)
+{
+unsigned char InitialCard;
+
+	InitialCard = Card;
+
+	if (Card != JOKER_CARD)
+	{
+		do{
+			if(Card > 13)
+				Card -=13;
+		}while(Card > 13);
+	}
+
+
+	if ((Card == 1 || Card == 13) && (GetLocalCharRandomNumber(100) < 15))
+		Card = JOKER_CARD;
+	else
+		Card = InitialCard;
+
+	return(Card);
+}
+
+BOOL PokerGame::SpecialSwopCardPb(void)
+{
+	if (TheGame::Instance()->GetStake() == MINIMUM_BET)
+	{
+		if(TheButtons::Instance()->ButtonPressed("OnePound") || TheButtons::Instance()->OSButtonPressed("Swop1PndButton"))
+			return(true);
+		else
+			return(false);
+	}
+	else
+	{
+		if(TheButtons::Instance()->ButtonPressed("TwoPound") || TheButtons::Instance()->OSButtonPressed("Swop2PndButton"))
+			return(true);
+		else
+			return(false);
+	}
+}
+
+void PokerGame::CollectPbLamp(unsigned char state)
+{
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton",LAMP_ON);
+		TheButtons::Instance()->SetButtonActivity(true, "Collect",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
+		TheButtons::Instance()->SetButtonActivity(true, "Collect",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "CollectButton",LAMP_ANTI);
+		TheButtons::Instance()->SetButtonActivity(true, "Collect",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "CollectButton",LAMP_OFF);
+		TheButtons::Instance()->SetButtonActivity(false, "Collect",LAMP_OFF);
+	}
+}
+
+void PokerGame::HiPbLamp(unsigned char state)
+{
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "HiButton",LAMP_ON);		
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "HiButton",LAMP_FLASH);		
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "HiButton",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "HiButton",LAMP_OFF);		
+	}
+
+}
+
+void PokerGame::LoPbLamp(unsigned char state)
+{
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "LoButton",LAMP_ON);		
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "LoButton",LAMP_FLASH);		
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "LoButton",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "LoButton",LAMP_OFF);		
+	}
+
+}
+
+void PokerGame::TS22StartPbLamp(unsigned char state)
+{
+	if(state==MLAMP_ON)
+	{		
+		TheButtons::Instance()->SetButtonActivity(true, "Start",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{		
+		TheButtons::Instance()->SetButtonActivity(true, "Start",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{		
+		TheButtons::Instance()->SetButtonActivity(true, "Start",LAMP_ANTI);
+	}
+	else	
+	{		
+		TheButtons::Instance()->SetButtonActivity(false, "Start",LAMP_OFF);
+	}
+
+}
+
+void PokerGame::DealDraw1PndPbLamp(unsigned char state)
+{
+	TS22StartPbLamp(state);
+
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_FLASH);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ANTI);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "DealStart1PndButton",LAMP_OFF);
+		TheButtons::Instance()->SetButtonActivity(false, "OnePound",LAMP_OFF);
+	}
+}
+
+void PokerGame::DealDraw2PndPbLamp(unsigned char state)
+{
+	TS22StartPbLamp(state);
+
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_FLASH);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ANTI);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "DealStart2PndButton",LAMP_OFF);
+		TheButtons::Instance()->SetButtonActivity(false, "TwoPound",LAMP_OFF);
+	}
+}
+
+void PokerGame::Swop1PndPbLamp(unsigned char state)
+{
+	TS22StartPbLamp(state);
+
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ON);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop1PndButton",LAMP_FLASH);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ANTI);
+		TheButtons::Instance()->SetButtonActivity(true, "OnePound",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "Swop1PndButton",LAMP_OFF);
+		TheButtons::Instance()->SetButtonActivity(false, "OnePound",LAMP_OFF);
+	}
+}
+
+void PokerGame::Swop2PndPbLamp(unsigned char state)
+{
+	TS22StartPbLamp(state);
+
+	if(state==MLAMP_ON)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ON);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_ON);
+	}			
+	else if(state==MLAMP_FLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop2PndButton",LAMP_FLASH);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_FLASH);
+	}
+	else if(state==MLAMP_AFLASH)
+	{
+		TheButtons::Instance()->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ANTI);
+		TheButtons::Instance()->SetButtonActivity(true, "TwoPound",LAMP_ANTI);
+	}
+	else	
+	{
+		TheButtons::Instance()->SetOSButtonActivity(false, "Swop2PndButton",LAMP_OFF);
+		TheButtons::Instance()->SetButtonActivity(false, "TwoPound",LAMP_OFF);
+	}
+}
+
+bool PokerGame::ReadTS22StartPb(void)
+{
+	if (TheButtons::Instance()->ButtonPressed("Start"))
+		return(true);
+	else
+		return(false);		
+}
+
+bool PokerGame::ReadDealDraw2PndPb(void)
+{
+	if(TheButtons::Instance()->ButtonPressed("TwoPound") || TheButtons::Instance()->OSButtonPressed("DealStart2PndButton"))
+		return(true);
+	else
+		return(false);	
+}
+
+bool PokerGame::ReadDealDraw1PndPb(void)
+{	
+	if(TheButtons::Instance()->ButtonPressed("OnePound") || TheButtons::Instance()->OSButtonPressed("DealStart1PndButton"))
+		return(true);
+	else
+		return(false);
+}
+
+bool PokerGame::ReadHiPb(void)
+{
+	if (TheButtons::Instance()->OSButtonPressed("HiButton"))
+		return(true);
+	else
+		return(false);
+}
+
+
+bool PokerGame::ReadLoPb(void)
+{
+	if (TheButtons::Instance()->OSButtonPressed("LoButton"))
+		return(true);
+	else
+		return(false);
+}
+
+bool PokerGame::ReadCollectPb(void)
+{
+	if (TheButtons::Instance()->ButtonPressed("Collect") || TheButtons::Instance()->OSButtonPressed("CollectButton"))
+		return(true);
+	else
+		return(false);	
+}

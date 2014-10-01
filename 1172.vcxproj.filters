@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{a37562ae-dce4-4e40-b9a3-08a809f1cc7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{ae38e40e-a6a2-43a5-a18a-a35fb11275ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Buttons &amp; Lights">
+      <UniqueIdentifier>{c6203eca-117b-41b9-9438-641adffca9d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{99a3497b-0b9e-4566-970f-907b22101895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{80064502-9eaa-4dad-878e-de66cc9b7777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\General">
+      <UniqueIdentifier>{9528fc20-a73a-4d66-b445-046475931226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Processes">
+      <UniqueIdentifier>{51fea757-09ec-421e-8329-b86bcea4f741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Specific">
+      <UniqueIdentifier>{f549e201-9761-4e5c-8b48-7dc4749f9415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States\Buttons &amp; Lights">
+      <UniqueIdentifier>{61ef4b43-c925-4ea5-a3ee-cc119f418de6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Processes">
+      <UniqueIdentifier>{657469f8-1223-4402-845b-a3d592e4f844}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\HelpState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HoldStartState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ReelSpinState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandbyState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ButtonProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ErrorProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\JackpotProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OSButtonProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProcessManager.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RealTimeProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StandbyFlashProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinValueProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GenericButtons.h">
+      <Filter>Header Files\States\Buttons &amp; Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Defines.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ErrorCodes.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GenericMD5Verification.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MaxBankProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollectProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UpdateProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CheckForDemoPlayProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NMI_log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DealStartState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PokerGame.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DealHandState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\card.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PokerHandProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AutoHeldsProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DrawHandState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HiloGambleState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HiloCard.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PaymentState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CointrolState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PayTransferProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GoldenJokerState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GoldenJokerHeldsProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GoldenJokerCardProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EndGameState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sound.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VariableSoundProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PopControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ShowStakeOptionsProcess.h">
+      <Filter>Header Files\Processes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\StandbyState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HoldStartState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HelpState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ButtonProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ErrorProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\JackpotProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OSButtonProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StandbyFlashProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericButtons.cpp">
+      <Filter>Source Files\Buttons &amp; Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericGameStoreRestoreData.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericGameInit.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericHoppers.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericMainExit.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericMainInit.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericQuitGame.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericUpdateDisplays.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericWinMain.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MaxBankProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollectProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UpdateProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericDisplayErrorMsg.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CheckForDemoPlayProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GenericMainSetAndGet.cpp">
+      <Filter>Source Files\Game\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NMI_log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DealStartState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameAwards.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PokerGameInit.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Poker.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Roll.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DealHandState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CheckWin.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ForcedWins.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PokerVideo.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PokerHandProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HoldStart.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AutoHeldsProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DrawHandState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AwardLevel.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stake.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HiloGambleState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Hilo.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Allow.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HiloVideo.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DecDon.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gamble.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Reflex.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PaymentState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PayOut.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cointrol.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CointrolState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PayTransferProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HelpDigits.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GoldenJoker.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GoldenJokerState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GoldenJokerHeldsProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GoldenJokerCardProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DemoMode.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EndGameState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collect.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Timing.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VariableSoundProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BankTransfer.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Soak.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SoakData.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShowStakeOptionsProcess.cpp">
+      <Filter>Source Files\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PopControl.cpp">
+      <Filter>Source Files\Game\Specific</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="1172.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

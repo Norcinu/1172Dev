@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="us-ascii"?>
+
+<!-- Reel Glass -->
+<Billboard>
+	<Settings Name="PokerScreen" Priority="1" Visible="true" />
+	<Texture Texture1="PokerScreen.png" />
+	<Scale x="22.0f" y="12.43f" />
+	<Position x="-0.005f" y="-1.49f" z="-25.0f" />
+</Billboard>
+
+
+<!-- TopSplash -->
+
+<Object2D>
+	<Settings Name="TSplash" Screen="1" />
+	<Texture Texture1="TSplash.png" />
+</Object2D>
+
+<!-- Jackpot -->
+
+<Object2D>
+  <Settings Name="Jackpot" Priority="13" Visible="false" />
+  <Texture Texture1="Jackpot.png" />
+  <Position x="-76.0f" y="288.0f" />
+  <Scale x="1.0f" y="0.75f" />
+</Object2D>
+
+<!-- Demo Mode -->
+<Object2D>
+  <Settings Name="RGDemoMode" Priority="7" Visible="false" />
+  <Texture Texture1="RGDemoMode.png" />
+  <Position x="380.0f" y="350.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Demo" Priority="6" Visible="false" />
+  <Texture Texture1="Demo.png" />
+  <Position x="880.0f" y="305.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="DoorOpen" Priority="6" Visible="false" />
+  <Texture Texture1="LDoorOpenLit.png" />
+  <Position x="600.0f" y="740.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<!-- Error Messages -->
+<Object2D>
+  <Settings Name="RGErrorMessage" Priority="7" Visible="false" />
+  <Texture Texture1="RGErrGen.png" />
+  <Position x="380.0f" y="350.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<!-- Collect Message -->
+<Object2D>
+  <Settings Name="RGCollectOrPrintTicket" Priority="7" Visible="false" />
+  <Texture Texture1="RGCollectOrPrintTicket.png" />
+  <Position x="380.0f" y="350.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="RGHandPay" Priority="7" Visible="false" />
+  <Texture Texture1="RGHandPay.png" />
+  <Position x="380.0f" y="350.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="RGMaxBank" Priority="7" Visible="false" />
+  <Texture Texture1="RGMaxBank.png" />
+  <Position x="380.0f" y="350.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<!-- Help Screen -->
+
+<Object2D>
+	<Settings Name="Help" Priority="10" Visible="false"/>
+	<Texture Texture1="RGInfoPage01.png" />
+</Object2D>
+
+
+<!-- Cards -->
+<Object2D>
+  <Settings Name="Cards" Priority="4" />
+  <Texture Texture1="ClubA" />
+  <Instances Amount="5">
+    <Instance Texture="ClubA" >
+      <Position x="30.0f" y="382.0f" />
+    </Instance>
+    <Instance Texture="ClubA" >
+      <Position x="295.0f" y="382.0f" />
+    </Instance>
+    <Instance Texture="ClubA" >
+      <Position x="560.0f" y="382.0f" />
+    </Instance>
+    <Instance Texture="ClubA" >
+      <Position x="825.0f" y="382.0f" />
+    </Instance>
+    <Instance Texture="ClubA" >
+      <Position x="1090.0f" y="382.0f" />
+    </Instance>
+  </Instances>
+</Object2D>
+
+
+
+<!-- Held -->
+
+<Object2D>
+  <Settings Name="Held01" Priority="6" Visible="false"/>
+  <Texture Texture1="Held.png" />
+  <Position x="105.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Held02" Priority="6" Visible="false"/>
+  <Texture Texture1="Held.png" />
+  <Position x="370.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Held03" Priority="6" Visible="false"/>
+  <Texture Texture1="Held.png" />
+  <Position x="636.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Held04" Priority="6" Visible="false"/>
+  <Texture Texture1="Held.png" />
+  <Position x="901.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Held05" Priority="6" Visible="false"/>
+  <Texture Texture1="Held.png" />
+  <Position x="1166.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<!-- Hi -->
+
+<Object2D>
+  <Settings Name="HI01" Priority="6" Visible="false"/>
+  <Texture Texture1="HI.png" />
+  <Position x="130.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="HI02" Priority="6" Visible="false"/>
+  <Texture Texture1="HI.png" />
+  <Position x="395.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="HI03" Priority="6" Visible="false"/>
+  <Texture Texture1="HI.png" />
+  <Position x="660.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="HI04" Priority="6" Visible="false"/>
+  <Texture Texture1="HI.png" />
+  <Position x="925.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="HI05" Priority="6" Visible="false"/>
+  <Texture Texture1="HI.png" />
+  <Position x="1190.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LO01" Priority="6" Visible="false"/>
+  <Texture Texture1="LO.png" />
+  <Position x="127.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LO02" Priority="6" Visible="false"/>
+  <Texture Texture1="LO.png" />
+  <Position x="392.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LO03" Priority="6" Visible="false"/>
+  <Texture Texture1="LO.png" />
+  <Position x="657.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LO04" Priority="6" Visible="false"/>
+  <Texture Texture1="LO.png" />
+  <Position x="922.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LO05" Priority="6" Visible="false"/>
+  <Texture Texture1="LO.png" />
+  <Position x="1187.0f" y="646.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<!-- Messages -->
+<Object2D>
+  <Settings Name="DealStartMsg" Priority="6" Visible="false" />
+  <Texture Texture1="DealStartMsg.png" />
+  <Position x="438.0f" y="350.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="HoldStartMsg" Priority="6" Visible="false" />
+  <Texture Texture1="HoldStartMsg.png" />
+  <Position x="387.0f" y="350.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GoldenJokerMsg" Priority="6" Visible="false" />
+  <Texture Texture1="GoldenJokerMsg.png" />
+  <Position x="420.0f" y="348.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GameOverMsg" Priority="6" Visible="false" />
+  <Texture Texture1="GameOverMsg.png" />
+  <Position x="572.0f" y="350.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<!-- Buttons -->
+<Object2D>
+  <Settings Name="GraphicalButton01" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="18.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton02" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="186.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton03" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="354.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton04" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="522.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton05" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="690.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton06" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="858.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton07" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="1026.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton08" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton.png" />
+  <Position x="1194.0f" y="674.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="GraphicalButton09" Priority="10" Visible="true" />
+  <Texture Texture1="ScreenButton02.png" />
+  <Position x="18.0f" y="338.0f" />
+  <Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+
+<Object2D>
+  <Settings Name="LegendCollectLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendCollectLit.png" />
+  <Position x="28.0f" y="681.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHoldInfoLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHoldInfoLit.png" />
+  <Position x="196.0f" y="681.0f" />   
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold2Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHoldLit.png" />
+  <Position x="364.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold3Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHoldLit.png" />
+  <Position x="532.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold4Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHoldLit.png" />
+  <Position x="700.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHoldTransferLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHoldTransferLit.png" />
+  <Position x="868.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend1DealDrawLit" Priority="10" Visible="false" />
+  <Texture Texture1="Legend1DealDrawLit.png" />
+  <Position x="1036.0f" y="681.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend2DealDrawLit" Priority="10" Visible="false" />
+  <Texture Texture1="Legend2DealDrawLit.png" />
+  <Position x="1202.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendAutoPlayLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendAutoPlayLit.png" />
+  <Position x="22.0f" y="343.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendLoLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendLoLit.png" />
+  <Position x="700.0f" y="681.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHiLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHiLit.png" />
+  <Position x="364.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend1SwopLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendSwopLit.png" />
+  <Position x="1036.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend2SwopLit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendSwopLit.png" />
+  <Position x="1202.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton1Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendExitLit.png" />
+  <Position x="28.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton2Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendForwardLit.png" />
+  <Position x="196.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton3Lit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendBackwardLit.png" />
+  <Position x="364.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+
+<Object2D>
+  <Settings Name="LegendCollectNlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendCollectNlit.png" />
+  <Position x="28.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHoldInfoNlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendHoldInfoNlit.png" />
+  <Position x="196.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold2Nlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendHoldNlit.png" />
+  <Position x="364.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold3Nlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendHoldNlit.png" />
+  <Position x="532.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHold4Nlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendHoldNlit.png" />
+  <Position x="700.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHoldTransferNlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendHoldTransferNlit.png" />
+  <Position x="866.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend1DealDrawNlit" Priority="10" Visible="true" />
+  <Texture Texture1="Legend1DealDrawNlit.png" />
+  <Position x="1036.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend2DealDrawNlit" Priority="10" Visible="true" />
+  <Texture Texture1="Legend2DealDrawNlit.png" />
+  <Position x="1202.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendAutoPlayNlit" Priority="10" Visible="true" />
+  <Texture Texture1="LegendAutoPlayNlit.png" />
+  <Position x="22.0f" y="343.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendLoNlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendLoNlit.png" />
+  <Position x="700.0f" y="681.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendHiNlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendHiNlit.png" />
+  <Position x="364.0f" y="681.0f" />  
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend1SwopNlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendSwopNlit.png" />
+  <Position x="1036.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="Legend2SwopNlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendSwopNlit.png" />
+  <Position x="1202.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton1Nlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendExitNlit.png" />
+  <Position x="28.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton2Nlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendForwardNlit.png" />
+  <Position x="196.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendButton3Nlit" Priority="10" Visible="false" />
+  <Texture Texture1="LegendBackwardNlit.png" />
+  <Position x="364.0f" y="681.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="LegendBlank" Priority="10" Visible="false" />
+  <Texture Texture1="LegendBlank.png" />
+  <Position x="18.0f" y="338.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+
+<!-- POP Info -->
+<Object2D>
+	<Settings Name="NoCredit" Priority="6" Visible="false"/>
+	<Texture Texture1="LInsertCoinLit.png" />
+	<Position x="507.0f" y="350.0f" />
+	<Scale x="1.3f" y="1.0f" />
+</Object2D>
+
+<Object2D>
+  <Settings Name="PriceOfPlay" Priority="6" Visible="false"/>
+  <Texture Texture1="Play100p.png" />
+  <Position x="1260.0f" y="20.0f" />
+  <Scale x="1.0f" y="1.0f" />
+</Object2D>
+
+<TextGroup>
+  <Settings Name="AwardsDisplay" Priority="6" Shadow="true" />
+  <Texture Texture1="AwardText.png" />
+  <Text>
+    <Settings Name="AwardLevel01" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel02" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel03" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel04" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel05" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel06" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel07" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel08" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel09" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel10" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel11" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel12" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+  <Text>
+    <Settings Name="AwardLevel13" Visible="false" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.1f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>?0.00</Message>
+  </Text>
+</TextGroup>
+
+
+<TextGroup>
+	<Settings Name="WinInfo" Priority="13" Shadow="true" />
+	<Texture Texture1="ArialNumbers.png" />
+	<Text>
+		<Settings Name="FINALWIN_TEXT" Visible="false" />
+		<Position x="680.0f" y="580.0f" />
+		<Spacing Amount="1.1f" />
+		<Scale x="0.0f" y="0.0f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>?0.00</Message>
+	</Text>
+	<Text>
+		<Settings Name="WINLINE1_TEXT" Visible="false" />
+		<Position x="680.0f" y="350.0f" />
+		<Spacing Amount="1.1f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>?0.00</Message>
+		<UpdateBehaviour Name="TextParabolic">
+			<Settings TextName="WINLINE1_TEXT" NumFrames="85" BounceIncrement="2.40f" />
+			<StartingScale x="0.55f" y="0.55f" />
+			<MoveAmount x="0.0f" y="230.0f" />
+			<BounceMaxHeight x="0.45f" y="0.45f" />
+		</UpdateBehaviour>	
+	</Text>
+	<Text>
+		<Settings Name="WINLINE2_TEXT" Visible="false" />
+		<Position x="680.0f" y="350.0f" />
+		<Spacing Amount="1.1f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>?0.00</Message>
+		<UpdateBehaviour Name="TextParabolic">
+			<Settings TextName="WINLINE2_TEXT" NumFrames="85" BounceIncrement="2.4f" />
+			<StartingScale x="0.55f" y="0.55f" />
+			<MoveAmount x="0.0f" y="230.0f" />
+			<BounceMaxHeight x="0.45f" y="0.45f" />
+		</UpdateBehaviour>	
+	</Text>
+	<Text>
+		<Settings Name="WINLINE3_TEXT" Visible="false" />
+		<Position x="680.0f" y="350.0f" />
+		<Spacing Amount="1.1f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>?0.00</Message>
+		<UpdateBehaviour Name="TextParabolic">
+			<Settings TextName="WINLINE3_TEXT" NumFrames="85" BounceIncrement="2.4f" />
+			<StartingScale x="0.55f" y="0.55f" />
+			<MoveAmount x="0.0f" y="230.0f" />
+			<BounceMaxHeight x="0.45f" y="0.45f" />
+		</UpdateBehaviour>	
+	</Text>
+</TextGroup>
+
+<TextGroup>
+	<Settings Name="ReelGlassInfo" Priority="8" Shadow="true" />
+	<Texture Texture1="BankText.png" />	
+	<Text>
+		<Settings Name="WIN_TEXT" />
+		<Position x="950.0f" y="318.0f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Scale x="0.95f" y="0.95f" />
+		<Spacing Amount="1.1f" />
+		<Message>?0.00</Message>
+	</Text>
+	<Text>
+		<Settings Name="CREDIT_TEXT" />
+		<Position x="1208.0f" y="318.0f" />
+		<Scale x="0.95f" y="0.95f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Spacing Amount="1.1f" />
+		<Message>?0.00</Message>
+	</Text>	
+	<Text>
+		<Settings Name="BANK_TEXT" />
+		<Position x="708.0f" y="318.0f" />
+		<Scale x="0.95f" y="0.95f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Spacing Amount="1.1f" />
+		<Message>?0.00</Message>
+	</Text>
+	<Text>
+		<Settings Name="INFONEXT_TEXT" Visible="false" />
+		<Position x="130.0f" y="719.0f" />
+		<Scale x="0.5f" y="0.5f" />
+		<Spacing Amount="1.1f" />
+		<Message>Next</Message>	
+	</Text>
+	<Text>
+		<Settings Name="INFOEXIT_TEXT" Visible="false" />
+		<Position x="1250.0f" y="719.0f" />
+		<Scale x="0.5f" y="0.5f" />
+		<Spacing Amount="1.1f" />
+		<Message>Exit</Message>	
+	</Text>	
+</TextGroup>
+
+<TextGroup>
+	<Settings Name="ErrorInfo" Priority="10" Shadow="true" />
+	<Texture Texture1="ArialText.png" />
+	<Text>
+		<Settings Name="ErrorTextTitle" Visible="false" />
+		<Colour r="0.0f" g="0.61f" b="0.87f" a="1.0f" />
+		<Position x="680.0f" y="416.0f" />
+		<Spacing Amount="1.05f" />
+		<Scale x="0.9f" y="0.9f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>ERR</Message>
+	</Text>
+	<Text>
+		<Settings Name="ErrorText" Visible="false" />
+		<Colour r="0.0f" g="0.61f" b="0.87f" a="1.0f" />
+		<Position x="680.0f" y="496.0f" />
+		<Spacing Amount="1.0f" />
+		<Scale x="0.8f" y="0.8f" />
+		<ShadowOffset x="1.0f" y="1.0f" />
+		<Message>ERR</Message>
+	</Text>			
+</TextGroup>
+
+<TextGroup>
+  <Settings Name="InfoDigits" Priority="10" Shadow="true" />
+  <Texture Texture1="InfoDigits.png" />
+  <Text>
+    <Settings Name="HelpInfoDigits" Visible="false" />
+    <Colour r="1.0f" g="1.0f" b="1.0f" a="1.0f" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.05f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>0%</Message>
+  </Text>
+  <Text>
+      <Settings Name="HelpGoldenDigits" Visible="false" />
+      <Colour r="1.0f" g="1.0f" b="1.0f" a="1.0f" />
+      <Position x="0.0f" y="0.0f" />
+      <Spacing Amount="1.05f" />
+      <Scale x="1.0f" y="1.0f" />
+      <ShadowOffset x="1.0f" y="1.0f" />
+      <Message>0%</Message>
+    </Text>  
+</TextGroup>
+
+<TextGroup>
+  <Settings Name="ErrorDigits" Priority="10" Shadow="true" />
+  <Texture Texture1="Digits.png" />
+  <Text>
+    <Settings Name="GenErrDigits" Visible="false" />
+    <Colour r="1.0f" g="1.0f" b="1.0f" a="1.0f" />
+    <Position x="0.0f" y="0.0f" />
+    <Spacing Amount="1.05f" />
+    <Scale x="1.0f" y="1.0f" />
+    <ShadowOffset x="1.0f" y="1.0f" />
+    <Message>0</Message>
+  </Text>
+</TextGroup>  
+</MD5>

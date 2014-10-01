@@ -1,0 +1,21 @@
+﻿Build started 01/10/2014 09:05:01.
+     1>Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Obj\Debug\1172.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         1172.vcxproj -> X:\1172\1172L27U010D.exe
+       Manifest:
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file "Obj\Debug\1172.unsuccessfulbuild".
+         Touching "Obj\Debug\1172.lastbuildstate".
+     1>Done Building Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.18

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<StaticCamera>
+	<Settings Name="Perspective" />
+	<Position x="0.0f" y="-1.5f" z="-40.0f" />
+	<LookAt x="0.0f" y="-1.5f" z="0.0f" />
+</StaticCamera>
+
+<StaticCamera>
+	<Settings Name="Perspective2" Screen="1.0f" />
+	<Position x="0.0f" y="-1.5f" z="-40.0f" />
+	<LookAt x="0.0f" y="-1.5f" z="0.0f" />
+</StaticCamera>
+</MD5>

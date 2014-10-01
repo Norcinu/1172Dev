@@ -1,0 +1,10 @@
+
+#define TESTHOUSE_NMI_LOG_PATH "d:\\1170\\1170NMI.log"
+
+#define NMI_RECORD_GAMES		1
+#define NMI_RECORD_CREDBE		2
+#define NMI_RECORD_FEATWIN		3
+#define NMI_SWITCH_POP			4
+#define NMI_RECORD_BONUS1		5
+#define NMI_SETFIX_POP			6
+
