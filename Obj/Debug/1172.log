@@ -1,10 +1,10 @@
-﻿Build started 01/10/2014 16:46:06.
+﻿Build started 02/10/2014 16:52:04.
      1>Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Obj\Debug\1172.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1224LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\HelpDigits.cpp
-         HelpDigits.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1224LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\HelpState.cpp
+         HelpState.cpp
        ResourceCompile:
          All outputs are up-to-date.
        Link:
@@ -87,4 +87,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:10.79
+Time Elapsed 00:00:09.01

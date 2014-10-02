@@ -65,6 +65,7 @@ public:
 	void SetPressed(){mButtonPressed = true;}
 	const char* GetName(){return mName;}
 	const char* GetLegendName(){return mLlegend;}
+
 private:
 	bool mActive;
 	bool mButtonReleased;
@@ -104,6 +105,8 @@ public:
 
 	bool GetButtonProcessStarted() {return mButtonProcessStarted;}
 	void SetButtonProcessEnded(){mButtonProcessStarted = false;}
+
+	void SetVisibility(std::string &button);
 private:
 	void SetLampState(unsigned char Lamp, unsigned char State);
 private:
@@ -118,7 +121,7 @@ private:
 
 typedef Singleton<Buttons> TheButtons;
 
-#define GET_BUTTONS TheButtons::Instance()
+#define THE_BUTTONS TheButtons::Instance()
 
 #endif
 

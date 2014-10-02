@@ -49,7 +49,7 @@ void PokerGame::DrawHiloCards(void)
 	{
 		for (int i=0; i < NUM_CARDS_IN_HAND; i++)
 		{
-			Object2D* allCards = TheObjectHandler::Instance()->GetObject2D("Cards");						
+			Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");						
 			if (HiloHand[i].id)		
 			{			
 				allCards->GetInstance(i)->SetVisible(true);
@@ -70,22 +70,22 @@ unsigned int StateId;
 
 		for (int i = 0; i < NUM_CARDS_IN_HAND; i++)
 		{
-			StateId = TheObjectHandler::Instance()->GetObject2D("HI01")->GetID()+i;
-			TheObjectHandler::Instance()->GetObject2D(StateId)->SetVisible(false);
-			StateId = TheObjectHandler::Instance()->GetObject2D("LO01")->GetID()+i;
-			TheObjectHandler::Instance()->GetObject2D(StateId)->SetVisible(false);
+			StateId = OBJECT_HANDLER->GetObject2D("HI01")->GetID()+i;
+			OBJECT_HANDLER->GetObject2D(StateId)->SetVisible(false);
+			StateId = OBJECT_HANDLER->GetObject2D("LO01")->GetID()+i;
+			OBJECT_HANDLER->GetObject2D(StateId)->SetVisible(false);
 
 			if (HiloHand[i].state)
 			{						 			
 				if (HiloHand[i].state == HI_SELECTED)
 				{
-					StateId = TheObjectHandler::Instance()->GetObject2D("HI01")->GetID()+i;
-					TheObjectHandler::Instance()->GetObject2D(StateId)->SetVisible(true);
+					StateId = OBJECT_HANDLER->GetObject2D("HI01")->GetID()+i;
+					OBJECT_HANDLER->GetObject2D(StateId)->SetVisible(true);
 				}
 				else
 				{
-					StateId = TheObjectHandler::Instance()->GetObject2D("LO01")->GetID()+i;
-					TheObjectHandler::Instance()->GetObject2D(StateId)->SetVisible(true);
+					StateId = OBJECT_HANDLER->GetObject2D("LO01")->GetID()+i;
+					OBJECT_HANDLER->GetObject2D(StateId)->SetVisible(true);
 				}
 			}			
 		}			
@@ -103,8 +103,8 @@ unsigned int StateId;
 		{
 			if (!PokerHand[i].hold)
 			{
-				StateId = TheObjectHandler::Instance()->GetObject2D("Held01")->GetID()+i;
-				TheObjectHandler::Instance()->GetObject2D(StateId)->SetVisible(false);
+				StateId = OBJECT_HANDLER->GetObject2D("Held01")->GetID()+i;
+				OBJECT_HANDLER->GetObject2D(StateId)->SetVisible(false);
 			}
 		}
 	}

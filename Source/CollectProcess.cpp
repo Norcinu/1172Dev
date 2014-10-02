@@ -21,28 +21,28 @@ void CollectProcess::Complete()
 {
 	ThePokerGame::Instance()->SetActiveCollectBoxButton(false,COLLECT_COINS_PB);
 	ThePokerGame::Instance()->SetActiveCollectBoxButton(false,COLLECT_TICKET_PB);
-	TheObjectHandler::Instance()->GetObject2D("RGCollectOrPrintTicket")->SetVisible(false);	
+	OBJECT_HANDLER->GetObject2D("RGCollectOrPrintTicket")->SetVisible(false);	
 }
 
 void CollectProcess::Init()
 {
-	GET_BUTTONS->DisableHWButtons();	
+	THE_BUTTONS->DisableHWButtons();	
 
-	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	
 	if(GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
 		&& GetCredits() + GetBankDeposit() >= GetMinPayoutValue())
 	{	
 		ThePokerGame::Instance()->SetActiveCollectBoxButton(true,COLLECT_COINS_PB);
 		ThePokerGame::Instance()->SetActiveCollectBoxButton(true,COLLECT_TICKET_PB);
-		TheObjectHandler::Instance()->GetObject2D("RGCollectOrPrintTicket")->SetVisible(true);
+		OBJECT_HANDLER->GetObject2D("RGCollectOrPrintTicket")->SetVisible(true);
 	}
 	else if((GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
 		&& GetCredits() + 	GetBankDeposit() < GetMinPayoutValue())
@@ -109,7 +109,7 @@ bool CollectProcess::Payout()
 	}
 	else if(mPayoutState == HANDPAY_COLL )
 	{	
-		TheObjectHandler::Instance()->GetObject2D("RGHandPay")->SetVisible(true);
+		OBJECT_HANDLER->GetObject2D("RGHandPay")->SetVisible(true);
 		SetWarningError(ERR_PRINTER_NO_PAPER);
 		if(GetSwitchStatus(REFILL_KEY))
 		{			

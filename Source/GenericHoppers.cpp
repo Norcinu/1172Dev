@@ -16,8 +16,8 @@ bool Game::CollectFromHopper(unsigned char type)
 	{
 		if(GetRequestHopperPayout())
 		{
-			TheObjectHandler::Instance()->GetText("ErrorText")->SetMessage("Cashing Out");
-			TheObjectHandler::Instance()->GetText("ErrorText")->SetVisible(true);
+			OBJECT_HANDLER->GetText("ErrorText")->SetMessage("Cashing Out");
+			OBJECT_HANDLER->GetText("ErrorText")->SetVisible(true);
 		}
 		else
 		{
@@ -26,8 +26,8 @@ bool Game::CollectFromHopper(unsigned char type)
 	}
 	else if(PayoutState == HANDPAY_COLL )
 	{
-		TheObjectHandler::Instance()->GetText("ErrorText")->SetMessage("Hand Pay Required. Please Call Attendant");
-		TheObjectHandler::Instance()->GetText("ErrorText")->SetVisible(true);
+		OBJECT_HANDLER->GetText("ErrorText")->SetMessage("Hand Pay Required. Please Call Attendant");
+		OBJECT_HANDLER->GetText("ErrorText")->SetVisible(true);
 		SetWarningError(ERR_PRINTER_NO_PAPER);
 		if(GetSwitchStatus(REFILL_KEY))
 		{			
@@ -40,7 +40,7 @@ bool Game::CollectFromHopper(unsigned char type)
 	{
 		if(GetTicketPrinting())
 		{
-			TheObjectHandler::Instance()->GetText("ErrorText")->SetMessage("Printing Ticket");
+			OBJECT_HANDLER->GetText("ErrorText")->SetMessage("Printing Ticket");
 		}
 		else
 		{

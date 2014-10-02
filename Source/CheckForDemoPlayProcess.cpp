@@ -26,7 +26,7 @@ void CheckForDemoPlayProcess::Update()
 	{
 		if(GetDoorStatus())
 		{
-			TheObjectHandler::Instance()->GetObject2D("DoorOpen")->SetVisible(true);
+			OBJECT_HANDLER->GetObject2D("DoorOpen")->SetVisible(true);
 
 			if(!TheGame::Instance()->IsDemoMode())
 			{
@@ -35,21 +35,21 @@ void CheckForDemoPlayProcess::Update()
 					TheEngine::Instance()->StateTransition("DealStart");
 					return;
 				}
-				GET_BUTTONS->DisableHWButtons();
+				THE_BUTTONS->DisableHWButtons();
 				
-				GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
-				GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
-				GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
-				GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
-				GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-				GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-				GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-				GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+				THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+				THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+				THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+				THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+				THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+				THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+				THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+				THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 				TheGame::Instance()->SetAutoplay(false);
-				TheObjectHandler::Instance()->GetObject2D("RGDemoMode")->SetVisible(true);												
-				TheObjectHandler::Instance()->GetObject2D("Demo")->SetVisible(true);
-				TheObjectHandler::Instance()->GetText("WIN_TEXT")->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(true);												
+				OBJECT_HANDLER->GetObject2D("Demo")->SetVisible(true);
+				OBJECT_HANDLER->GetText("WIN_TEXT")->SetVisible(false);
 			}
 
 			if(!mNoteValidatorFlag)
@@ -79,9 +79,9 @@ void CheckForDemoPlayProcess::Update()
 				{										
 					TheGame::Instance()->SetDemoMode(true);
 					AddDemoModeCredits();					
-					TheObjectHandler::Instance()->GetObject2D("RGDemoMode")->SetVisible(false);					
-					TheObjectHandler::Instance()->GetObject2D("Demo")->SetVisible(true);
-					TheObjectHandler::Instance()->GetText("WIN_TEXT")->SetVisible(false);
+					OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(false);					
+					OBJECT_HANDLER->GetObject2D("Demo")->SetVisible(true);
+					OBJECT_HANDLER->GetText("WIN_TEXT")->SetVisible(false);
 					TheInput::Instance()->ResetMousePosition();
 				}
 			}
@@ -99,12 +99,12 @@ void CheckForDemoPlayProcess::Update()
 				}
 				else
 				{					
-					TheObjectHandler::Instance()->GetObject2D("RGDemoMode")->SetVisible(false);					
+					OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(false);					
 				}
 
-				TheObjectHandler::Instance()->GetObject2D("DoorOpen")->SetVisible(false);
-				TheObjectHandler::Instance()->GetObject2D("Demo")->SetVisible(false);				
-				TheObjectHandler::Instance()->GetText("WIN_TEXT")->SetVisible(true);
+				OBJECT_HANDLER->GetObject2D("DoorOpen")->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D("Demo")->SetVisible(false);				
+				OBJECT_HANDLER->GetText("WIN_TEXT")->SetVisible(true);
 				mFinishedDemoGame = true;
 			}
 

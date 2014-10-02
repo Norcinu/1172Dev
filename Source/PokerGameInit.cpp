@@ -80,7 +80,7 @@ bool PokerGame::PokerGameInit()
 	AwardValuesY[0] = 450;
 
 
-	Object2D* allCards = TheObjectHandler::Instance()->GetObject2D("Cards");
+	Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");
 	allCards->GetInstance(0)->SetCurrentSprite(54);
 	allCards->GetInstance(1)->SetCurrentSprite(54);
 	allCards->GetInstance(2)->SetCurrentSprite(54);

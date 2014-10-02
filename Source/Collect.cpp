@@ -4,9 +4,9 @@
 
 bool PokerGame::CollectBoxPb(int button)
 {
-bool Picked=false;
+	bool Picked = false;
 
-	Object2D* CollectBox = TheObjectHandler::Instance()->GetObject2D("RGCollectOrPrintTicket");
+	Object2D* CollectBox = OBJECT_HANDLER->GetObject2D("RGCollectOrPrintTicket");
 	float X = CollectBox->GetPosition().x;
 	float Y = CollectBox->GetPosition().y;
 	float Width = 600;
@@ -28,8 +28,8 @@ bool Picked=false;
 
 	RECT rect = {(long)X, (long)Y, (long)(X+Width), (long)(Y+Height)};
 
-//	if (TheInput::Instance()->Pick2D(D3DXVECTOR2(X,Y),rect))						
-//		Picked = true;
+	if (TheInput::Instance()->Pick2D(CollectBox))
+		Picked = true;
 
 	return(Picked);
 }

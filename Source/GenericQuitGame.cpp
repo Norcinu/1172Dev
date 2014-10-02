@@ -9,7 +9,7 @@ void Game::QuitToMainMenu()
 	StoreData();
 
 	TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
-	GET_BUTTONS->LampsOff();
+	THE_BUTTONS->LampsOff();
 
 	if(!GetSwitchStatus(REFILL_KEY))
 	{

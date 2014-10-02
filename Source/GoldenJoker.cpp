@@ -51,8 +51,8 @@ void PokerGame::GoldenJokerUpdateIntroduction(void)
 	AutoPlayFlag = 0;
 	
 	TheGame::Instance()->SetAutoplay(false);
-	GET_BUTTONS->SetButtonActivity(false, "AutoPlay");
-	GET_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
+	THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
+	THE_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
 
 	GoldenJokerFeatureIntro();
 }
@@ -99,31 +99,31 @@ unsigned char BestPos;
 
 #else
 
-	if ((GET_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0)) && !(DrawHand[0]&CARD_HELD))
+	if ((THE_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0)) && !(DrawHand[0]&CARD_HELD))
 	{		
 		DrawHand[0] = JOKER_CARD;
 		PutCard(0,JOKER_CARD);			
 		Flag = true;
 	}
-	else if ((GET_BUTTONS->OSButtonPressed("Hold2Button") || ReadCardHoldPb(1)) && !(DrawHand[1]&CARD_HELD))
+	else if ((THE_BUTTONS->OSButtonPressed("Hold2Button") || ReadCardHoldPb(1)) && !(DrawHand[1]&CARD_HELD))
 	{
 		DrawHand[1] = JOKER_CARD;
 		PutCard(1,JOKER_CARD);		
 		Flag = true;
 	}
-	else if ((GET_BUTTONS->OSButtonPressed("Hold3Button") || ReadCardHoldPb(2)) && !(DrawHand[2]&CARD_HELD))
+	else if ((THE_BUTTONS->OSButtonPressed("Hold3Button") || ReadCardHoldPb(2)) && !(DrawHand[2]&CARD_HELD))
 	{
 		DrawHand[2] = JOKER_CARD;
 		PutCard(2,JOKER_CARD);		
 		Flag = true;
 	}
-	else if ((GET_BUTTONS->OSButtonPressed("Hold4Button") || ReadCardHoldPb(3)) && !(DrawHand[3]&CARD_HELD))
+	else if ((THE_BUTTONS->OSButtonPressed("Hold4Button") || ReadCardHoldPb(3)) && !(DrawHand[3]&CARD_HELD))
 	{		
 		DrawHand[3] = JOKER_CARD;
 		PutCard(3,JOKER_CARD);		
 		Flag = true;
 	}
-	else if ((GET_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4)) && !(DrawHand[4]&CARD_HELD))
+	else if ((THE_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4)) && !(DrawHand[4]&CARD_HELD))
 	{		
 		DrawHand[4] = JOKER_CARD;
 		PutCard(4,JOKER_CARD);		
@@ -150,45 +150,45 @@ void PokerGame::SetGoldenJokerLamps(void)
 {
 	if (!PokerHand[4].hold)	
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,4);
 	}
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton",LAMP_OFF);		  
+		THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton",LAMP_OFF);		  
 
 	if (!PokerHand[3].hold)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,3);
 	}
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button",LAMP_OFF);		
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button",LAMP_OFF);		
 
 	if (!PokerHand[2].hold)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,2);
 	}
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button",LAMP_OFF);	
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button",LAMP_OFF);	
 	
 
 	if (!PokerHand[1].hold)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,1);
 	}
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button",LAMP_OFF);	
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button",LAMP_OFF);	
 	
 
 	if (!PokerHand[0].hold)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,0);
 	}
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton",LAMP_OFF);		
+		THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton",LAMP_OFF);		
 }
 
 unsigned char PokerGame::AllowGoldenJokerHoldButtons(unsigned int Index)

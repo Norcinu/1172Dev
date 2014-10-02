@@ -13,12 +13,12 @@ extern unsigned char global_quit;
 
 PaymentState::PaymentState()
 {
-	
+
 }
 
 PaymentState::~PaymentState()
 {
-
+	
 }
 
 void PaymentState::Enter()

@@ -7,7 +7,7 @@ bool PokerGame::YesDemoPb(void)
 {
 bool Picked=false;
 
-	Object2D* DemoBox = TheObjectHandler::Instance()->GetObject2D("RGDemoMode");
+	Object2D* DemoBox = OBJECT_HANDLER->GetObject2D("RGDemoMode");
 	float X = DemoBox->GetPosition().x;
 	float Y = DemoBox->GetPosition().y;
 	float Width = 600;

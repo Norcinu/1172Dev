@@ -24,7 +24,7 @@ void EndGameState::Enter()
 {
 	float RemainingTime = 0;
 
-	TheObjectHandler::Instance()->GetObject2D("GameOverMsg")->SetVisible(true);	
+	OBJECT_HANDLER->GetObject2D("GameOverMsg")->SetVisible(true);	
 	ClearGameInProgress();	
 	TheGame::Instance()->StoreData();
 	ThePokerGame::Instance()->SoakStoreThisGame();
@@ -41,7 +41,7 @@ void EndGameState::Enter()
 
 void EndGameState::Exit()
 {
-	TheObjectHandler::Instance()->GetObject2D("GameOverMsg")->SetVisible(false);		
+	OBJECT_HANDLER->GetObject2D("GameOverMsg")->SetVisible(false);		
 }
 
 #include <sstream>

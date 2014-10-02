@@ -59,6 +59,6 @@ unsigned int ID;
 	else
 		ID = TheTextureManager::Instance()->GetTextureID("Play200p.png");
 	
-	TheObjectHandler::Instance()->GetObject2D("PriceOfPlay")->SetTextureID(ID);	
-	TheObjectHandler::Instance()->GetObject2D("PriceOfPlay")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("PriceOfPlay")->SetTextureID(ID);	
+	OBJECT_HANDLER->GetObject2D("PriceOfPlay")->SetVisible(true);
 }

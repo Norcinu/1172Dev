@@ -33,9 +33,9 @@ ShowStakeOptionsProcess::~ShowStakeOptionsProcess()
 
 void ShowStakeOptionsProcess::Init()
 {
-	pStakeButton = TheObjectHandler::Instance()->GetObject2D("RGlassButtons")->GetInstance(1);
+	pStakeButton = OBJECT_HANDLER->GetObject2D("RGlassButtons")->GetInstance(1);
 
-	Object2D* buttons = TheObjectHandler::Instance()->GetObject2D("PopButtons");
+	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");
 
 	buttons->SetVisible(true);
 
@@ -119,7 +119,7 @@ void ShowStakeOptionsProcess::Init()
 
 void ShowStakeOptionsProcess::Complete()
 {
-	Object2D* buttons = TheObjectHandler::Instance()->GetObject2D("PopButtons");
+	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");
 	for(size_t i = 0; i < buttons->GetNumberOfInstances();++i)
 	{
 		if(i != TheGame::Instance()->GetStakeID())
@@ -192,7 +192,7 @@ void ShowStakeOptionsProcess::Update()
 			pOptionOverlay->SetPosition(pos);
 		}
 	}
-
+	
 	if(allInPosition)
 	{
 		SetCompleted();

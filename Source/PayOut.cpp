@@ -18,7 +18,7 @@ void PokerGame::PayOut(void)
 		case 3: PayOutReflex();
 				PayOutStage = 4;
 				break;
-		case 4: PayOutPaytransfer();
+		case 4: //PayOutPaytransfer(); DEBUG DEBUG
 				PayOutStage = 5;
 				break;
 		default:
@@ -28,7 +28,7 @@ void PokerGame::PayOut(void)
 
 bool PokerGame::PayOutEnterJackpotFanfare(void)
 {
-bool Status = false;
+	bool Status = false;
 
 	if(FindWinLevel(Pay) == FunctionMaxLevels())
 	{
@@ -38,18 +38,18 @@ bool Status = false;
 			SetAwardValueLitState(FunctionMaxLevels(),MLAMP_ON);
 		for (int i=0; i<2; i++)
 		{
-			TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();			
+			TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();		
 		}		
 
 		Status = true;
 	}
-
+	
 	return(Status);
 }
 
 bool PokerGame::PayOutDoJackpotFanfare(void)
 {
-bool Status = false;
+	bool Status = false;
 
 	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new JackpotProcess);
 	return(Status);
@@ -57,16 +57,15 @@ bool Status = false;
 
 bool PokerGame::PayOutReflex(void)
 {
-bool Status = false;
+	bool Status = false;
 
 	ReflexOut();
 	return(Status);
 }
 
-
 bool PokerGame::PayOutPaytransfer(void)
 {
-bool Status = false;
+	bool Status = false;
 	
 	if (!GetDoorStatus())
 		SendGameOutcome2Server(WageredAmount,0,PokerGameWin,((MODEL_NUMBER * 1000) + RELEASE_NUMBER * 10),Pay);

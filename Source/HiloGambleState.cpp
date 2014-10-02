@@ -23,36 +23,44 @@ HiloGambleState::~HiloGambleState()
 
 void HiloGambleState::Enter()
 {
-	GET_BUTTONS->SetButtonActivity(false, "FrontStart");
-	GET_BUTTONS->SetButtonActivity(false, "Stake");	
-	GET_BUTTONS->SetButtonActivity(false, "TopStart");	
-	GET_BUTTONS->SetButtonActivity(false, "Collect");
+	THE_BUTTONS->SetButtonActivity(false, "FrontStart");
+	THE_BUTTONS->SetButtonActivity(false, "Stake");	
+	THE_BUTTONS->SetButtonActivity(false, "TopStart");	
+	THE_BUTTONS->SetButtonActivity(false, "Collect");
 
-	GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	GET_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 	ThePokerGame::Instance()->HiloGambleStage = 1;
 	ThePokerGame::Instance()->HiloDelayTimer = 0;
+
+	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+	//OBJECT_HANDLER->GetObject2D("Swop2PndBu")
 }
 
 void HiloGambleState::Exit()
 {
 	ThePokerGame::Instance()->HiloGambleStage = 0;
 	ThePokerGame::Instance()->ActivateHiloGambleGraphics = 0;
-	GET_BUTTONS->SetOSButtonActivity(false, "LoButton");
-	GET_BUTTONS->SetOSButtonActivity(false, "HiButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "HiButton");
 	if (ThePokerGame::Instance()->GetGameIndex() == Game200p)
-		GET_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton");
+		THE_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton");
 	else
-		GET_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton");
+		THE_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton");
 }
-
+//\o/ should be able to use it all day tomorrow \o/
 #include <sstream>
 
 void HiloGambleState::Update()

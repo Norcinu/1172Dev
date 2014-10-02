@@ -31,6 +31,14 @@ void DealHandState::Enter()
 		ThePokerGame::Instance()->PokerHand[i].hold = 0;
 	}
 
+	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+
 	ThePokerGame::Instance()->DealRoll();
 	ThePokerGame::Instance()->DealFirstHand();
 	ThePokerGame::Instance()->Pay = ThePokerGame::Instance()->Chkwin(ThePokerGame::Instance()->DealHand,0);		

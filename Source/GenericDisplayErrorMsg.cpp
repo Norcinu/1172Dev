@@ -34,8 +34,8 @@ void Game::DrawCurrentError()
 						break;
 		}
 
-		TheObjectHandler::Instance()->GetObject2D("RGErrorMessage")->SetTextureID(MessageID);
-		TheObjectHandler::Instance()->GetObject2D("RGErrorMessage")->SetVisible(true);
+		OBJECT_HANDLER->GetObject2D("RGErrorMessage")->SetTextureID(MessageID);
+		OBJECT_HANDLER->GetObject2D("RGErrorMessage")->SetVisible(true);
 		if (MessageID == TheTextureManager::Instance()->GetTextureID("RGErrGen.png"))
 		{
 			ThePokerGame::Instance()->UpdateErrorDigits(true);
@@ -49,7 +49,7 @@ void Game::DrawCurrentError()
 			PlayOnce = 0;
 		}
 
-		TheObjectHandler::Instance()->GetObject2D("RGErrMessage")->SetVisible(false);
+		OBJECT_HANDLER->GetObject2D("RGErrMessage")->SetVisible(false);
 		ThePokerGame::Instance()->UpdateErrorDigits(false);
 		
 	}

@@ -32,7 +32,7 @@ void GoldenJokerCardProcess::Update()
 	{
 		if (ThePokerGame::Instance()->PokerHand[mCardIndex].id == JOKER_CARD)
 		{			
-			Object2D* allCards = TheObjectHandler::Instance()->GetObject2D("Cards");			
+			Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");			
 			TheAudioManager::Instance()->GetAudioSample("CFLIP")->Play();						
 			allCards->GetInstance(mCardIndex)->SetVisible(true);
 			allCards->GetInstance(mCardIndex)->SetCurrentSprite(ThePokerGame::Instance()->PokerHand[mCardIndex].id - 1);											

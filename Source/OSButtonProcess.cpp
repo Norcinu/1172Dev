@@ -8,7 +8,7 @@
 OSButtonProcess::OSButtonProcess(OSButton* button)
 {
 	mButton = button;
-	mButtonObject = TheObjectHandler::Instance()->GetObject2D(mButton->GetName());	
+	mButtonObject = OBJECT_HANDLER->GetObject2D(mButton->GetName());	
 
 	if (TheEngine::Instance()->GetCurrentState()->GetName() == "HoldStart" &&
 		(mButton->GetLegendName() == "LegendHoldInfoLit" ||
@@ -30,7 +30,7 @@ OSButtonProcess::~OSButtonProcess()
 void OSButtonProcess::Complete()
 {	
 	mButton->Clear();
-	GET_BUTTONS->SetButtonProcessEnded();
+	THE_BUTTONS->SetButtonProcessEnded();
 }
 
 void OSButtonProcess::Update()

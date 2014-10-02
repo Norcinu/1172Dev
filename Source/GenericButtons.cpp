@@ -4,8 +4,15 @@
 #include "OSButtonProcess.h"
 #include "Defines.h"
 #include "PokerGame.h"
+#include <algorithm>
 
 extern unsigned char FlashTog;
+
+using std::for_each;
+using std::begin;
+using std::end;
+using std::pair;
+using std::string;
 
 HardwareButton::HardwareButton(const char* BtnName, unsigned char offset, unsigned char mask, unsigned char lamp)
 {
@@ -90,44 +97,44 @@ void OSButton::SetActive(bool active, unsigned char state)
 	
 	if(state == LAMP_ON)
 	{
-		TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(false);
-		TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(true);		
+		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);		
 	}
 	else if(state == LAMP_OFF)
 	{
-		TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(false);
-		TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(true);
+		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
 	}
 	else if(state == LAMP_FLASH)
 	{
 		if (!FlashTog)
 		{
-			TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(false);
-			TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(true);
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);
 		}
 		else
 		{
-			TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(false);
-			TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(true);
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
 		}
 	}
 	else if(state == LAMP_ANTI)
 	{
 		if (FlashTog)
 		{
-			TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(false);
-			TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(true);	
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);	
 		}
 		else
 		{
-			TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(false);
-			TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(true);
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
 		}
 	}
 	else
 	{
-		TheObjectHandler::Instance()->GetObject2D(mLlegend)->SetVisible(false);
-		TheObjectHandler::Instance()->GetObject2D(mUlegend)->SetVisible(false);
+		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
 	}
 }
 
@@ -172,7 +179,7 @@ void Buttons::Initialise()
 	mOSButtons["HoldInfoButton"]	  = new OSButton("GraphicalButton02","LegendHoldInfoLit","LegendHoldInfoNlit");
 	mOSButtons["CollectButton"]		  = new OSButton("GraphicalButton01","LegendCollectLit","LegendCollectNlit");
 
-	mOSButtons["Swop2PndButton"]	  = new OSButton("GraphicalButton08","Legend2SwopLit","Legend2SwopNlit");
+	//mOSButtons["Swop2PndButton"]	  = new OSButton("GraphicalButton08","Legend2SwopLit","Legend2SwopNlit");
 	mOSButtons["Swop1PndButton"]	  = new OSButton("GraphicalButton07","Legend1SwopLit","Legend1SwopNlit");
 	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit");
 	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit");
@@ -368,25 +375,25 @@ void Buttons::SetLampState(unsigned char Lamp, unsigned char State)
 void Buttons::StandbyButtons()
 {
 	if(GetTerminalFormat() > 1)
-		GET_BUTTONS->SetButtonActivity(true, "Menu", LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "Menu", LAMP_ON);
 	else
-		GET_BUTTONS->SetButtonActivity(false, "Menu", LAMP_OFF);
-	GET_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton", LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(false, "Menu", LAMP_OFF);
+	THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton", LAMP_ON);
 
 
 	if(((GetCredits()+GetBankDeposit() >= GetMinPayoutValue()) ||
 		(GetCredits()+GetBankDeposit()>0 && GetTerminalType() !=HOPPER))
 		&& !GetDoorStatus())
 	{
-		GET_BUTTONS->SetButtonActivity(true, "Collect", LAMP_ON);
-		GET_BUTTONS->SetOSButtonActivity(true, "CollectButton", LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "Collect", LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton", LAMP_ON);
 	}
 	else
 	{
-		GET_BUTTONS->SetButtonActivity(false, "Collect");
-		GET_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+		THE_BUTTONS->SetButtonActivity(false, "Collect");
+		THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
 	}
-
+	
 	unsigned int bdelay = 16; //needs this delay in standby, otherwise too slow??
 
 	if(mStandbyTimer == 0)
@@ -407,7 +414,7 @@ void Buttons::StandbyButtons()
 		SetLampState(LH6_LAMP, mStandbyTimer> (bdelay*5) && mStandbyTimer<=(bdelay*6) ? LAMP_ON : LAMP_OFF);
 		SetLampState(LH7_LAMP, mStandbyTimer> (bdelay*6) && mStandbyTimer<=(bdelay*7) ? LAMP_ON : LAMP_OFF);
 		SetLampState(LH8_LAMP, mStandbyTimer> (bdelay*7) && mStandbyTimer<=(bdelay*8) ? LAMP_ON : LAMP_OFF);
-
+		
 		if(mStandbyTimer>(bdelay*8))
 			mStandbyTimer = 0;
 	}
@@ -424,7 +431,7 @@ void Buttons::StandbyButtons()
 	else if(mStandbyType==4)
 	{
 		mStandbyTimer ++;
-
+		
 		SetLampState(LH1_LAMP, mStandbyTimer<=(bdelay*1)							 ? LAMP_ON : LAMP_OFF);
 		SetLampState(LH8_LAMP, mStandbyTimer<=(bdelay*1)							 ? LAMP_ON : LAMP_OFF);
 
@@ -622,5 +629,8 @@ void Buttons::HoldStartButtons()
 
 void Buttons::DisableOSButtons()
 {
-
+	for_each(begin(mOSButtons), end(mOSButtons), [] (pair<string,OSButton*> b)
+	{
+		b.second->SetActive(false, LAMP_OFF);
+	});
 }

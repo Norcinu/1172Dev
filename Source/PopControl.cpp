@@ -17,7 +17,7 @@ PopControl::~PopControl()
 
 void PopControl::Initialise(const std::vector<unsigned int>& stakes, unsigned int defaultStakeID)
 {
-	Object2D* buttons = TheObjectHandler::Instance()->GetObject2D("PopButtons");	
+	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");	
 	//get the position of the first stake option
 	D3DXVECTOR2 visiblePosition = buttons->GetInstance(0)->GetPosition();
 	
@@ -69,7 +69,7 @@ void PopControl::ChangeStake(unsigned int stakeID)
 	}
 
 	//GET_BUTTONS->DisableButtons();
-	GET_BUTTONS->DisableOSButtons();
+	THE_BUTTONS->DisableOSButtons();
 
 	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
 }
@@ -83,7 +83,7 @@ void PopControl::ShowHide(unsigned int stakeID)
 	}
 	
 	//GET_BUTTONS->DisableButtons();
-	GET_BUTTONS->DisableOSButtons();
+	THE_BUTTONS->DisableOSButtons();
 	
 	mPopOptionsVisible = !mPopOptionsVisible;
 

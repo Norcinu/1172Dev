@@ -3,36 +3,35 @@
 
 void PokerGame::HoldCardButtons(void)
 {
-
-	if (GET_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0))
+	if (THE_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0))
 	{
 		if (!PokerHand[0].hold)
 			PokerHand[0].hold = 1;
 		else
 			PokerHand[0].hold = 0;		
 	}
-	else if (GET_BUTTONS->OSButtonPressed("Hold2Button") || ReadCardHoldPb(1))
+	else if (THE_BUTTONS->OSButtonPressed("Hold2Button") || ReadCardHoldPb(1))
 	{
 		if (!PokerHand[1].hold)
 			PokerHand[1].hold = 1;
 		else
 			PokerHand[1].hold = 0;
 	}
-	else if (GET_BUTTONS->OSButtonPressed("Hold3Button") || ReadCardHoldPb(2))
+	else if (THE_BUTTONS->OSButtonPressed("Hold3Button") || ReadCardHoldPb(2))
 	{
 		if (!PokerHand[2].hold)
 			PokerHand[2].hold = 1;
 		else
 			PokerHand[2].hold = 0;
 	}
-	else if (GET_BUTTONS->OSButtonPressed("Hold4Button") || ReadCardHoldPb(3))
+	else if (THE_BUTTONS->OSButtonPressed("Hold4Button") || ReadCardHoldPb(3))
 	{		
 		if (!PokerHand[3].hold)
 			PokerHand[3].hold = 1;
 		else
 			PokerHand[3].hold = 0;
 	}
-	else if (GET_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4))
+	else if (THE_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4))
 	{		
 		if (!PokerHand[4].hold)
 			PokerHand[4].hold = 1;
@@ -304,11 +303,11 @@ unsigned int Id,i;
 
 	for (i=0; i<5; i++)
 	{
-		Id = TheObjectHandler::Instance()->GetObject2D("Held01")->GetID();
+		Id = OBJECT_HANDLER->GetObject2D("Held01")->GetID();
 		if (PokerHand[i].hold)
-			TheObjectHandler::Instance()->GetObject2D(Id+i)->SetVisible(true);
+			OBJECT_HANDLER->GetObject2D(Id+i)->SetVisible(true);
 		else
-			TheObjectHandler::Instance()->GetObject2D(Id+i)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(Id+i)->SetVisible(false);
 	}
 }
 
@@ -316,29 +315,29 @@ void PokerGame::SetHoldStartLamps(void)
 {	
 
 	if (PokerHand[4].hold)		
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_ON);		 
 	else
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH); 
 
 	if (PokerHand[3].hold)		
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_ON);		 
 	else
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_FLASH); 
 		
 	if (PokerHand[2].hold)
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_ON);		 
 	else
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_FLASH); 
 		
 	if (PokerHand[1].hold)		
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_ON);		 
 	else
-		GET_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH); 
 		
 	if (PokerHand[0].hold)		
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);		 
 	else
-		GET_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH); 
 		
 }
 
@@ -346,7 +345,7 @@ bool PokerGame::CardHoldPb(int button)
 {
 bool Picked=false;
 
-	Object2D* allCards = TheObjectHandler::Instance()->GetObject2D("Cards");
+	Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");
 	float CardX = allCards->GetInstance(button)->GetPosition().x;
 	float CardY = allCards->GetInstance(button)->GetPosition().y;
 	float CardWidth = 235;

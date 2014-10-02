@@ -31,19 +31,19 @@ void GoldenJokerHeldsProcess::Update()
 
 	if (mGoldenJokerHeldsIndex < 5)
 	{		
-		unsigned int HeldId = TheObjectHandler::Instance()->GetObject2D("Held01")->GetID()+mGoldenJokerHeldsIndex;
+		unsigned int HeldId = OBJECT_HANDLER->GetObject2D("Held01")->GetID()+mGoldenJokerHeldsIndex;
 		if (ThePokerGame::Instance()->PokerHand[mGoldenJokerHeldsIndex].hold)		
 		{
 			TheAudioManager::Instance()->GetAudioSample("CLICK")->Play();
-			TheObjectHandler::Instance()->GetObject2D(HeldId)->SetVisible(true);												
+			OBJECT_HANDLER->GetObject2D(HeldId)->SetVisible(true);												
 			mGoldenJokerHeldsDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.2f);
 		}
 		else
 		{
-			if (TheObjectHandler::Instance()->GetObject2D(HeldId)->GetVisible())
+			if (OBJECT_HANDLER->GetObject2D(HeldId)->GetVisible())
 			{
 				TheAudioManager::Instance()->GetAudioSample("CLICK")->Play();
-				TheObjectHandler::Instance()->GetObject2D(HeldId)->SetVisible(false);													
+				OBJECT_HANDLER->GetObject2D(HeldId)->SetVisible(false);													
 				mGoldenJokerHeldsDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.2f);
 			}
 		}

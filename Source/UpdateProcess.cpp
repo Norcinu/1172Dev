@@ -5,8 +5,10 @@
 #include "UpdateProcess.h"
 #include "PokerGame.h"
 
+
 UpdateProcess::UpdateProcess()
 {
+
 }
 
 void UpdateProcess::Update()
@@ -18,7 +20,6 @@ void UpdateProcess::Update()
 	ThePokerGame::Instance()->UpdateAwardDigits();
 	ThePokerGame::Instance()->DrawRemoveHelds();
 	ThePokerGame::Instance()->DrawHiloCards();
-	ThePokerGame::Instance()->DrawHiloState();	
-	GET_BUTTONS->UpdateButtons();
-	
+	ThePokerGame::Instance()->DrawHiloState();
+	THE_BUTTONS->UpdateButtons();	
 }

@@ -46,7 +46,7 @@ bool Game::GameInit()
 	mStake = FIXED_POP;
 #endif
 
-	GET_BUTTONS->Initialise();
+	THE_BUTTONS->Initialise();
 
 	ThePokerGame::Instance()->PokerGameInit();
 

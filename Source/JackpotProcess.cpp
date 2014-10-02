@@ -6,7 +6,7 @@
 
 JackpotProcess::JackpotProcess()
 {	
-	mImage	       = TheObjectHandler::Instance()->GetObject2D("Jackpot");
+	mImage	       = OBJECT_HANDLER->GetObject2D("Jackpot");
 
 	mInitialX      = mX	= mImage->GetPosition().x;
 	mInitialY	   = mY	= mImage->GetPosition().y;
@@ -50,23 +50,23 @@ float NewImageWidth, NewImageHeight;
 	{
 		return;
 	}
-
+		
 	NewImageWidth  = mImageWidth-mStepWidth*mCurrentStep;
 	NewImageHeight = mImageHeight-mStepHeight*mCurrentStep;
 	
-	mX = (1920 -  NewImageWidth) / 2;
-	mY = (1080 - NewImageHeight) / 2;
-
+	mX = (1920 - NewImageWidth/4) / 2;
+	mY = (1080 - NewImageHeight/4) / 2;
+	
 	mXScale = NewImageWidth/mImageWidth;
 	mYScale = NewImageHeight/mImageHeight;
-
+	
 	mImage->SetPosition(D3DXVECTOR2((float)mX,(float)mY));
 	mImage->SetScale(D3DXVECTOR2((float)mXScale,(float)mYScale));
 
 	mImage->SetVisible(true);
-
+	
 	mCurrentStep++;
-
+	
 	if (mCurrentStep >= mNumSteps)
 		SetCompleted();
 	else

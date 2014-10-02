@@ -16,13 +16,13 @@ StandbyFlashProcess::~StandbyFlashProcess()
 
 void StandbyFlashProcess::Complete()
 {
-	TheObjectHandler::Instance()->GetObject2D("NoCredit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("NoCredit")->SetVisible(false);
 }
 
 void StandbyFlashProcess::Init()
 {
 	GameProcess::Init();
-	TheObjectHandler::Instance()->GetObject2D("NoCredit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("NoCredit")->SetVisible(true);
 }
 
 void StandbyFlashProcess::Update()
@@ -48,5 +48,5 @@ void StandbyFlashProcess::Update()
 		}
 	}
 
-	TheObjectHandler::Instance()->GetObject2D("NoCredit")->SetColour(m_standbyColour);
+	OBJECT_HANDLER->GetObject2D("NoCredit")->SetColour(m_standbyColour);
 }

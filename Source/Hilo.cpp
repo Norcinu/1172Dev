@@ -13,8 +13,8 @@ void PokerGame::EnterHiloGambleInitialize(unsigned char JokerWin)
 	AutoPlayFlag = 0;
 
 	TheGame::Instance()->SetAutoplay(false);
-	GET_BUTTONS->SetButtonActivity(false, "AutoPlay");
-	GET_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
+	THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
+	THE_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
 
 	if(AllowGambleReflexValue(JokerWin))
 	{
@@ -87,17 +87,17 @@ void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
 
 	if (GetGameIndex() == Game200p)
 	{		
-		GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
+		THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
 		Swop2PndPbLamp(MLAMP_OFF);
 	}
 	else
 	{		
-		GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",NO_LEGEND);
+		THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",NO_LEGEND);
 		Swop1PndPbLamp(MLAMP_OFF);
 	}
 
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold2Button",NO_LEGEND);
-	GET_BUTTONS->SetOSButtonActivity(false, "Hold4Button",NO_LEGEND);
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button",NO_LEGEND);
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button",NO_LEGEND);
 		
 	for (i=0; i<NUM_CARDS_IN_HAND;i++)
 		RemoveCard(i);
@@ -176,7 +176,7 @@ unsigned char PokerGame::PlayHiloGambleInitializeGame(unsigned char *HiloStatusA
 	
 	SetAwardValueLitState(AwardLevel+LevelCtr,MLAMP_ON);
 	SetAwardValueLitState(AwardLevel+LevelCtr+1,MLAMP_FLASH);
-
+	
 	CollectPbLamp(MLAMP_FLASH);
 
 	/* draw additional cards for gamble involving more than five*/
@@ -778,14 +778,14 @@ BOOL PokerGame::SpecialSwopCardPb(void)
 {
 	if (TheGame::Instance()->GetStake() == MINIMUM_BET)
 	{
-		if(GET_BUTTONS->ButtonPressed("Stake") || GET_BUTTONS->OSButtonPressed("Swop1PndButton"))
+		if(THE_BUTTONS->ButtonPressed("Stake") || THE_BUTTONS->OSButtonPressed("Swop1PndButton"))
 			return(true);
 		else
 			return(false);
 	}
 	else
 	{
-		if(GET_BUTTONS->ButtonPressed("TopStart") || GET_BUTTONS->OSButtonPressed("Swop2PndButton"))
+		if(THE_BUTTONS->ButtonPressed("TopStart"))// || GET_BUTTONS->OSButtonPressed("Swop2PndButton"))
 			return(true);
 		else
 			return(false);
@@ -796,23 +796,23 @@ void PokerGame::CollectPbLamp(unsigned char state)
 {
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ON);
-		GET_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
-		GET_BUTTONS->SetButtonActivity(true, "Collect",LAMP_FLASH);
+		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ANTI);
-		GET_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ANTI);
+		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "CollectButton",LAMP_OFF);
-		GET_BUTTONS->SetButtonActivity(false, "Collect",LAMP_OFF);
+		THE_BUTTONS->SetOSButtonActivity(false, "CollectButton",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "Collect",LAMP_OFF);
 	}
 }
 
@@ -820,19 +820,19 @@ void PokerGame::HiPbLamp(unsigned char state)
 {
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_ON);		
+		THE_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_ON);		
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_FLASH);		
+		THE_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_FLASH);		
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_ANTI);
+		THE_BUTTONS->SetOSButtonActivity(true, "HiButton",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "HiButton",LAMP_OFF);		
+		THE_BUTTONS->SetOSButtonActivity(false, "HiButton",LAMP_OFF);		
 	}
 
 }
@@ -841,19 +841,19 @@ void PokerGame::LoPbLamp(unsigned char state)
 {
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_ON);		
+		THE_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_ON);		
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_FLASH);		
+		THE_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_FLASH);		
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_ANTI);
+		THE_BUTTONS->SetOSButtonActivity(true, "LoButton",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "LoButton",LAMP_OFF);		
+		THE_BUTTONS->SetOSButtonActivity(false, "LoButton",LAMP_OFF);		
 	}
 
 }
@@ -862,19 +862,19 @@ void PokerGame::TS22StartPbLamp(unsigned char state)
 {
 	if(state==MLAMP_ON)
 	{		
-		GET_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{		
-		GET_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{		
-		GET_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "FrontStart",LAMP_ANTI);
 	}
 	else	
 	{		
-		GET_BUTTONS->SetButtonActivity(false, "FrontStart",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "FrontStart",LAMP_OFF);
 	}
 
 }
@@ -885,25 +885,25 @@ void PokerGame::DealDraw1PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart", LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart", LAMP_ON);
 		//GET_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_FLASH);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH); // Was Stake
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH); // Was Stake
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ANTI);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI); //was Stake
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI); //was Stake
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",LAMP_OFF);
+		THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",LAMP_OFF);
 		//GET_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
-		GET_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
 	}
 }
 
@@ -913,23 +913,23 @@ void PokerGame::DealDraw2PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_FLASH);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH);
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ANTI);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI);
+		THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",LAMP_OFF);
-		GET_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
+		THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
 	}
 }
 
@@ -939,23 +939,23 @@ void PokerGame::Swop1PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ON);
-		GET_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_FLASH);
-		GET_BUTTONS->SetButtonActivity(true, "Stake",LAMP_FLASH);
+		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ANTI);
-		GET_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ANTI);
+		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton",LAMP_OFF);
-		GET_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
+		THE_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
 	}
 }
 
@@ -965,29 +965,29 @@ void PokerGame::Swop2PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ON);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ON);
+		//GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ON);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_FLASH);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH);
+		//GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_FLASH);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ANTI);
-		GET_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI);
+		//GET_BUTTONS->SetOSButtonActivity(true, "Swop2PndButton",LAMP_ANTI);
+		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI);
 	}
 	else	
 	{
-		GET_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton",LAMP_OFF);
-		GET_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
+		//GET_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton",LAMP_OFF);
+		THE_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
 	}
 }
 
 bool PokerGame::ReadTS22StartPb(void)
 {
-	if (GET_BUTTONS->ButtonPressed("FrontStart"))
+	if (THE_BUTTONS->ButtonPressed("FrontStart"))
 		return(true);
 	else
 		return(false);		
@@ -995,9 +995,9 @@ bool PokerGame::ReadTS22StartPb(void)
 
 bool PokerGame::ReadDealDraw2PndPb(void)
 {
-	if (GET_BUTTONS->ButtonPressed("TopStart") || 
+	if (THE_BUTTONS->ButtonPressed("TopStart") || 
 		/*GET_BUTTONS->ButtonPressed("FrontStart") || */
-		GET_BUTTONS->OSButtonPressed("DealStart2PndButton"))
+		THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
 		return(true);
 	else
 		return(false);	
@@ -1005,9 +1005,9 @@ bool PokerGame::ReadDealDraw2PndPb(void)
 
 bool PokerGame::ReadDealDraw1PndPb(void)
 {	
-	if (GET_BUTTONS->ButtonPressed("TopStart") || 
+	if (THE_BUTTONS->ButtonPressed("TopStart") || 
 		/*GET_BUTTONS->ButtonPressed("FrontStart") || */
-		GET_BUTTONS->OSButtonPressed("DealStart1PndButton"))
+		THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))
 		return(true);
 	else
 		return(false);
@@ -1015,7 +1015,7 @@ bool PokerGame::ReadDealDraw1PndPb(void)
 
 bool PokerGame::ReadHiPb(void)
 {
-	if (GET_BUTTONS->OSButtonPressed("HiButton"))
+	if (THE_BUTTONS->OSButtonPressed("HiButton"))
 		return(true);
 	else
 		return(false);
@@ -1023,7 +1023,7 @@ bool PokerGame::ReadHiPb(void)
 
 bool PokerGame::ReadLoPb(void)
 {
-	if (GET_BUTTONS->OSButtonPressed("LoButton"))
+	if (THE_BUTTONS->OSButtonPressed("LoButton"))
 		return(true);
 	else
 		return(false);
@@ -1031,7 +1031,7 @@ bool PokerGame::ReadLoPb(void)
 
 bool PokerGame::ReadCollectPb(void)
 {
-	if (GET_BUTTONS->ButtonPressed("Collect") || GET_BUTTONS->OSButtonPressed("CollectButton"))
+	if (THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton"))
 		return(true);
 	else
 		return(false);	

@@ -38,7 +38,7 @@ bool Game::Setup(HINSTANCE hinstance)
 
 	TheEngine::Instance()->SetWriteablePath("D:\\machine\\game_data\\");
 
-	GET_BUTTONS->LampsOff();
+	THE_BUTTONS->LampsOff();
 
 	if(GetDoorStatus() 
 		|| GetCurrentError() 
@@ -82,8 +82,7 @@ bool Game::Setup(HINSTANCE hinstance)
 	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ErrorProcess);
 	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new UpdateProcess);
 	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new CheckForDemoPlayProcess);
-
 	TheEngine::Instance()->EmptyMessageQueue();
-
+	
 	return true;
 }

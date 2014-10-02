@@ -22,14 +22,14 @@ void PokerGame::UpdateAwardDigits()
 		AwardValue /= 100.0f;
 		sprintf_s(buff, "£%.02f", AwardValue);
 		
-		TheObjectHandler::Instance()->GetText(buff2)->SetPosition(D3DXVECTOR2((float)AwardValuesX,(float)AwardValuesY[i]));
-		TheObjectHandler::Instance()->GetText(buff2)->SetScale(D3DXVECTOR2(1.0f,0.8f));
+		OBJECT_HANDLER->GetText(buff2)->SetPosition(D3DXVECTOR2((float)AwardValuesX,(float)AwardValuesY[i]));
+		OBJECT_HANDLER->GetText(buff2)->SetScale(D3DXVECTOR2(1.0f,0.8f));
 		if (AwardDigitColour[i])
-			TheObjectHandler::Instance()->GetText(buff2)->SetColour(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		else
-			TheObjectHandler::Instance()->GetText(buff2)->SetColour(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
-		TheObjectHandler::Instance()->GetText(buff2)->SetMessage(buff);
-		TheObjectHandler::Instance()->GetText(buff2)->SetVisible(true);
+			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
+		OBJECT_HANDLER->GetText(buff2)->SetMessage(buff);
+		OBJECT_HANDLER->GetText(buff2)->SetVisible(true);
 	}
 }
 

@@ -59,7 +59,7 @@ public:
 	unsigned int GetInterimFeatureWinValue() const;
 	unsigned int GetInterimWinValue() const;
 
-	bool IsHD() const;
+	bool IsHD();
 	bool HasStake(const unsigned int stake) const;
 
 	unsigned int GetStakeID() const;
