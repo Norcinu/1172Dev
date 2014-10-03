@@ -18,5 +18,5 @@ void Game::QuitToMainMenu()
 
 	SendHeaderOnly(EXIT_CODE1, 1);
 
-	TheEngine::Instance()->Shutdown();
+	ENGINE->Shutdown();
 }

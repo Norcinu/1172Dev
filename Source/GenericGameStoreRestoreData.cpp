@@ -29,7 +29,7 @@ void Game::StoreDataThread()
 
 	SetFileAction();
 
-	std::string gameControlPath = TheEngine::Instance()->GetWriteablePath();
+	std::string gameControlPath = ENGINE->GetWriteablePath();
 	gameControlPath.append("\\1170G.dat");
 
 	file = _open(gameControlPath.c_str(), FILE_WRITE, _S_IREAD | _S_IWRITE);
@@ -108,7 +108,7 @@ void Game::RestoreData()
 
 	SetFileAction();
 
-	std::string gameControlPath = TheEngine::Instance()->GetWriteablePath();
+	std::string gameControlPath = ENGINE->GetWriteablePath();
 	gameControlPath.append("\\1170G.dat");
 
 	file = _open(gameControlPath.c_str(), FILE_READ, _S_IREAD | _S_IWRITE);

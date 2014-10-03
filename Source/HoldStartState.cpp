@@ -13,7 +13,7 @@
 #include "NMI_log.h"
 #include "JackpotProcess.h"
 
-static bool Registered = TheEngine::Instance()->AddState("HoldStart", new HoldStartState());
+static bool Registered = ENGINE->AddState("HoldStart", new HoldStartState());
 
 unsigned char global_quit = 0;
 
@@ -38,7 +38,7 @@ void HoldStartState::Enter()
 	ThePokerGame::Instance()->SetActiveCardButton(true,4);
 	
 	ThePokerGame::Instance()->HoldCalc(ThePokerGame::Instance()->DealHand);
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new AutoHeldsProcess);
+	ENGINE->GetProcessManager()->AddProcessToQueue(new AutoHeldsProcess);
 }
 
 void HoldStartState::Exit()
@@ -70,7 +70,7 @@ void HoldStartState::Exit()
 	ThePokerGame::Instance()->SetActiveCardButton(false,3);
 	ThePokerGame::Instance()->SetActiveCardButton(false,4);
 
-	if(!TheGame::Instance()->GetAutoplay())	
+	if(!THE_GAME->GetAutoplay())	
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	
 	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(false);
@@ -88,7 +88,7 @@ void HoldStartState::Update()
 {		
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -117,17 +117,17 @@ void HoldStartState::Update()
 		
 		if ((THE_BUTTONS->ButtonPressed("FrontStart") || 
 			 THE_BUTTONS->ButtonPressed("TopStart") ||
-			 TheGame::Instance()->GetAutoplay() || 
-			 TheGame::Instance()->GetAutoplay() || 
+			 THE_GAME->GetAutoplay() || 
+			 THE_GAME->GetAutoplay() || 
 			 startGame))
 		{
-			TheEngine::Instance()->StateTransition("DrawHand");
+			ENGINE->StateTransition("DrawHand");
 		}
 		else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && 
-				    !TheGame::Instance()->GetAutoplay())
+				    !THE_GAME->GetAutoplay())
 		{
 			TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
-			TheGame::Instance()->SetAutoplay(true);
+			THE_GAME->SetAutoplay(true);
 		}
 	}
 }

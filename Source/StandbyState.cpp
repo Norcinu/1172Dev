@@ -7,7 +7,7 @@
 #include "StandbyState.h"
 #include <bo.h>
 
-static bool Registered = TheEngine::Instance()->AddState("Standby", new StandbyState());
+static bool Registered = ENGINE->AddState("Standby", new StandbyState());
 
 extern unsigned char global_quit;
 
@@ -24,10 +24,10 @@ StandbyState::~StandbyState()
 }
 
 void StandbyState::Enter()
-{		
+{
 	m_standbyFlash = new StandbyFlashProcess();
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(m_standbyFlash);	
-	m_standbyTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + STANDBY_TIME;
+	ENGINE->GetProcessManager()->AddProcessToList(m_standbyFlash);
+	m_standbyTimer = ENGINE->GetSystemTimer().GetRunningTime() + STANDBY_TIME;
 }
 
 void StandbyState::Exit()
@@ -38,7 +38,7 @@ void StandbyState::Exit()
 
 void StandbyState::Update()
 {
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -55,40 +55,40 @@ void StandbyState::Update()
 #endif
 		THE_BUTTONS->StandbyButtons();
 
-		TheGame::Instance()->UpdateDigits();
-
+		THE_GAME->UpdateDigits();
+		
 		if(GetSwitchStatus(REFILL_KEY))
 		{
-			TheGame::Instance()->QuitToMainMenu();
+			THE_GAME->QuitToMainMenu();
 			return;
 		}
 
-		if(TheEngine::Instance()->GetSystemTimer().GetRunningTime() > m_standbyTimer)
+		if(ENGINE->GetSystemTimer().GetRunningTime() > m_standbyTimer)
 		{
 			if((GetTerminalFormat() > 1) && (!GetDynamicDoNotQuitGame(MODEL_NUMBER)))
-				TheGame::Instance()->QuitToMainMenu();
+				THE_GAME->QuitToMainMenu();
 		}
 
 		if(GetCredits()+GetBankDeposit() >= MINIMUM_BET)
 		{
-			TheEngine::Instance()->StateTransition("DealStart");
+			ENGINE->StateTransition("DealStart");
 		}
 
 		if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
 		{
-			TheEngine::Instance()->StateTransition("Help");
+			ENGINE->StateTransition("Help");
 			return;
 		}
 		else if(THE_BUTTONS->ButtonPressed("Menu"))
 		{
-			TheGame::Instance()->QuitToMainMenu();
+			THE_GAME->QuitToMainMenu();
 		}
 
 		if((GetCredits()+GetBankDeposit() > 0))
 		{
 			if(THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton"))
 			{
-				TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new CollectProcess);	
+				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);	
 			}
 		}
 	}

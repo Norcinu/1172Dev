@@ -34,15 +34,15 @@ void ErrorProcess::Update()
 		mHadError = true;
 		if(GetGameInProgress())
 		{
-			TheGame::Instance()->SetAutoplay(false);
+			THE_GAME->SetAutoplay(false);
 		}
 		else
 		{
-			TheGame::Instance()->DrawCurrentError();
+			THE_GAME->DrawCurrentError();
 		}
 		if(GetSwitchStatus(REFILL_KEY))
 		{
-			TheGame::Instance()->QuitToMainMenu();
+			THE_GAME->QuitToMainMenu();
 		}
 	}
 	else

@@ -63,20 +63,20 @@ bool PokerGame::PokerGameInit()
 	AwardTable[1][10]= 30000;
 	AwardTable[1][11]= 50000;
 	AwardTable[1][12]= 50000;
-
+	
 	AwardValuesX = 630;
-	AwardValuesY[12] = 42;
-	AwardValuesY[11] = 80;
-	AwardValuesY[10] = 114;
-	AwardValuesY[9]	= 146;
-	AwardValuesY[8] = 182;
-	AwardValuesY[7] = 218;
-	AwardValuesY[6] = 252;
-	AwardValuesY[5] = 286;
-	AwardValuesY[4] = 318;
-	AwardValuesY[3] = 354;
-	AwardValuesY[2] = 390;
-	AwardValuesY[1] = 428;
+	AwardValuesY[12] = 46;
+	AwardValuesY[11] = 81;
+	AwardValuesY[10] = 115;
+	AwardValuesY[9]	= 150;
+	AwardValuesY[8] = 185;
+	AwardValuesY[7] = 219;
+	AwardValuesY[6] = 254;
+	AwardValuesY[5] = 289;
+	AwardValuesY[4] = 323;
+	AwardValuesY[3] = 358;
+	AwardValuesY[2] = 393;
+	AwardValuesY[1] = 427;
 	AwardValuesY[0] = 450;
 
 

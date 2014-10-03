@@ -29,11 +29,11 @@ int WINAPI WinMain(	HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdlin
 		Sleep(2);
 	}*/
 
-	if(TheGame::Instance()->Setup(hinstance))
+	if(THE_GAME->Setup(hinstance))
 	{
-		TheEngine::Instance()->Run();
+		ENGINE->Run();
 	}
 	
-	TheGame::Instance()->GameShutDown();
+	THE_GAME->GameShutDown();
 	return 0;
 }

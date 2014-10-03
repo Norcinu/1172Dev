@@ -25,7 +25,7 @@ void PayTransferProcess::Complete()
 void PayTransferProcess::Update()
 {
 
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mPayTransferDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mPayTransferDelayTimer)
 	{
 		return;
 	}
@@ -37,8 +37,8 @@ void PayTransferProcess::Update()
 		ThePokerGame::Instance()->Pay -= mAmountToDeduct;
         ThePokerGame::Instance()->FinalWinValue += mAmountToDeduct;
 		AddWinToBank(mAmountToDeduct,MODEL_NUMBER);	
-		TheGame::Instance()->UpdateDigits();
-		mPayTransferDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.1f);
+		THE_GAME->UpdateDigits();
+		mPayTransferDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.1f);
 	}
 	else	
 		SetCompleted();

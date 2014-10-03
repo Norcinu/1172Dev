@@ -24,7 +24,7 @@ void VariableSoundProcess::Complete()
 void VariableSoundProcess::Update()
 {
 
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mVariableSoundDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mVariableSoundDelayTimer)
 	{
 		return;
 	}
@@ -32,7 +32,7 @@ void VariableSoundProcess::Update()
 	if (mRepeatNumber)
 	{
 		TheAudioManager::Instance()->GetAudioSample(mSoundName)->Play();
-		mVariableSoundDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(ThePokerGame::Instance()->GetSoundDelay(mSoundNameIndex,0));
+		mVariableSoundDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(ThePokerGame::Instance()->GetSoundDelay(mSoundNameIndex,0));
 		mRepeatNumber--;
 	}
 	else		 			

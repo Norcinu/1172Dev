@@ -7,7 +7,7 @@
 #include "PokerHandProcess.h"
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("DrawHand", new DrawHandState());
+static bool Registered = ENGINE->AddState("DrawHand", new DrawHandState());
 
 extern unsigned char global_quit;
 
@@ -43,7 +43,7 @@ void DrawHandState::Update()
 {		
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -58,13 +58,13 @@ void DrawHandState::Update()
 		if (ThePokerGame::Instance()->PokerHandProcessComplete)
 		{
 			if (ThePokerGame::Instance()->InsertDoubleJokerFlag)
-				TheEngine::Instance()->StateTransition("GoldenJoker");
+				ENGINE->StateTransition("GoldenJoker");
 			else if (ThePokerGame::Instance()->PokerHiloCondition())
-				TheEngine::Instance()->StateTransition("HiloGamble");
+				ENGINE->StateTransition("HiloGamble");
 			else
-				TheEngine::Instance()->StateTransition("Payment");
+				ENGINE->StateTransition("Payment");
 		}
 		else
-			TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new PokerHandProcess);
+			ENGINE->GetProcessManager()->AddProcessToQueue(new PokerHandProcess);
 	}
 }

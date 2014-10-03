@@ -6,13 +6,15 @@
 extern unsigned char global_quit;
 extern   signed long HiloStoreMinValue[MaxSelectableGames];
 
+static bool FirstTimeEntry = true;
+
 void PokerGame::EnterHiloGambleInitialize(unsigned char JokerWin)
 {
 	if (AutoPlayFlag)
 		ResetAutoPlayFlag = 1;
 	AutoPlayFlag = 0;
 
-	TheGame::Instance()->SetAutoplay(false);
+	THE_GAME->SetAutoplay(false);
 	THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	THE_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
 
@@ -33,7 +35,7 @@ void PokerGame::EnterHiloGambleShowAward(unsigned char JokerWin)
 
 	SetAwardValueLitState(AwardLevel,MLAMP_ON);
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new VariableSoundProcess("WINTOTAL",WINTOTAL,2));
+	ENGINE->GetProcessManager()->AddProcessToQueue(new VariableSoundProcess("WINTOTAL",WINTOTAL,2));
 
 	/* find number of gambles need to reach jackpot */
 	NumGambles = FunctionMaxLevels() - AwardLevel;
@@ -44,9 +46,9 @@ bool PokerGame::EnterHiloGambleEntry(unsigned char JokerWin)
 static int StartOnce=0;
 bool EntryFlag=false;
 
-	if (GetGameIndex() == Game200p)
-		DealDraw2PndPbLamp(MLAMP_ON); 
-	else
+//	if (GetGameIndex() == Game200p)
+//		DealDraw2PndPbLamp(MLAMP_ON); 
+//	else
 		DealDraw1PndPbLamp(MLAMP_ON);
 
 	if (!StartOnce)
@@ -85,7 +87,7 @@ void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
 	DealDraw2PndPbLamp(MLAMP_OFF); 
 	DealDraw1PndPbLamp(MLAMP_OFF);
 
-	if (GetGameIndex() == Game200p)
+	/*if (GetGameIndex() == Game200p)
 	{		
 		THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
 		Swop2PndPbLamp(MLAMP_OFF);
@@ -94,8 +96,9 @@ void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
 	{		
 		THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",NO_LEGEND);
 		Swop1PndPbLamp(MLAMP_OFF);
-	}
+	}*/
 
+	Swop1PndPbLamp(MLAMP_OFF);
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button",NO_LEGEND);
 		
@@ -124,7 +127,7 @@ void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
 void PokerGame::HiloGamble(unsigned char JokerWin)
 {
 
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < HiloDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < HiloDelayTimer)
 		return;
 
 	HiloDelayTimer = 0;
@@ -161,6 +164,7 @@ void PokerGame::HiloGamble(unsigned char JokerWin)
 				break;
 		case 9:	PlayHiloGambleGetPayment(HiloStatusArray,JokerWin|ModeGameIn[GameIndex]);
 			    HiloGambleStage = 10;
+				FirstTimeEntry = true;
 				break;
 		default:break;
 	}
@@ -252,18 +256,21 @@ unsigned char PokerGame::PlayHiloGambleInitializeGame(unsigned char *HiloStatusA
 			&& JokerWin 
 			&& HiloStore[GameIndex] > HiloStoreMinValue[GameIndex])		
 		{
+			FirstTimeEntry = false;
 			AllowSwap = ExternAllowSwap = 1;
-			if (GetGameIndex() == Game200p)				
+			/*if (GetGameIndex() == Game200p)				
 				Swop2PndPbLamp(MLAMP_FLASH);
-			else
+			else*/
 				Swop1PndPbLamp(MLAMP_FLASH);
-
+				
 			TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();
-
-			if (GetGameIndex() == Game200p)				
+			OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(true);
+			THE_BUTTONS->SetButtonActivity(true, "SwopButton");
+			
+			/*if (GetGameIndex() == Game200p)				
 				Swop2PndPbLamp(MLAMP_FLASH);
-			else
-				Swop1PndPbLamp(MLAMP_FLASH);
+			else*/
+			//	Swop1PndPbLamp(MLAMP_FLASH);
 		}
 		else
 			AllowSwap = ExternAllowSwap = 0;
@@ -283,9 +290,9 @@ unsigned char PokerGame::PlayHiloGambleSelection(unsigned char *HiloStatusArray,
 {
 	if (AllowSwap)
 	{
-		if (GetGameIndex() == Game200p)				
-			Swop2PndPbLamp(MLAMP_FLASH);
-		else
+	//	if (GetGameIndex() == Game200p)				
+	//		Swop2PndPbLamp(MLAMP_FLASH);
+	//	else
 			Swop1PndPbLamp(MLAMP_FLASH);
 	}
 
@@ -410,16 +417,16 @@ unsigned char PokerGame::PlayHiloGambleSelection(unsigned char *HiloStatusArray,
 #endif
 
 		{
-			if (GetGameIndex() == Game200p)
+			/*if (GetGameIndex() == Game200p)
 			{
 				Swop2PndPbLamp(MLAMP_ON);
 				Swop2PndPbLamp(MLAMP_OFF);
 			}
 			else
-			{
+			{*/
 				Swop1PndPbLamp(MLAMP_ON);
 				Swop1PndPbLamp(MLAMP_OFF);
-			}
+			//}
 				
 			OldCard = (HiloStatusArray[i-1]&0x3f);
 				
@@ -656,7 +663,7 @@ unsigned char PokerGame::PlayHiloGambleProcessSelection(unsigned char *HiloStatu
 		if (++Hgamble > 3)			
 			Hgamble = 0;
 
-		HiloDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime();
+		HiloDelayTimer = ENGINE->GetSystemTimer().GetRunningTime();
 		HiloDelayTimer +=ThePokerGame::Instance()->GetSoundDelay(CFLIP,0);
 		if (GameType == FEATURE_WIN)										
 			HiloDelayTimer +=ThePokerGame::Instance()->GetSoundDelay(WOLF_SND,0);
@@ -694,6 +701,7 @@ unsigned char PokerGame::PlayHiloGambleGetPayment(unsigned char *HiloStatusArray
 	else
 		Pay = 0;
 
+	FirstTimeEntry = true;
 	return(0);
 }
 
@@ -776,9 +784,9 @@ unsigned char InitialCard;
 
 BOOL PokerGame::SpecialSwopCardPb(void)
 {
-	if (TheGame::Instance()->GetStake() == MINIMUM_BET)
+	if (THE_GAME->GetStake() == MINIMUM_BET)
 	{
-		if(THE_BUTTONS->ButtonPressed("Stake") || THE_BUTTONS->OSButtonPressed("Swop1PndButton"))
+		if(/*THE_BUTTONS->ButtonPressed("Stake") || */THE_BUTTONS->OSButtonPressed("SwopButton"))
 			return(true);
 		else
 			return(false);
@@ -885,23 +893,23 @@ void PokerGame::DealDraw1PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+		//THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
 		THE_BUTTONS->SetButtonActivity(true, "TopStart", LAMP_ON);
 		//GET_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_FLASH);
+		//THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_FLASH);
 		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_FLASH); // Was Stake
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ANTI);
+		//THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ANTI);
 		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ANTI); //was Stake
 	}
 	else	
 	{
-		THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",LAMP_OFF);
+		//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",LAMP_OFF);
 		//GET_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
 		THE_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
 	}
@@ -911,7 +919,7 @@ void PokerGame::DealDraw2PndPbLamp(unsigned char state)
 {
 	TS22StartPbLamp(state);
 
-	if(state==MLAMP_ON)
+	/*if(state==MLAMP_ON)
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
 		THE_BUTTONS->SetButtonActivity(true, "TopStart",LAMP_ON);
@@ -930,7 +938,7 @@ void PokerGame::DealDraw2PndPbLamp(unsigned char state)
 	{
 		THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",LAMP_OFF);
 		THE_BUTTONS->SetButtonActivity(false, "TopStart",LAMP_OFF);
-	}
+	}*/
 }
 
 void PokerGame::Swop1PndPbLamp(unsigned char state)
@@ -939,22 +947,26 @@ void PokerGame::Swop1PndPbLamp(unsigned char state)
 
 	if(state==MLAMP_ON)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ON);
+		if (!FirstTimeEntry)
+			THE_BUTTONS->SetOSButtonActivity(true, "SwopButton",LAMP_ON);
 		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_FLASH);
+		if (!FirstTimeEntry)
+			THE_BUTTONS->SetOSButtonActivity(true, "SwopButton",LAMP_FLASH);
 		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "Swop1PndButton",LAMP_ANTI);
+		if (!FirstTimeEntry)
+			THE_BUTTONS->SetOSButtonActivity(true, "SwopButton",LAMP_ANTI);
 		THE_BUTTONS->SetButtonActivity(true, "Stake",LAMP_ANTI);
 	}
 	else	
 	{
-		THE_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton",LAMP_OFF);
+		if (!FirstTimeEntry)
+			THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",LAMP_OFF);
 		THE_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
 	}
 }
@@ -995,22 +1007,26 @@ bool PokerGame::ReadTS22StartPb(void)
 
 bool PokerGame::ReadDealDraw2PndPb(void)
 {
-	if (THE_BUTTONS->ButtonPressed("TopStart") || 
-		/*GET_BUTTONS->ButtonPressed("FrontStart") || */
-		THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
-		return(true);
-	else
+	if (THE_BUTTONS->ButtonPressed("TopStart") || THE_BUTTONS->ButtonPressed("FrontStart"))
+		return true;
+		/* || */
+		//THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
+		//return(true);
+	//else
 		return(false);	
 }
 
 bool PokerGame::ReadDealDraw1PndPb(void)
 {	
-	if (THE_BUTTONS->ButtonPressed("TopStart") || 
-		/*GET_BUTTONS->ButtonPressed("FrontStart") || */
-		THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))
-		return(true);
+	if (THE_BUTTONS->ButtonPressed("TopStart") || THE_BUTTONS->ButtonPressed("FrontStart"))
+		return true;
 	else
-		return(false);
+		return false;
+		/* ||
+		//THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))
+		//return(true);
+	//else
+		return(false);*/
 }
 
 bool PokerGame::ReadHiPb(void)

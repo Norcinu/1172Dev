@@ -6,7 +6,7 @@
 #include "EndGameState.h"
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("EndGame", new EndGameState());
+static bool Registered = ENGINE->AddState("EndGame", new EndGameState());
 
 extern unsigned char global_quit;
 
@@ -26,7 +26,7 @@ void EndGameState::Enter()
 
 	OBJECT_HANDLER->GetObject2D("GameOverMsg")->SetVisible(true);	
 	ClearGameInProgress();	
-	TheGame::Instance()->StoreData();
+	THE_GAME->StoreData();
 	ThePokerGame::Instance()->SoakStoreThisGame();
 	ThePokerGame::Instance()->SetGameEndTime();
 
@@ -34,9 +34,9 @@ void EndGameState::Enter()
 		RemainingTime = MIN_GAME_TIME-ThePokerGame::Instance()->GetGameLengthTime();	
 
 	if (RemainingTime > 1.0f)
-		mEndGameDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
+		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
 	else
-		mEndGameDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);	
+		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);	
 }
 
 void EndGameState::Exit()
@@ -50,12 +50,12 @@ void EndGameState::Update()
 {		
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
 
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mEndGameDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mEndGameDelayTimer)
 	{
 		return;
 	}
@@ -67,6 +67,6 @@ void EndGameState::Update()
 
 	if(!global_quit)
 	{						
-		TheEngine::Instance()->StateTransition("DealStart");		
+		ENGINE->StateTransition("DealStart");		
 	}
 }

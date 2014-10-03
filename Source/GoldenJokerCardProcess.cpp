@@ -23,7 +23,7 @@ void GoldenJokerCardProcess::Complete()
 
 void GoldenJokerCardProcess::Update()
 {
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mCardDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mCardDelayTimer)
 	{
 		return;
 	}
@@ -39,7 +39,7 @@ void GoldenJokerCardProcess::Update()
 			SetCompleted();
 		}
 		else
-			mCardDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.1f);
+			mCardDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.1f);
 		mCardIndex++;
 	}		
 }

@@ -18,7 +18,7 @@ void PokerGame::PayOut(void)
 		case 3: PayOutReflex();
 				PayOutStage = 4;
 				break;
-		case 4: //PayOutPaytransfer(); DEBUG DEBUG
+		case 4: //PayOutPaytransfer(); // DEBUG DEBUG
 				PayOutStage = 5;
 				break;
 		default:
@@ -51,7 +51,7 @@ bool PokerGame::PayOutDoJackpotFanfare(void)
 {
 	bool Status = false;
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new JackpotProcess);
+	ENGINE->GetProcessManager()->AddProcessToQueue(new JackpotProcess);
 	return(Status);
 }
 
@@ -70,7 +70,7 @@ bool PokerGame::PayOutPaytransfer(void)
 	if (!GetDoorStatus())
 		SendGameOutcome2Server(WageredAmount,0,PokerGameWin,((MODEL_NUMBER * 1000) + RELEASE_NUMBER * 10),Pay);
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new PayTransferProcess);
+	ENGINE->GetProcessManager()->AddProcessToQueue(new PayTransferProcess);
 	return(Status);
 }
 

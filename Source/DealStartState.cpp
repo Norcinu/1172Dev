@@ -13,7 +13,7 @@
 
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("DealStart", new DealStartState());
+static bool Registered = ENGINE->AddState("DealStart", new DealStartState());
 
 extern unsigned char global_quit;
 
@@ -33,18 +33,18 @@ void DealStartState::Enter()
 #ifdef SOAK_BUILD
 	if (GetLocalCharRandomNumber(100) < 50)
 	{
-		TheGame::Instance()->SetStake(MAXIMUM_BET);
+		THE_GAME->SetStake(MAXIMUM_BET);
 		ThePokerGame::Instance()->SetGameIndex(Game200p);
 	}
 	else
 	{
-		TheGame::Instance()->SetStake(MINIMUM_BET);
+		THE_GAME->SetStake(MINIMUM_BET);
 		ThePokerGame::Instance()->SetGameIndex(Game100p);
 	}
 
 	if (GetCredits()+GetBankDeposit() <= MINIMUM_BET)
 	{
-		TheGame::Instance()->SetStake(MINIMUM_BET);
+		THE_GAME->SetStake(MINIMUM_BET);
 		ThePokerGame::Instance()->SetGameIndex(Game100p);
 	}
 #endif
@@ -55,36 +55,38 @@ void DealStartState::Enter()
 
 	ThePokerGame::Instance()->AllowHighWinFlag = 0;
 
+	OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
+
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton",NO_LEGEND);
+	//THE_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton",NO_LEGEND);
+	THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",NO_LEGEND);
 
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton");
-	THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton");
 
 	if (ThePokerGame::Instance()->ResetAutoPlayFlag)
 	{
-		TheGame::Instance()->SetAutoplay(true);
+		THE_GAME->SetAutoplay(true);
 		ThePokerGame::Instance()->ResetAutoPlayFlag = 0;
 	}
 
-	if((GetCredits() > lCredit || GetCredits() < TheGame::Instance()->GetStake()))	
-		TheGame::Instance()->SetAutoplay(false);
+	if((GetCredits() > lCredit || GetCredits() < THE_GAME->GetStake()))	
+		THE_GAME->SetAutoplay(false);
 		
-	TheEngine::Instance()->GetProcessManager()->FlushProcessQueue();
+	ENGINE->GetProcessManager()->FlushProcessQueue();
 
-	TheGame::Instance()->UpdateDigits();
+	THE_GAME->UpdateDigits();
 
 	if(GetBankDeposit()>= GetVariableValue(MAX_WIN_BANK))
 	{
 #ifdef SOAK_BUILD
 		ZeroBankDeposit();
 #else
-		TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new MaxBankProcess);
+		ENGINE->GetProcessManager()->AddProcessToQueue(new MaxBankProcess);
 #endif
 	}
 
@@ -105,24 +107,24 @@ void DealStartState::Exit()
 	THE_BUTTONS->SetButtonActivity(false, "Menu");
 	THE_BUTTONS->SetButtonActivity(false, "Collect");
 	THE_BUTTONS->SetButtonActivity(false, "Transfer");
-	if(!TheGame::Instance()->GetAutoplay())
+	if(!THE_GAME->GetAutoplay())
 	{
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	}
 
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 
 	OBJECT_HANDLER->GetObject2D("DealStartMsg")->SetVisible(false);	
 #ifndef FAST_PLAY
-	TheEngine::Instance()->SetScreensToDraw(SCREEN1);
+	ENGINE->SetScreensToDraw(SCREEN1);
 #endif
 
-	lCredit = GetCredits() - TheGame::Instance()->GetStake(); //subtract stake from next spin	
+	lCredit = GetCredits() - THE_GAME->GetStake(); //subtract stake from next spin	
 }
 
 #include <sstream>
@@ -132,7 +134,7 @@ void DealStartState::Update()
 	
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -142,7 +144,7 @@ void DealStartState::Update()
 		return;
 	}
 
-	if(GetDoorStatus() && !TheGame::Instance()->IsDemoMode())
+	if(GetDoorStatus() && !THE_GAME->IsDemoMode())
 	{
 		return;
 	}
@@ -156,7 +158,7 @@ void DealStartState::Update()
 	{
 		if(GetSwitchStatus(REFILL_KEY))
 		{
-			TheGame::Instance()->QuitToMainMenu();
+			THE_GAME->QuitToMainMenu();
 			return;
 		}
 	}
@@ -176,27 +178,27 @@ void DealStartState::Update()
 
 		if(!GetCurrentError())
 		{
-			TheGame::Instance()->UpdateDigits();
+			THE_GAME->UpdateDigits();
 			
 			if((GetCredits()+GetBankDeposit() < MINIMUM_BET))
 			{				
-				TheGame::Instance()->SetAutoplay(false);
-				TheEngine::Instance()->StateTransition("Standby");
+				THE_GAME->SetAutoplay(false);
+				ENGINE->StateTransition("Standby");
 				return;
 			}
 			
 			bool changeStake = false;
 			bool startGame = false;
-			if(TheGame::Instance()->GetStake() == MINIMUM_BET)
+			if(THE_GAME->GetStake() == MINIMUM_BET)
 			{
 				if (THE_BUTTONS->ButtonPressed("TopStart") ||
-				    THE_BUTTONS->ButtonPressed("FrontStart") ||
-				    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))				
+				    THE_BUTTONS->ButtonPressed("FrontStart")) /*||
+				    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))*/
 				{					
 					startGame = true;
 				}
-				else if (THE_BUTTONS->ButtonPressed("Stake") ||
-					     THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
+				else if (THE_BUTTONS->ButtonPressed("Stake"))// ||
+					     //THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
 				{
 					changeStake = true;
 				}
@@ -204,13 +206,13 @@ void DealStartState::Update()
 			else
 			{
 				if(THE_BUTTONS->ButtonPressed("FrontStart") ||
-				   THE_BUTTONS->ButtonPressed("TopStart") ||
-				   THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
+				   THE_BUTTONS->ButtonPressed("TopStart"))/* ||
+				   THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))*/
 				{					
 					startGame = true;
 				}
-				else if(THE_BUTTONS->ButtonPressed("Stake") ||
-					    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))
+				else if(THE_BUTTONS->ButtonPressed("Stake"))/* ||
+					    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))*/
 				{
 					changeStake = true;
 				}
@@ -222,17 +224,17 @@ void DealStartState::Update()
 				ThePokerGame::Instance()->SetTransferBankToCredits(true);
 			}
 #ifdef SOAK_BUILD
-			if(GetCredits() >= TheGame::Instance()->GetStake())
+			if(GetCredits() >= THE_GAME->GetStake())
 #else			
-			if((THE_BUTTONS->ButtonPressed("FrontStart") || TheGame::Instance()->GetAutoplay() || 
-				startGame) && (GetCredits() >= TheGame::Instance()->GetStake()))
+			if((THE_BUTTONS->ButtonPressed("FrontStart") || THE_GAME->GetAutoplay() || 
+				startGame) && (GetCredits() >= THE_GAME->GetStake()))
 #endif
 			{
 
 				SetGameInProgress();
-				TheGame::Instance()->ClearFinalWinValue();
+				THE_GAME->ClearFinalWinValue();
 
-				if(TheGame::Instance()->GetStake() == MINIMUM_BET)
+				if(THE_GAME->GetStake() == MINIMUM_BET)
 					ThePokerGame::Instance()->WageredAmount = MINIMUM_BET;
 				else
 					ThePokerGame::Instance()->WageredAmount = MAXIMUM_BET;
@@ -243,28 +245,28 @@ void DealStartState::Update()
 
 				ThePokerGame::Instance()->SetGameStartTime();
 
-				TheEngine::Instance()->StateTransition("Cointrol");
+				ENGINE->StateTransition("Cointrol");
 			}
 			else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && 
-				     !TheGame::Instance()->GetAutoplay())
+				     !THE_GAME->GetAutoplay())
 			{				
-				TheGame::Instance()->SetAutoplay(true);
+				THE_GAME->SetAutoplay(true);
 			}
 			else if((THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton")) && (GetCredits()+GetBankDeposit()>0))
 			{
-				TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new CollectProcess);
+				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);
 				return;
 			}
 			else if(changeStake)
 			{
-				if(TheGame::Instance()->GetStake() == MINIMUM_BET)
+				if(THE_GAME->GetStake() == MINIMUM_BET)
 				{					
-					TheGame::Instance()->SetStake(MAXIMUM_BET);
+					THE_GAME->SetStake(MAXIMUM_BET);
 					ThePokerGame::Instance()->SetGameIndex(Game200p);
 				}
-				else if(TheGame::Instance()->GetStake() == MAXIMUM_BET)
+				else if(THE_GAME->GetStake() == MAXIMUM_BET)
 				{					
-					TheGame::Instance()->SetStake(MINIMUM_BET);
+					THE_GAME->SetStake(MINIMUM_BET);
 					ThePokerGame::Instance()->SetGameIndex(Game100p);
 				}	
 
@@ -272,11 +274,11 @@ void DealStartState::Update()
 			}
 			else if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
 			{				
-				TheEngine::Instance()->StateTransition("Help");
+				ENGINE->StateTransition("Help");
 			}
 			else if(THE_BUTTONS->ButtonPressed("Menu"))
 			{
-				TheGame::Instance()->QuitToMainMenu();
+				THE_GAME->QuitToMainMenu();
 			}
 		}
 	}

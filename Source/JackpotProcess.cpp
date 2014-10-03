@@ -44,18 +44,15 @@ void JackpotProcess::Complete()
 
 void JackpotProcess::Update()
 {	
-float NewImageWidth, NewImageHeight;
+	float NewImageWidth, NewImageHeight;
 
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mJackpotDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mJackpotDelayTimer)
 	{
 		return;
 	}
-		
+	
 	NewImageWidth  = mImageWidth-mStepWidth*mCurrentStep;
 	NewImageHeight = mImageHeight-mStepHeight*mCurrentStep;
-	
-	mX = (1920 - NewImageWidth/4) / 2;
-	mY = (1080 - NewImageHeight/4) / 2;
 	
 	mXScale = NewImageWidth/mImageWidth;
 	mYScale = NewImageHeight/mImageHeight;
@@ -72,8 +69,8 @@ float NewImageWidth, NewImageHeight;
 	else
 	{
 		if (mCurrentStep == 3)
-			mJackpotDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);
+			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);
 		else
-			mJackpotDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.01f);
+			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.01f);
 	}
 }

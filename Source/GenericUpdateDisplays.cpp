@@ -7,7 +7,7 @@
 void Game::UpdateDigits()
 {
 #ifdef FAST_PLAY
-	TheGame::Instance()->SetDeduct(0);
+	THE_GAME->SetDeduct(0);
 #endif
 	char buff[32];
 	
@@ -17,7 +17,7 @@ void Game::UpdateDigits()
 		
 	OBJECT_HANDLER->GetText("CREDIT_TEXT")->SetMessage(buff);
 
-	float bank = (float)GetBankDeposit() - TheGame::Instance()->GetDeduct();
+	float bank = (float)GetBankDeposit() - THE_GAME->GetDeduct();
 	bank /= 100.0f;
 	sprintf_s(buff, "£%.02f", bank);
 

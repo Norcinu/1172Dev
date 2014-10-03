@@ -75,12 +75,12 @@ void MaxBankProcess::Update()
 	else if(THE_BUTTONS->ButtonPressed("Collect") ||
 		    THE_BUTTONS->OSButtonPressed("CollectButton"))
 	{
-		TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new CollectProcess);
+		ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);
 		SetCompleted();
 		return;
 	}
 
-	TheGame::Instance()->UpdateDigits();
+	THE_GAME->UpdateDigits();
 
 	if(GetBankDeposit()<GetVariableValue(MAX_WIN_BANK))
 	{

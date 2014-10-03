@@ -180,15 +180,13 @@ void Buttons::Initialise()
 	mOSButtons["CollectButton"]		  = new OSButton("GraphicalButton01","LegendCollectLit","LegendCollectNlit");
 
 	//mOSButtons["Swop2PndButton"]	  = new OSButton("GraphicalButton08","Legend2SwopLit","Legend2SwopNlit");
-	mOSButtons["Swop1PndButton"]	  = new OSButton("GraphicalButton07","Legend1SwopLit","Legend1SwopNlit");
-	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit");
-	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit");
-
+	mOSButtons["SwopButton"]		  = new OSButton("GraphicalButton10","Legend1SwopLit","Legend1SwopNlit"); //11
+	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit"); //05
+	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit"); //03
 	
 	mOSButtons["InfoButton1"]		  = new OSButton("GraphicalButton01","LegendButton1Lit","LegendButton1Nlit");
 	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton02","LegendButton2Lit","LegendButton2Nlit");
-	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton03","LegendButton3Lit","LegendButton3Nlit");
-	
+	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton03","LegendButton3Lit","LegendButton3Nlit");	
 }
 
 Buttons::~Buttons(void)
@@ -200,11 +198,11 @@ void Buttons::UpdateButtons()
 	PROFILE(__FUNCTION__);
 #ifndef FAST_PLAY
 
-	if(TheGame::Instance()->GetAutoplay())
+	if(THE_GAME->GetAutoplay())
 	{
 		if(ButtonPressed("AutoPlay") || OSButtonPressed("AutoplayButton"))
 		{
-			TheGame::Instance()->SetAutoplay(false);
+			THE_GAME->SetAutoplay(false);
 			SetButtonActivity(false, "AutoPlay", LAMP_OFF);
 			SetOSButtonActivity(false, "AutoplayButton",LAMP_OFF);		
 		}
@@ -223,7 +221,7 @@ void Buttons::UpdateButtons()
 			{
 				if(it->second->CheckPressed())
 				{					
-					TheEngine::Instance()->GetProcessManager()->AddProcessToList(new OSButtonProcess(it->second));
+					ENGINE->GetProcessManager()->AddProcessToList(new OSButtonProcess(it->second));
 					mButtonProcessStarted = true;
 					return;
 				}
@@ -248,7 +246,7 @@ void Buttons::UpdateButtons()
 					itr->second->SetActive(itr->second->IsActive(), LAMP_OFF);
 				it->second->SetActive(it->second->IsActive(), LAMP_ON);
 
-				TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ButtonProcess(it->second));
+				ENGINE->GetProcessManager()->AddProcessToList(new ButtonProcess(it->second));
 				mButtonProcessStarted = true;
 				return;
 			}
@@ -321,7 +319,7 @@ void Buttons::SetOSButtonActivity(bool active, const char* buttonName, unsigned 
 		{
 			if (it->second->GetName() == "Stake" && buttonName == "DealStart1PndButton")
 				state = LAMP_ON;
-			else if (it->second->GetName() == "TopStart" && buttonName == "DealStart2PndButton")
+			else if (it->second->GetName() == "TopStart")// && buttonName == "DealStart2PndButton")
 				state = LAMP_ON;
 			else if (it->second->GetName() == "AutoPlay" && buttonName == "AutoplayButton")
 				state = LAMP_ON;
@@ -506,22 +504,22 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
 		SetButtonActivity(true, "TopStart", LAMP_ON);
-		SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
-		SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
+		//SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+		//SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
 	}
 	else if(GetCredits() >= MINIMUM_BET)
 	{
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
-		SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+		//SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
 	}
 	else
 	{
 		SetButtonActivity(false, "FrontStart");
 		SetButtonActivity(false, "Stake");
 		SetButtonActivity(false, "TopStart");
-		SetOSButtonActivity(false, "DealStart1PndButton");
-		SetOSButtonActivity(false, "DealStart2PndButton");
+		//SetOSButtonActivity(false, "DealStart1PndButton");
+		//SetOSButtonActivity(false, "DealStart2PndButton");
 	}
 	
 	if(GetTerminalFormat() > 1)
@@ -531,7 +529,7 @@ void Buttons::DealStartButtons(float DelayTimer)
 	if(GetBankDeposit())
 	{
 		unsigned char lamp = LAMP_ON;
-		if(GetCredits() < TheGame::Instance()->GetStake())
+		if(GetCredits() < THE_GAME->GetStake())
 			lamp = LAMP_FLASH;
 		SetButtonActivity(true, "Transfer", lamp);
 		SetOSButtonActivity(true, "HoldTransferButton",LAMP_ON);		
@@ -542,9 +540,9 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetOSButtonActivity(false, "HoldTransferButton");
 	}
 		
-	if(GetCredits() >= TheGame::Instance()->GetStake())
+	if(GetCredits() >= THE_GAME->GetStake())
 	{
-		if (TheGame::Instance()->GetAutoplay())
+		if (THE_GAME->GetAutoplay())
 		{
 			SetButtonActivity(true, "AutoPlay", LAMP_ON);
 			SetOSButtonActivity(true, "AutoplayButton",LAMP_ON);
@@ -575,7 +573,7 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetOSButtonActivity(false, "CollectButton");
 	}
 
-	if(DelayTimer < TheEngine::Instance()->GetSystemTimer().GetRunningTime())
+	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime())
 	{
 		SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);
 	}
@@ -593,21 +591,21 @@ void Buttons::HoldStartButtons()
 	SetButtonActivity(true, "TopStart", LAMP_ON);
 	SetButtonActivity(false, "Stake");				
 	
-	if (TheGame::Instance()->GetStake() == MAXIMUM_BET)
+	if (THE_GAME->GetStake() == MAXIMUM_BET)
 	{
-		SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
-		SetOSButtonActivity(false, "DealStart1PndButton");
+		//SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
+		//SetOSButtonActivity(false, "DealStart1PndButton");
 	}
 	else
 	{
-		SetOSButtonActivity(true, "DealStart1PndButton", LAMP_ON);
-		SetOSButtonActivity(false, "DealStart2PndButton");
+		//SetOSButtonActivity(true, "DealStart1PndButton", LAMP_ON);
+		//SetOSButtonActivity(false, "DealStart2PndButton");
 	}
 
 	
-	if(GetCredits() >= TheGame::Instance()->GetStake())
+	if(GetCredits() >= THE_GAME->GetStake())
 	{
-		if (TheGame::Instance()->GetAutoplay())
+		if (THE_GAME->GetAutoplay())
 		{
 			SetButtonActivity(true, "AutoPlay", LAMP_ON);
 			SetOSButtonActivity(true, "AutoplayButton",LAMP_ON);

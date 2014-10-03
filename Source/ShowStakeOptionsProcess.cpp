@@ -15,7 +15,7 @@ ShowStakeOptionsProcess::ShowStakeOptionsProcess(const std::vector<D3DXVECTOR2>&
 	mOldStakeID = oldStakeID;
 	pOptionOverlay = nullptr;
 	mEndPositions = positions;
-	if(TheGame::Instance()->IsHD())
+	if(THE_GAME->IsHD())
 	{
 		mBaseMoveSpeed = MOVE_SPEED_HD;
 	}
@@ -41,13 +41,13 @@ void ShowStakeOptionsProcess::Init()
 
 	D3DXVECTOR2 floatingPosition = mEndPositions[0];
 
-	auto newStakeID = TheGame::Instance()->GetStakeID();
+	auto newStakeID = THE_GAME->GetStakeID();
 
 	int positionCount = 0;
 	
 	for(unsigned int i = 0; i < buttons->GetNumberOfInstances() - 1;++i)// - 1; i >= 0; --i)
 	{
-		if(!TheGame::Instance()->HasStake(AllStakes[i]))
+		if(!THE_GAME->HasStake(AllStakes[i]))
 		{
 			continue;
 		}
@@ -122,7 +122,7 @@ void ShowStakeOptionsProcess::Complete()
 	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");
 	for(size_t i = 0; i < buttons->GetNumberOfInstances();++i)
 	{
-		if(i != TheGame::Instance()->GetStakeID())
+		if(i != THE_GAME->GetStakeID())
 		{
 			if(mChangeType != SHOW_OPTIONS)
 				buttons->GetInstance(i)->SetVisible(false);
@@ -161,7 +161,7 @@ void ShowStakeOptionsProcess::Update()
 			up = true;
 		}
 
-		float yChange = mSpeed * TheEngine::Instance()->GetSystemTimer().GetDT();
+		float yChange = mSpeed * ENGINE->GetSystemTimer().GetDT();
 
 		if(up)
 		{
@@ -187,7 +187,7 @@ void ShowStakeOptionsProcess::Update()
 
 		pOptions[i]->SetPosition(pos);
 
-		if(pOptionOverlay && i == TheGame::Instance()->GetStakeID())
+		if(pOptionOverlay && i == THE_GAME->GetStakeID())
 		{
 			pOptionOverlay->SetPosition(pos);
 		}

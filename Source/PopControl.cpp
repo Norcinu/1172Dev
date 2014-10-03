@@ -51,7 +51,7 @@ void PopControl::ClosePopOptions(unsigned int stakeID)
 		type = UPDATE_OPTIONS;
 		mPopOptionsVisible = false;
 	}
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
 }
 
 void PopControl::ChangeStake(unsigned int stakeID)
@@ -71,7 +71,7 @@ void PopControl::ChangeStake(unsigned int stakeID)
 	//GET_BUTTONS->DisableButtons();
 	THE_BUTTONS->DisableOSButtons();
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
 }
 
 void PopControl::ShowHide(unsigned int stakeID)
@@ -87,7 +87,7 @@ void PopControl::ShowHide(unsigned int stakeID)
 	
 	mPopOptionsVisible = !mPopOptionsVisible;
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToQueue(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
 }
 
 bool PopControl::AreOptionsVisible() const

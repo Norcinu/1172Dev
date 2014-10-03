@@ -34,7 +34,7 @@ bool PokerGame::ReadYesDemoPb(void)
 
 void PokerGame::RegisterYesDemoButton(void)
 {
-	if (GetDoorStatus() && !TheGame::Instance()->IsDemoMode())
+	if (GetDoorStatus() && !THE_GAME->IsDemoMode())
 	{
 		if (YesDemoPb())
 		{

@@ -23,7 +23,7 @@ void AutoHeldsProcess::Complete()
 
 void AutoHeldsProcess::Update()
 {
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mAutoHeldsDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mAutoHeldsDelayTimer)
 	{
 		return;
 	}
@@ -35,7 +35,7 @@ void AutoHeldsProcess::Update()
 			TheAudioManager::Instance()->GetAudioSample("CLICK")->Play();
 			unsigned int HeldId = OBJECT_HANDLER->GetObject2D("Held01")->GetID()+mAutoHeldsIndex;
 			OBJECT_HANDLER->GetObject2D(HeldId)->SetVisible(true);
-			mAutoHeldsDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.15f);
+			mAutoHeldsDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.15f);
 		}
 		mAutoHeldsIndex++;
 	}

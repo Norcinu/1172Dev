@@ -7,7 +7,7 @@
 #include "PaymentState.h"
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("Payment", new PaymentState());
+static bool Registered = ENGINE->AddState("Payment", new PaymentState());
 
 extern unsigned char global_quit;
 
@@ -38,7 +38,7 @@ void PaymentState::Update()
 	
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -51,7 +51,7 @@ void PaymentState::Update()
 	if(!global_quit)
 	{		
 		if (ThePokerGame::Instance()->PayOutStage > 4)
-			TheEngine::Instance()->StateTransition("EndGame");
+			ENGINE->StateTransition("EndGame");
 		else
 		{
 			ThePokerGame::Instance()->PayOut();			

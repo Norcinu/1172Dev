@@ -10,7 +10,7 @@ PokerHandProcess::PokerHandProcess()
 	mCardIndex = 0;
 	mCardDelayTimer = 0;
 
-	if(TheEngine::Instance()->GetCurrentState()->GetName() == "DrawHand")
+	if(ENGINE->GetCurrentState()->GetName() == "DrawHand")
 	{
 		mCardIndex = mCardIndex;
 	}
@@ -55,7 +55,7 @@ void PokerHandProcess::Complete()
 
 void PokerHandProcess::Update()
 {
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < mCardDelayTimer)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < mCardDelayTimer)
 	{
 		return;
 	}
@@ -70,7 +70,7 @@ void PokerHandProcess::Update()
 				TheAudioManager::Instance()->GetAudioSample("CFLIP")->Play();						
 				allCards->GetInstance(mCardIndex)->SetVisible(true);
 				allCards->GetInstance(mCardIndex)->SetCurrentSprite(ThePokerGame::Instance()->PokerHand[mCardIndex].id - 1);				
-				mCardDelayTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(ThePokerGame::Instance()->GetSoundDelay(CFLIP,50));
+				mCardDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(ThePokerGame::Instance()->GetSoundDelay(CFLIP,50));
 			}
 		}
 		mCardIndex++;

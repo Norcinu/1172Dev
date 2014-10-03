@@ -39,6 +39,7 @@ public:
 	void Release();
 	void SetActive(bool active, unsigned char state = LAMP_OFF) ;
 	void SetPressed(){mButtonPressed = true;}
+	void SetReleased(){ mButtonReleased = true;}
 	const char* GetName(){return mName;}
 protected:
 	bool mActive;

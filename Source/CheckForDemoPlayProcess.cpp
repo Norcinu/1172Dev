@@ -28,11 +28,11 @@ void CheckForDemoPlayProcess::Update()
 		{
 			OBJECT_HANDLER->GetObject2D("DoorOpen")->SetVisible(true);
 
-			if(!TheGame::Instance()->IsDemoMode())
+			if(!THE_GAME->IsDemoMode())
 			{
-				if(TheEngine::Instance()->GetCurrentState()->GetName() == "Help")
+				if(ENGINE->GetCurrentState()->GetName() == "Help")
 				{
-					TheEngine::Instance()->StateTransition("DealStart");
+					ENGINE->StateTransition("DealStart");
 					return;
 				}
 				THE_BUTTONS->DisableHWButtons();
@@ -46,7 +46,7 @@ void CheckForDemoPlayProcess::Update()
 				THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 				THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
-				TheGame::Instance()->SetAutoplay(false);
+				THE_GAME->SetAutoplay(false);
 				OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(true);												
 				OBJECT_HANDLER->GetObject2D("Demo")->SetVisible(true);
 				OBJECT_HANDLER->GetText("WIN_TEXT")->SetVisible(false);
@@ -60,13 +60,13 @@ void CheckForDemoPlayProcess::Update()
 
 			if((GetCredits() < MINIMUM_BET))
 			{
-				TheGame::Instance()->SetAutoplay(false);
+				THE_GAME->SetAutoplay(false);
 				AddDemoModeCredits();
 			}
 
-			if(GetDoorStatus() && !TheGame::Instance()->IsDemoMode())
+			if(GetDoorStatus() && !THE_GAME->IsDemoMode())
 			{
-				TheGame::Instance()->SetAutoplay(false);
+				THE_GAME->SetAutoplay(false);
 		
 				if ((!GetDoorStatus() || GetSwitchStatus(REFILL_KEY)) && mNoteValidatorFlag)
 				{
@@ -77,7 +77,7 @@ void CheckForDemoPlayProcess::Update()
 
 				if(ThePokerGame::Instance()->ReadYesDemoPb())
 				{										
-					TheGame::Instance()->SetDemoMode(true);
+					THE_GAME->SetDemoMode(true);
 					AddDemoModeCredits();					
 					OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(false);					
 					OBJECT_HANDLER->GetObject2D("Demo")->SetVisible(true);
@@ -92,10 +92,10 @@ void CheckForDemoPlayProcess::Update()
 		{
 			if(!mFinishedDemoGame)
 			{			
-				if(TheGame::Instance()->IsDemoMode())
+				if(THE_GAME->IsDemoMode())
 				{
-					TheGame::Instance()->SetDemoMode(false);			
-					TheGame::Instance()->SetAutoplay(false);					
+					THE_GAME->SetDemoMode(false);			
+					THE_GAME->SetAutoplay(false);					
 				}
 				else
 				{					
@@ -120,13 +120,32 @@ void CheckForDemoPlayProcess::Update()
 				{
 					EnableNoteValidator();
 					mNoteValidatorFlag = false;
-					if(TheGame::Instance()->IsDemoMode())
+					if(THE_GAME->IsDemoMode())
 					{
-						TheGame::Instance()->SetAutoplay(false);
+						THE_GAME->SetAutoplay(false);
 					}
 				}
 			}
 		}
+
+
+		/*if(GetCredits() + GetBankDeposit() >= THE_GAME->GetStake())
+		{
+			TheEngine::Instance()->StateTransition("DealStart");
+		}
+		else
+		{
+			if(GetTerminalFormat() > 1 && !(GetCredits() + GetBankDeposit()))
+			{
+				TheEngine::Instance()->StateTransition("CompendiumLoad");
+			}
+			else
+			{
+				TheAudioManager::Instance()->GetAudioSample("SX_NOCREDIT")->Play();
+				TheEngine::Instance()->StateTransition("Standby");
+			}
+		}*/
+
 	}
 }
 
@@ -137,8 +156,8 @@ void CheckForDemoPlayProcess::Complete()
 
 void CheckForDemoPlayProcess::AddDemoModeCredits()
 {
-	if(GetDoorStatus() && (GetCredits() < TheGame::Instance()->GetStake())
-		&& !GetSwitchStatus(REFILL_KEY) && TheGame::Instance()->IsDemoMode())
+	if(GetDoorStatus() && (GetCredits() < THE_GAME->GetStake())
+		&& !GetSwitchStatus(REFILL_KEY) && THE_GAME->IsDemoMode())
 	{
 		AddToDemoCredits(2000);
 	}

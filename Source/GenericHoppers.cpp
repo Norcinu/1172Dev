@@ -31,7 +31,7 @@ bool Game::CollectFromHopper(unsigned char type)
 		SetWarningError(ERR_PRINTER_NO_PAPER);
 		if(GetSwitchStatus(REFILL_KEY))
 		{			
-			TheEngine::Instance()->Shutdown();
+			ENGINE->Shutdown();
 			return true;
 		}
 		

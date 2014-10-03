@@ -5,7 +5,7 @@
 #include "PokerGame.h"
 
 
-static bool Registered = TheEngine::Instance()->AddState("Cointrol", new CointrolState());
+static bool Registered = ENGINE->AddState("Cointrol", new CointrolState());
 
 extern unsigned char global_quit;
 
@@ -16,7 +16,7 @@ CointrolState::CointrolState()
 
 CointrolState::~CointrolState()
 {
-
+	
 }
 
 void CointrolState::Enter()
@@ -36,7 +36,7 @@ void CointrolState::Update()
 	
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -44,7 +44,7 @@ void CointrolState::Update()
 	if(!global_quit)
 	{
 		ThePokerGame::Instance()->Cointrol();		
-		TheGame::Instance()->UpdateDigits();
-		TheEngine::Instance()->StateTransition("DealHand");
+		THE_GAME->UpdateDigits();
+		ENGINE->StateTransition("DealHand");
 	}
 }

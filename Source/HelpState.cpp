@@ -7,7 +7,7 @@
 #include "HelpState.h"
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("Help", new HelpState());
+static bool Registered = ENGINE->AddState("Help", new HelpState());
 
 extern unsigned char global_quit;
 
@@ -77,7 +77,7 @@ void HelpState::Enter()
 	ThePokerGame::Instance()->UpdateInfoDigits(true);
 	
 	mHelpScreenNumber = 1;
-	m_timeOut = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + 30.0f;
+	m_timeOut = ENGINE->GetSystemTimer().GetRunningTime() + 30.0f;
 }
 
 void HelpState::Exit()
@@ -98,19 +98,16 @@ void HelpState::Exit()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
-
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	
 	OBJECT_HANDLER->GetObject2D("GraphicalButton01")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton03")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton04")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton05")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(true);
-	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(true);
-	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(true);
-			
 }
 
 void HelpState::Update()
@@ -124,15 +121,15 @@ bool RedrawHelpScreenFlag=false;
 
 	if(!global_quit)
 	{
-		if(TheEngine::Instance()->GetSystemTimer().GetRunningTime() > m_timeOut)
+		if(ENGINE->GetSystemTimer().GetRunningTime() > m_timeOut)
 		{
 			if(GetCredits() >= MINIMUM_BET)
 			{
-				TheEngine::Instance()->StateTransition("DealStart");
+				ENGINE->StateTransition("DealStart");
 			}
 			else
 			{
-				TheEngine::Instance()->StateTransition("Standby");
+				ENGINE->StateTransition("Standby");
 			}
 		}
 
@@ -140,11 +137,11 @@ bool RedrawHelpScreenFlag=false;
 		{
 			if(GetCredits() >= MINIMUM_BET)
 			{
-				TheEngine::Instance()->StateTransition("DealStart");
+				ENGINE->StateTransition("DealStart");
 			}
 			else
 			{
-				TheEngine::Instance()->StateTransition("Standby");
+				ENGINE->StateTransition("Standby");
 			}
 		}
 
@@ -187,7 +184,7 @@ bool RedrawHelpScreenFlag=false;
 			ThePokerGame::Instance()->UpdateInfoDigits(false);
 			ThePokerGame::Instance()->UpdateGoldenDigits(false);
 
-			m_timeOut = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + 30.0f;				
+			m_timeOut = ENGINE->GetSystemTimer().GetRunningTime() + 30.0f;				
 			OBJECT_HANDLER->GetObject2D("Help")->SetTextureID(mhelpScreenID+mHelpScreenNumber-1);
 
 			if (mHelpScreenNumber == 1)

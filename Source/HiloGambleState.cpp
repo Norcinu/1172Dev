@@ -7,7 +7,7 @@
 #include "PokerHandProcess.h"
 #include "PokerGame.h"
 
-static bool Registered = TheEngine::Instance()->AddState("HiloGamble", new HiloGambleState());
+static bool Registered = ENGINE->AddState("HiloGamble", new HiloGambleState());
 
 extern unsigned char global_quit;
 
@@ -39,14 +39,23 @@ void HiloGambleState::Enter()
 
 	ThePokerGame::Instance()->HiloGambleStage = 1;
 	ThePokerGame::Instance()->HiloDelayTimer = 0;
-
-	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(true);
+	
+	//OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(true);
+	//OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
-	//OBJECT_HANDLER->GetObject2D("Swop2PndBu")
+	
+	OBJECT_HANDLER->GetObject2D("LegendHoldInfoNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHold3Nlit")->SetVisible(false);
+	
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(false);
+	
+	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton04")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(false);
 }
 
 void HiloGambleState::Exit()
@@ -55,19 +64,31 @@ void HiloGambleState::Exit()
 	ThePokerGame::Instance()->ActivateHiloGambleGraphics = 0;
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton");
-	if (ThePokerGame::Instance()->GetGameIndex() == Game200p)
+
+	OBJECT_HANDLER->GetObject2D("LegendHoldInfoNlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHold3Nlit")->SetVisible(true);
+
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(true);
+
+	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton04")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(true);
+	
+//	OBJECT_HANDLER->GetObject2D("LegendSwopNlit")->SetVisible(false);
+	//OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
+	/*if (ThePokerGame::Instance()->GetGameIndex() == Game200p)
 		THE_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton");
-	else
-		THE_BUTTONS->SetOSButtonActivity(false, "Swop1PndButton");
+	else*/
+		//THE_BUTTONS->SetOSButtonActivity(false, "SwopButton");
 }
-//\o/ should be able to use it all day tomorrow \o/
+
 #include <sstream>
 
 void HiloGambleState::Update()
 {		
 	PROFILE(__FUNCTION__);	
 
-	if(TheEngine::Instance()->GetProcessManager()->GetNumQueueProcesses())
+	if(ENGINE->GetProcessManager()->GetNumQueueProcesses())
 	{
 		return;
 	}
@@ -82,6 +103,6 @@ void HiloGambleState::Update()
 		ThePokerGame::Instance()->HiloGamble(ThePokerGame::Instance()->JokerWin);
 		
 		if (ThePokerGame::Instance()->HiloGambleStage > 9)			
-			TheEngine::Instance()->StateTransition("Payment");
+			ENGINE->StateTransition("Payment");
 	}
 }

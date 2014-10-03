@@ -27,6 +27,7 @@ public:
 	void ComputeWinLive();
 	void DrawCurrentError();
 	void QuitToMainMenu();
+	void QuitToMorningReboot();
 	void GameShutDown();
 	void RestoreData();
 	void Roll();
@@ -91,6 +92,7 @@ private:
 };
 
 typedef Singleton<Game> TheGame;
+#define THE_GAME TheGame::Instance()
 
 #endif
 

@@ -3,12 +3,12 @@
 
 void PokerGame::SetGameStartTime(void)
 {
-	mGameStartTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime();
+	mGameStartTimer = ENGINE->GetSystemTimer().GetRunningTime();
 }
 
 void PokerGame::SetGameEndTime(void)
 {
-	mGameEndTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime();
+	mGameEndTimer = ENGINE->GetSystemTimer().GetRunningTime();
 }
 
 float PokerGame::GetGameLengthTime(void)

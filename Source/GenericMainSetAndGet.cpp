@@ -152,8 +152,8 @@ unsigned int Game::GetInterimWinValue() const
 
 bool Game::IsHD()
 {
-	unsigned int width = TheEngine::Instance()->GetScreenWidth();
-	unsigned int height = TheEngine::Instance()->GetScreenHeight();
+	unsigned int width = ENGINE->GetScreenWidth();
+	unsigned int height = ENGINE->GetScreenHeight();
 	
 	if (width >= 1920 && height >= 1080) 
 		m_isHD = true;

@@ -31,12 +31,12 @@ bool Game::Setup(HINSTANCE hinstance)
 		return false;
 	}
 
-	if(!TheEngine::Instance()->Initialize("Config.pdt", GetHardWareType(), hinstance, VIZTECHVERSION, 1))
+	if(!ENGINE->Initialize("Config.pdt", GetHardWareType(), hinstance, VIZTECHVERSION, 1))
 	{
 		return false;
 	}
 
-	TheEngine::Instance()->SetWriteablePath("D:\\machine\\game_data\\");
+	ENGINE->SetWriteablePath("D:\\machine\\game_data\\");
 
 	THE_BUTTONS->LampsOff();
 
@@ -56,9 +56,9 @@ bool Game::Setup(HINSTANCE hinstance)
 		Sleep(100);
 	}
 
-	TheEngine::Instance()->SetMD5CheckCodes(FILE_NAMES, MDAT_CHECKSUMS, NUMBER_OF_CHECKSUMS);
+	ENGINE->SetMD5CheckCodes(FILE_NAMES, MDAT_CHECKSUMS, NUMBER_OF_CHECKSUMS);
 
-	if(!TheEngine::Instance()->LoadData("Logo.png", "DealStart", LOAD_LONG))
+	if(!ENGINE->LoadData("Logo.png", "DealStart", LOAD_LONG))
 	{
 		return false;
 	}
@@ -79,10 +79,10 @@ bool Game::Setup(HINSTANCE hinstance)
 	if (!GetDoorStatus())
 		SendCredit2Server(GetCredits());
 
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new ErrorProcess);
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new UpdateProcess);
-	TheEngine::Instance()->GetProcessManager()->AddProcessToList(new CheckForDemoPlayProcess);
-	TheEngine::Instance()->EmptyMessageQueue();
+	ENGINE->GetProcessManager()->AddProcessToList(new ErrorProcess);
+	ENGINE->GetProcessManager()->AddProcessToList(new UpdateProcess);
+	ENGINE->GetProcessManager()->AddProcessToList(new CheckForDemoPlayProcess);
+	ENGINE->EmptyMessageQueue();
 	
 	return true;
 }

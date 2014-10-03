@@ -222,6 +222,7 @@
     <ClInclude Include="Source\CheckForDemoPlayProcess.h" />
     <ClInclude Include="Source\CointrolState.h" />
     <ClInclude Include="Source\CollectProcess.h" />
+    <ClInclude Include="Source\CompendiumLoad.h" />
     <ClInclude Include="Source\DrawHandState.h" />
     <ClInclude Include="Source\EndGameState.h" />
     <ClInclude Include="Source\GoldenJokerCardProcess.h" />
@@ -246,6 +247,7 @@
     <ClInclude Include="Source\OSButtonProcess.h" />
     <ClInclude Include="Source\PokerGame.h" />
     <ClInclude Include="Source\PopControl.h" />
+    <ClInclude Include="Source\SetupState.h" />
     <ClInclude Include="Source\ShowStakeOptionsProcess.h" />
     <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\UpdateProcess.h" />
@@ -272,6 +274,7 @@
     <ClCompile Include="Source\CointrolState.cpp" />
     <ClCompile Include="Source\Collect.cpp" />
     <ClCompile Include="Source\CollectProcess.cpp" />
+    <ClCompile Include="Source\CompendiumLoadState.cpp" />
     <ClCompile Include="Source\DecDon.cpp" />
     <ClCompile Include="Source\DemoMode.cpp" />
     <ClCompile Include="Source\DrawHandState.cpp" />
@@ -308,6 +311,7 @@
     <ClCompile Include="Source\PopControl.cpp" />
     <ClCompile Include="Source\Reflex.cpp" />
     <ClCompile Include="Source\Roll.cpp" />
+    <ClCompile Include="Source\SetupState.cpp" />
     <ClCompile Include="Source\ShowStakeOptionsProcess.cpp" />
     <ClCompile Include="Source\Soak.cpp" />
     <ClCompile Include="Source\SoakData.cpp" />

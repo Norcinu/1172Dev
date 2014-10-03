@@ -8,7 +8,7 @@ static const float WAIT_TIME = 30.0f;
 void CompendiumLoadState::Enter()
 {
 	mTimer = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + WAIT_TIME;
-	TheButtons::Instance()->SetButtonState("Menu", true, LAMP_FLASH);
+	//TheButtons::Instance()->SetButtonState("Menu", true, LAMP_FLASH);
 }
 
 void CompendiumLoadState::Exit()
@@ -40,7 +40,8 @@ void CompendiumLoadState::Update()
 		
 	if(GetRebootRequired())
 	{
-		TheGame::Instance()->QuitToMorningReboot();
+		THE_GAME->QuitToMainMenu();
+		//TheGame::Instance()->QuitToMorningReboot();
 		return;
 	}
 

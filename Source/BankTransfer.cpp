@@ -36,7 +36,7 @@ static int Stage = 1;
 				SetCreditsPrevious(GetCredits());
 				TransferAmount -= Unit;
 				SetTransferBankToCreditDelay(0.1f);
-				TheGame::Instance()->UpdateDigits();
+				THE_GAME->UpdateDigits();
 			}
 			else
 			{
@@ -61,12 +61,12 @@ bool PokerGame::GetTransferBankToCredits(void)
 
 void PokerGame::SetTransferBankToCreditDelay(float DelayTime)
 {
-	TransferDelay = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + GeneralSetGameDelay(DelayTime);
+	TransferDelay = ENGINE->GetSystemTimer().GetRunningTime() + GeneralSetGameDelay(DelayTime);
 }
 
 bool PokerGame::GetTransferBanktoCreditTimeElaspsed(void)
 {
-	if (TheEngine::Instance()->GetSystemTimer().GetRunningTime() < TransferDelay)
+	if (ENGINE->GetSystemTimer().GetRunningTime() < TransferDelay)
 		return(false);
 	else
 		return(true);

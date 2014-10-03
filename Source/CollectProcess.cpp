@@ -34,8 +34,8 @@ void CollectProcess::Init()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	
 	if(GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
 		&& GetCredits() + GetBankDeposit() >= GetMinPayoutValue())
@@ -113,7 +113,7 @@ bool CollectProcess::Payout()
 		SetWarningError(ERR_PRINTER_NO_PAPER);
 		if(GetSwitchStatus(REFILL_KEY))
 		{			
-			TheEngine::Instance()->Shutdown();
+			ENGINE->Shutdown();
 			return true;
 		}
 		

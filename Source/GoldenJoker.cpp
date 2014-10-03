@@ -50,7 +50,7 @@ void PokerGame::GoldenJokerUpdateIntroduction(void)
 		ResetAutoPlayFlag = 1;
 	AutoPlayFlag = 0;
 	
-	TheGame::Instance()->SetAutoplay(false);
+	THE_GAME->SetAutoplay(false);
 	THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	THE_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
 
@@ -268,7 +268,7 @@ unsigned char TempDrawHand[5];
 
 void PokerGame::GoldenJokerFeatureIntro(void)
 {
-	TheEngine::Instance()->GetProcessManager()->AddProcessToQueue(new VariableSoundProcess("WOLF_SND",WOLF_SND,3));	
+	ENGINE->GetProcessManager()->AddProcessToQueue(new VariableSoundProcess("WOLF_SND",WOLF_SND,3));	
 }
 
 unsigned  int GoldenJokerChance[9] = {0,2,5,10,20,25,30,30,30}; //0% 0.2% 0.5% 1% 2% 2.5% 3% 3% 3%

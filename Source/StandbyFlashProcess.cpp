@@ -27,23 +27,23 @@ void StandbyFlashProcess::Init()
 
 void StandbyFlashProcess::Update()
 {
-	if((TheEngine::Instance()->GetSystemTimer().GetRunningTime() > m_animationTime) && !m_alphaSwitch)
+	if((ENGINE->GetSystemTimer().GetRunningTime() > m_animationTime) && !m_alphaSwitch)
 	{
 		m_standbyColour.a += 0.02f;
 
 		if(m_standbyColour.a >= 1.0f)
 		{
-			m_animationTime = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + 1.5f;
+			m_animationTime = ENGINE->GetSystemTimer().GetRunningTime() + 1.5f;
 			m_alphaSwitch = true;
 		}
 	}
-	else if((TheEngine::Instance()->GetSystemTimer().GetRunningTime() > m_animationTime) && m_alphaSwitch)
+	else if((ENGINE->GetSystemTimer().GetRunningTime() > m_animationTime) && m_alphaSwitch)
 	{
 		m_standbyColour.a -= 0.02f;
 
 		if(m_standbyColour.a <= 0.0f)
 		{
-			m_animationTime = TheEngine::Instance()->GetSystemTimer().GetRunningTime() + 0.5f;
+			m_animationTime = ENGINE->GetSystemTimer().GetRunningTime() + 0.5f;
 			m_alphaSwitch = false;
 		}
 	}

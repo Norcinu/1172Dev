@@ -381,6 +381,7 @@ private:
 };
 
 typedef Singleton<PokerGame> ThePokerGame;
+#define POKER_GAME ThePokerGame::Instance()
 
 #endif
 
