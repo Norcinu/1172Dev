@@ -66,11 +66,11 @@ void HelpState::Enter()
 	
 	//Set Visibility On
 	OBJECT_HANDLER->GetObject2D("Help")->SetVisible(true);
-	OBJECT_HANDLER->GetObject2D("GraphicalButton01")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton11")->SetVisible(true);
 	THE_BUTTONS->SetOSButtonActivity(true, "InfoButton1",LAMP_ON);
 	if (NUM_INFO_SCREEN > 1)
 	{
-		OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(true);
+		OBJECT_HANDLER->GetObject2D("GraphicalButton12")->SetVisible(true);
 		THE_BUTTONS->SetOSButtonActivity(true, "InfoButton2",LAMP_ON);
 	}
 	
@@ -89,7 +89,7 @@ void HelpState::Exit()
 	THE_BUTTONS->SetOSButtonActivity(false, "InfoButton1",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "InfoButton2",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "InfoButton3",NO_LEGEND);
-
+	
 	//Set Visibility On
 	THE_BUTTONS->SetOSButtonActivity(false, "AutoplayButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
@@ -108,6 +108,8 @@ void HelpState::Exit()
 	OBJECT_HANDLER->GetObject2D("GraphicalButton05")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton11")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton12")->SetVisible(false);
 }
 
 void HelpState::Update()

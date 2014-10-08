@@ -56,18 +56,24 @@ void DealStartState::Enter()
 	ThePokerGame::Instance()->AllowHighWinFlag = 0;
 
 	OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(true);
 
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
-	//THE_BUTTONS->SetOSButtonActivity(false, "Swop2PndButton",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",NO_LEGEND);
 
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	//THE_BUTTONS->SetOSButtonActivity(true, "DealStart2PndButton");
-	//THE_BUTTONS->SetOSButtonActivity(true, "DealStart1PndButton");
 
+	/*THE_BUTTONS->SetOSButtonActivity(true, "PopButtons", LAMP_ON);
+	TheObjectHandler::Instance()->GetObject2D("PopButtons")->SetVisible(true);	*/
+	
+	for (int i = 0; i < TOTAL_STAKES; i++)
+	{
+		THE_BUTTONS->SetOSButtonActivity(true, StakeButtons[i], LAMP_ON);
+	}
+	
 	if (ThePokerGame::Instance()->ResetAutoPlayFlag)
 	{
 		THE_GAME->SetAutoplay(true);
@@ -107,19 +113,24 @@ void DealStartState::Exit()
 	THE_BUTTONS->SetButtonActivity(false, "Menu");
 	THE_BUTTONS->SetButtonActivity(false, "Collect");
 	THE_BUTTONS->SetButtonActivity(false, "Transfer");
+	
 	if(!THE_GAME->GetAutoplay())
 	{
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	}
-
+	
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
-	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 
+	for (int i = 0; i < TOTAL_STAKES; i++)
+		THE_BUTTONS->SetOSButtonActivity(false, StakeButtons[i]);
+
 	OBJECT_HANDLER->GetObject2D("DealStartMsg")->SetVisible(false);	
+	OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("PopButtons")->SetVisible(false);
+	
 #ifndef FAST_PLAY
 	ENGINE->SetScreensToDraw(SCREEN1);
 #endif
@@ -189,6 +200,8 @@ void DealStartState::Update()
 			
 			bool changeStake = false;
 			bool startGame = false;
+			auto stake = 0;
+
 			if(THE_GAME->GetStake() == MINIMUM_BET)
 			{
 				if (THE_BUTTONS->ButtonPressed("TopStart") ||
@@ -268,17 +281,36 @@ void DealStartState::Update()
 				{					
 					THE_GAME->SetStake(MINIMUM_BET);
 					ThePokerGame::Instance()->SetGameIndex(Game100p);
-				}	
-
+				}
+				
 				ThePokerGame::Instance()->DisplayStake();
 			}
 			else if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
-			{				
+			{
 				ENGINE->StateTransition("Help");
 			}
 			else if(THE_BUTTONS->ButtonPressed("Menu"))
 			{
 				THE_GAME->QuitToMainMenu();
+			}
+			else if(TheButtons::Instance()->OSButtonPressed("ChangeStake"))
+			{							
+				THE_GAME->TogglePopOptions();	
+			}
+			
+			for(int i = 0; i < TOTAL_STAKES; ++i)
+			{
+				if (TheButtons::Instance()->OSButtonPressed(StakeButtons[i]))
+				{
+					changeStake = true;
+					stake = AllStakes[i+2];
+				}
+			}
+		
+			if (changeStake)
+			{
+				THE_GAME->SetStake(stake);
+				ThePokerGame::Instance()->DisplayStake();
 			}
 		}
 	}

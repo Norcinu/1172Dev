@@ -15,8 +15,8 @@ public:
 	void Initialise(const std::vector<unsigned int>& stakes, unsigned int defaultStakeID);
 	bool AreOptionsVisible() const;
 private:
-	std::vector<D3DXVECTOR2> mPopPositions;
-	bool mPopOptionsVisible;
+	std::vector<D3DXVECTOR2> m_popPositions;
+	bool m_popOptionsVisible;
 };
 
 #endif

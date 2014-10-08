@@ -8,6 +8,7 @@ class CompendiumLoadState : public State
 public:
 	CompendiumLoadState(){}
 	~CompendiumLoadState(){}
+
 	void Enter();
 	void Exit();
 	void Update();

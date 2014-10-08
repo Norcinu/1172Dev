@@ -12,9 +12,15 @@ Hanldes all aspects of the game. interfaces with Engine class
 #include <Input.h>
 #include <NonCopyable.h>
 #include <Singleton.h>
+#include <memory>
+#include <vector>
 
 #include "Defines.h"
 #include "GenericButtons.h"
+
+class PopControl;
+
+using std::shared_ptr;
 
 class Game : public GenericGame
 {
@@ -59,11 +65,15 @@ public:
 	unsigned int GetFinalWinValue() const;
 	unsigned int GetInterimFeatureWinValue() const;
 	unsigned int GetInterimWinValue() const;
-
+	
 	bool IsHD();
 	bool HasStake(const unsigned int stake) const;
+	void TogglePopOptions();
+	void ClosePopOptions();
+	bool Game::ArePopOptionsVisible() const;
 
-	unsigned int GetStakeID() const;
+	int GetStakeID() const;
+	unsigned int GetNextStake() const;
 
 	//ProcessManager m_PManager;
 private:
@@ -71,11 +81,13 @@ private:
 	bool GetPercentage(unsigned int stake, float* percentage);
 	static void _cdecl BeginStoreDataThread(void* Param);
 	void StoreDataThread();
-
+	
 private:
 	bool m_autoplay;
 	bool mDemoMode;	
 	bool m_isHD;
+
+	shared_ptr<PopControl> m_popControl;
 
 	unsigned char mStoringThreadActive;
 
@@ -84,11 +96,13 @@ private:
 	unsigned int m_deduct;
 	unsigned int m_featureWinValue;
 	unsigned int m_finalWinValue;
-	unsigned int m_gameStakes[TOTAL_STAKES];
+	
 	unsigned int m_interimFeatureWinValue;
 	unsigned int m_interimWinValue;
 
 	unsigned int mTargetValue;
+
+	std::vector<unsigned int> m_gameStakes;
 };
 
 typedef Singleton<Game> TheGame;

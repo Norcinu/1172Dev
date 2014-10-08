@@ -1,7 +1,8 @@
-#include <Engine.h>
-#include <bo.h>
 #include "CompendiumLoadState.h"
 #include "Game.h"
+#include <Engine.h>
+#include <AudioManager.h>
+#include <bo.h>
 
 static const float WAIT_TIME = 30.0f;
 
@@ -25,7 +26,8 @@ void CompendiumLoadState::Update()
 	{
 		return;
 	}
-	TheButtons::Instance()->SetButtonState("Menu", true, LAMP_FLASH);
+	//TheButtons::Instance()->SetButtonState("Menu", true, LAMP_FLASH);
+	TheButtons::Instance()->SetButtonActivity(true, "Menu", LAMP_FLASH);
 	/**
 	* If timer has passed, refill key is turned, menu is pressed or player inserts money then quit to the home page
 	*/

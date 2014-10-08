@@ -1,9 +1,9 @@
+#include "DealHandState.h"
 #include <ObjectHandler.h>
 #include <TextureManager.h>
 #include "GenericButtons.h"
 #include "Defines.h"
 #include "Game.h"
-#include "DealHandState.h"
 #include "PokerHandProcess.h"
 #include "PokerGame.h"
 

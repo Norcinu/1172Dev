@@ -25,14 +25,20 @@ void Game::GameShutDown(void)
 
 void Game::QuitToMorningReboot()
 {
-	//LightsOff();
+	global_quit = 1;
+
+	StoreData();
+
+//	TheAudioManager::Instance()->GetAudioSample("SX_INFO")->Play();
+//	TheAudioManager::Instance()->ProcessSound("SX_AMBIENT", new FadeOutProcess(0.5f));
+	TheButtons::Instance()->LampsOff();
+
+	if(!GetSwitchStatus(REFILL_KEY))
+	{
+		SetCurrentState(0);
+	}
 
 	SendHeaderOnly(EXIT_CODE1, 1);
 
-	Sleep(1000);
-
-	//while(StoringControlThreadActive)
-		msg_service();
-
-	global_quit = 1;
+	TheEngine::Instance()->Shutdown();
 }

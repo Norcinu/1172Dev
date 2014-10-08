@@ -16,7 +16,6 @@ unsigned int IntError = 0;
 
 bool Game::Setup(HINSTANCE hinstance)
 {
-	
 	IntError = SetEnvironment(RELEASEx);
 
 	if(IntError == 0x01)
@@ -40,10 +39,9 @@ bool Game::Setup(HINSTANCE hinstance)
 
 	THE_BUTTONS->LampsOff();
 
-	if(GetDoorStatus() 
-		|| GetCurrentError() 
-		|| GetBankDeposit() && GetBankDeposit() >= GetVariableValue(MAX_WIN_BANK)
-		|| GetCredits() && GetCredits() >= GetVariableValue(MAX_CREDITS))
+	if(GetDoorStatus() || GetCurrentError() ||
+	   GetBankDeposit() && GetBankDeposit() >= GetVariableValue(MAX_WIN_BANK) ||
+	   GetCredits() && GetCredits() >= GetVariableValue(MAX_CREDITS))
 	{
 		Sleep(100);			
 		DisableNoteValidator();
@@ -55,7 +53,7 @@ bool Game::Setup(HINSTANCE hinstance)
 		EnableNoteValidator();
 		Sleep(100);
 	}
-
+	
 	ENGINE->SetMD5CheckCodes(FILE_NAMES, MDAT_CHECKSUMS, NUMBER_OF_CHECKSUMS);
 
 	if(!ENGINE->LoadData("Logo.png", "DealStart", LOAD_LONG))

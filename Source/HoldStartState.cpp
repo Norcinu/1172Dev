@@ -38,6 +38,7 @@ void HoldStartState::Enter()
 	ThePokerGame::Instance()->SetActiveCardButton(true,4);
 	
 	ThePokerGame::Instance()->HoldCalc(ThePokerGame::Instance()->DealHand);
+
 	ENGINE->GetProcessManager()->AddProcessToQueue(new AutoHeldsProcess);
 }
 
@@ -62,7 +63,6 @@ void HoldStartState::Exit()
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
-
 	
 	ThePokerGame::Instance()->SetActiveCardButton(false,0);
 	ThePokerGame::Instance()->SetActiveCardButton(false,1);
@@ -108,7 +108,9 @@ void HoldStartState::Update()
 		ThePokerGame::Instance()->SetHoldStartLamps();
 			
 		bool startGame = false;
-		
+		bool stakeChange = false;
+		auto stake = 0;
+
 #ifdef SOAK_BUILD
 		startGame = true;
 #endif

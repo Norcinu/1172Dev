@@ -4,6 +4,7 @@
 #include "Defines.h"
 #include "Game.h"
 #include "PokerGame.h"
+#include "PopControl.h"
 
 bool Game::GameInit()
 {
@@ -19,15 +20,20 @@ bool Game::GameInit()
 
 	mTargetValue = 0;
 
-	m_gameStakes[0] = MINIMUM_BET;
-	m_gameStakes[1] = MAXIMUM_BET;
+	m_gameStakes.reserve(TOTAL_STAKES);
+	m_gameStakes.push_back(MINIMUM_BET);
+	m_gameStakes.push_back(MAXIMUM_BET);
+	
 	m_currentTotalStake[0] = 0;
 	m_currentTotalStake[1] = 0;
 	m_currentTotalWon[0] = 0;
 	m_currentTotalWon[1] = 0;
-
+	
 	//Default Stake To Max
 	mStake = m_gameStakes[0];
+
+	m_popControl = std::make_shared<PopControl>();
+	m_popControl->Initialise(m_gameStakes, GetStakeID());
 		
 	if(GetUsesBackOffice())
 	{
@@ -41,7 +47,7 @@ bool Game::GameInit()
 #ifdef SOAK_BUILD
 	TheAudioManager::Instance()->EnableSuperFastPlay();
 #endif
-
+	
 #ifdef FIXED_POP
 	mStake = FIXED_POP;
 #endif

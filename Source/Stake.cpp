@@ -52,7 +52,7 @@ void PokerGame::ChangeStake(void)
 
 void PokerGame::DisplayStake(void)
 {
-unsigned int ID;
+	unsigned int ID;
 
 	if (GetGameIndex() == Game100p)	
 		ID = TheTextureManager::Instance()->GetTextureID("Play100p.png");				

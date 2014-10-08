@@ -6,7 +6,7 @@
 static const float MOVE_SPEED_SD = 600.0f;
 static const float MOVE_SPEED_HD = 900.0f;
 
-unsigned int AllStakes[4] = {25, 50, 100, 200};
+//unsigned int AllStakes[4] = {25, 50, 100, 200};
 
 ShowStakeOptionsProcess::ShowStakeOptionsProcess(const std::vector<D3DXVECTOR2>& positions, ChangeType type, int oldStakeID)
 {
@@ -33,7 +33,7 @@ ShowStakeOptionsProcess::~ShowStakeOptionsProcess()
 
 void ShowStakeOptionsProcess::Init()
 {
-	pStakeButton = OBJECT_HANDLER->GetObject2D("RGlassButtons")->GetInstance(1);
+	pStakeButton = OBJECT_HANDLER->GetObject2D("RGlassButtons")->GetInstance(0);
 
 	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");
 
@@ -45,7 +45,7 @@ void ShowStakeOptionsProcess::Init()
 
 	int positionCount = 0;
 	
-	for(unsigned int i = 0; i < buttons->GetNumberOfInstances() - 1;++i)// - 1; i >= 0; --i)
+	for(unsigned int i = 0; i < buttons->GetNumberOfInstances() - 1; ++i)// - 1; i >= 0; --i)
 	{
 		if(!THE_GAME->HasStake(AllStakes[i]))
 		{
@@ -105,7 +105,6 @@ void ShowStakeOptionsProcess::Init()
 
 	mSpeed = -mBaseMoveSpeed;
 
-	
 	std::string texture = "TouchUp.png";
 	
 	if(mChangeType != SHOW_OPTIONS)
@@ -122,7 +121,7 @@ void ShowStakeOptionsProcess::Complete()
 	Object2D* buttons = OBJECT_HANDLER->GetObject2D("PopButtons");
 	for(size_t i = 0; i < buttons->GetNumberOfInstances();++i)
 	{
-		if(i != THE_GAME->GetStakeID())
+	//	if(i != THE_GAME->GetStakeID())
 		{
 			if(mChangeType != SHOW_OPTIONS)
 				buttons->GetInstance(i)->SetVisible(false);
@@ -147,11 +146,11 @@ void ShowStakeOptionsProcess::Update()
 
 		allInPosition = false;
 
-		float yPosition = mEndPositions[i].y;
+		float xPosition = mEndPositions[i].x;
 
 		D3DXVECTOR2 pos = pOptions[i]->GetPosition();
 		bool up = false;
-		if(pos.y < yPosition)
+		if(pos.x < xPosition)
 		{
 			mSpeed = mBaseMoveSpeed;
 		}
@@ -161,13 +160,15 @@ void ShowStakeOptionsProcess::Update()
 			up = true;
 		}
 
-		float yChange = mSpeed * ENGINE->GetSystemTimer().GetDT();
+		float xChange = mSpeed * ENGINE->GetSystemTimer().GetDT();
+		float temp = xChange;
 
+		xChange = floor(temp);
 		if(up)
 		{
-			if((pos.y + yChange) <= yPosition)
+			if((pos.x + xChange) >= xPosition)
 			{
-				yChange = yPosition - pos.y;					
+				xChange = xPosition - pos.x;					
 				mInPosition[i] = true;
 				if(!i && i != mOldStakeID)//if first one is locked before currently visible stake then enable current to move
 				{
@@ -177,13 +178,13 @@ void ShowStakeOptionsProcess::Update()
 		}
 		else
 		{
-			if(pos.y + yChange >= yPosition)
+			if(pos.x + xChange <= xPosition)
 			{
-				yChange = yPosition - pos.y;
+				xChange = xPosition - pos.x;
 				mInPosition[i] = true;
 			}
 		}
-		pos.y += yChange;
+		pos.x += xChange;
 
 		pOptions[i]->SetPosition(pos);
 

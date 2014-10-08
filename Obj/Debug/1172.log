@@ -1,139 +1,21 @@
-﻿Build started 03/10/2014 17:12:04.
+﻿Build started 08/10/2014 11:51:31.
      1>Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Obj\Debug\1172.unsuccessfulbuild".
+         Creating "Obj\Debug\1172.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1224LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Allow.cpp Source\AutoHeldsProcess.cpp Source\AwardLevel.cpp Source\BankTransfer.cpp Source\ButtonProcess.cpp Source\CheckForDemoPlayProcess.cpp Source\CheckWin.cpp Source\Cointrol.cpp Source\CointrolState.cpp Source\Collect.cpp Source\CollectProcess.cpp Source\CompendiumLoadState.cpp Source\DecDon.cpp Source\DemoMode.cpp Source\DrawHandState.cpp Source\EndGameState.cpp Source\Gamble.cpp Source\GoldenJoker.cpp Source\GoldenJokerCardProcess.cpp Source\GoldenJokerHeldsProcess.cpp Source\GoldenJokerState.cpp Source\HelpDigits.cpp Source\Hilo.cpp Source\HiloGambleState.cpp Source\HiloVideo.cpp Source\HoldStart.cpp Source\PaymentState.cpp Source\PayOut.cpp Source\PayTransferProcess.cpp Source\PokerHandProcess.cpp Source\DealHandState.cpp Source\DealStartState.cpp Source\ErrorProcess.cpp Source\ForcedWins.cpp Source\GameAwards.cpp Source\GenericDisplayErrorMsg.cpp Source\GenericHoppers.cpp Source\HelpState.cpp Source\JackpotProcess.cpp Source\MaxBankProcess.cpp Source\NMI_log.cpp Source\OSButtonProcess.cpp Source\Poker.cpp Source\PokerGameInit.cpp Source\PokerVideo.cpp Source\PopControl.cpp Source\Reflex.cpp Source\Roll.cpp Source\SetupState.cpp Source\ShowStakeOptionsProcess.cpp Source\Soak.cpp Source\SoakData.cpp Source\Sound.cpp Source\Stake.cpp Source\Timing.cpp Source\UpdateProcess.cpp Source\StandbyFlashProcess.cpp Source\GenericGameStoreRestoreData.cpp Source\GenericButtons.cpp Source\GenericGameInit.cpp Source\GenericMainExit.cpp Source\GenericMainInit.cpp Source\GenericMainSetAndGet.cpp Source\GenericQuitGame.cpp Source\GenericUpdateDisplays.cpp Source\GenericWinMain.cpp Source\HoldStartState.cpp Source\StandbyState.cpp Source\VariableSoundProcess.cpp
-         Allow.cpp
-         AutoHeldsProcess.cpp
-         AwardLevel.cpp
-         BankTransfer.cpp
-         ButtonProcess.cpp
-         CheckForDemoPlayProcess.cpp
-         CheckWin.cpp
-         Cointrol.cpp
-         CointrolState.cpp
-         Collect.cpp
-         CollectProcess.cpp
-         CompendiumLoadState.cpp
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(230): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(230): error C2143: syntax error : missing ';' before '*'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(230): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(349): error C2146: syntax error : missing ';' before identifier 'lpwfxFormat'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(349): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(349): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(365): error C2146: syntax error : missing ';' before identifier 'lpwfxFormat'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(365): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(365): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(416): error C2146: syntax error : missing ';' before identifier 'lpwfxFormat'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(416): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(416): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(425): error C2146: syntax error : missing ';' before identifier 'lpwfxFormat'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(425): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(425): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(686): error C2061: syntax error : identifier 'LPWAVEFORMATEX'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(696): error C2061: syntax error : identifier 'LPCWAVEFORMATEX'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(770): error C2061: syntax error : identifier 'LPWAVEFORMATEX'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(780): error C2061: syntax error : identifier 'LPCWAVEFORMATEX'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(1041): error C2061: syntax error : identifier 'LPWAVEFORMATEX'
-     1>c:\heber\devsource\dx9sdk\include\dsound.h(1099): error C2061: syntax error : identifier 'LPWAVEFORMATEX'
-     1>c:\program files\microsoft sdks\windows\v7.0a\include\mmsystem.h(792): error C2373: 'WAVEFORMATEX' : redefinition; different type modifiers
-                 c:\heber\devsource\dx9sdk\include\dsound.h(230) : see declaration of 'WAVEFORMATEX'
-     1>c:\program files\microsoft sdks\windows\v7.0a\include\mmsystem.h(795): error C2378: 'LPCWAVEFORMATEX' : redefinition; symbol cannot be overloaded with a typedef
-                 c:\heber\devsource\dx9sdk\include\dsound.h(230) : see declaration of 'LPCWAVEFORMATEX'
-     1>c:\program files\microsoft sdks\windows\v7.0a\include\mmsystem.h(837): error C2061: syntax error : identifier 'LPCWAVEFORMATEX'
-     1>c:\program files\microsoft sdks\windows\v7.0a\include\mmsystem.h(893): error C2061: syntax error : identifier 'LPCWAVEFORMATEX'
-     1>c:\heber\projects\1100projects\1172dev\source\compendiumloadstate.cpp(11): error C2039: 'SetButtonState' : is not a member of 'Buttons'
-                 c:\heber\projects\1100projects\1172dev\source\genericbuttons.h(80) : see declaration of 'Buttons'
-     1>c:\heber\projects\1100projects\1172dev\source\compendiumloadstate.cpp(28): error C2039: 'SetButtonState' : is not a member of 'Buttons'
-                 c:\heber\projects\1100projects\1172dev\source\genericbuttons.h(80) : see declaration of 'Buttons'
-     1>c:\heber\projects\1100projects\1172dev\source\compendiumloadstate.cpp(43): error C2039: 'QuitToMorningReboot' : is not a member of 'Game'
-                 c:\heber\projects\1100projects\1172dev\source\game.h(19) : see declaration of 'Game'
-         DecDon.cpp
-         DemoMode.cpp
-         DrawHandState.cpp
-         EndGameState.cpp
-         Gamble.cpp
-         GoldenJoker.cpp
-         GoldenJokerCardProcess.cpp
-         GoldenJokerHeldsProcess.cpp
-         Generating Code...
-         Compiling...
-         GoldenJokerState.cpp
-         HelpDigits.cpp
-         Hilo.cpp
-         HiloGambleState.cpp
-         HiloVideo.cpp
-         HoldStart.cpp
-         PaymentState.cpp
-         PayOut.cpp
-         PayTransferProcess.cpp
-         PokerHandProcess.cpp
-         DealHandState.cpp
-         DealStartState.cpp
-         ErrorProcess.cpp
-         ForcedWins.cpp
-         GameAwards.cpp
-         GenericDisplayErrorMsg.cpp
-         GenericHoppers.cpp
-         HelpState.cpp
-         JackpotProcess.cpp
-         MaxBankProcess.cpp
-         Generating Code...
-         Compiling...
-         NMI_log.cpp
-         OSButtonProcess.cpp
-         Poker.cpp
-         PokerGameInit.cpp
-         PokerVideo.cpp
-         PopControl.cpp
-         Reflex.cpp
-         Roll.cpp
-         SetupState.cpp
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(7): error C2059: syntax error : ')'
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(8): error C2143: syntax error : missing ';' before '{'
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(8): error C2447: '{' : missing function header (old-style formal list?)
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(22): error C2039: 'Update' : is not a member of '`global namespace''
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(22): error C3646: 'Update' : unknown override specifier
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(23): error C2091: function returns function
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(24): error C2065: 'pGame' : undeclared identifier
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(24): error C2227: left of '->GetStake' must point to class/struct/union/generic type
-                 type is ''unknown-type''
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(36): error C2653: 'TheAudioManager' : is not a class or namespace name
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(36): error C2227: left of '->GetAudioSample' must point to class/struct/union/generic type
-                 type is ''unknown-type''
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(36): error C2227: left of '->Play' must point to class/struct/union/generic type
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(36): error C3861: 'Instance': identifier not found
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(42): error C2039: 'Exit' : is not a member of '`global namespace''
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(42): error C3646: 'Exit' : unknown override specifier
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(43): error C2091: function returns function
-     1>c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(43): error C2084: function 'void (__cdecl *SetupState(void))(void)' already has a body
-                 c:\heber\projects\1100projects\1172dev\source\setupstate.cpp(22) : see previous definition of 'SetupState'
-         ShowStakeOptionsProcess.cpp
-         Soak.cpp
-         SoakData.cpp
-         Sound.cpp
-         Stake.cpp
-         Timing.cpp
-         UpdateProcess.cpp
-         StandbyFlashProcess.cpp
-         GenericGameStoreRestoreData.cpp
-         GenericButtons.cpp
-         GenericGameInit.cpp
-         Generating Code...
-         Compiling...
-         GenericMainExit.cpp
-         GenericMainInit.cpp
-         GenericMainSetAndGet.cpp
-         GenericQuitGame.cpp
-         GenericUpdateDisplays.cpp
-         GenericWinMain.cpp
-         HoldStartState.cpp
-         StandbyState.cpp
-         VariableSoundProcess.cpp
-         Generating Code...
-     1>Done Building Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" (build target(s)) -- FAILED.
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         1172.vcxproj -> X:\1172\1172L27U010D.exe
+       Manifest:
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file "Obj\Debug\1172.unsuccessfulbuild".
+         Touching "Obj\Debug\1172.lastbuildstate".
+     1>Done Building Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:02:07.53
+Time Elapsed 00:00:00.12

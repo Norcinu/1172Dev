@@ -12,6 +12,7 @@
 #include "bo.h"
 #include "Defines.h"
 #include "PokerGame.h"
+#include "PopControl.h"
 
 void msg_service()
 {
@@ -106,7 +107,16 @@ void Game::ClearInterimWinValue()
 
 void Game::SetStake(unsigned int stake)
 {
-	mStake = stake;
+	if (mStake != stake)
+	{
+		mStake = stake;
+		ThePokerGame::Instance()->SetGameIndex((mStake == MAXIMUM_BET) ? 1 : 0);
+		m_popControl->ChangeStake(GetStakeID()); 
+	}
+	else
+	{
+		m_popControl->ClosePopOptions(GetStakeID());
+	}
 }
 
 void Game::SetDemoMode(bool demoMode)
@@ -165,7 +175,7 @@ bool Game::IsHD()
 
 bool Game::HasStake(const unsigned int stake) const
 {
-	for (int i = 0; i < TOTAL_STAKES; i++) 
+	for (int i = 0; i < (TOTAL_STAKES+2); i++) 
 	{
 		if (stake == m_gameStakes[i])
 			return true;
@@ -173,7 +183,46 @@ bool Game::HasStake(const unsigned int stake) const
 	return false;
 }
 
-unsigned int Game::GetStakeID() const
+int Game::GetStakeID() const
 {
-	return 1;
+	for(int i = 0; i < (TOTAL_STAKES+2);++i)
+	{
+		if(mStake == AllStakes[i])
+		{
+			return (i-2); //yuck
+		}
+	}
+	return -1;
+}
+
+void Game::ClosePopOptions()
+{
+	if(m_popControl->AreOptionsVisible())
+	{
+		m_popControl->ClosePopOptions(GetStakeID());
+	}
+}
+
+void Game::TogglePopOptions()
+{
+	m_popControl->ShowHide(GetStakeID());
+}
+
+bool Game::ArePopOptionsVisible() const
+{
+	return m_popControl->AreOptionsVisible();
+}
+
+unsigned int Game::GetNextStake() const
+{
+	for(size_t i = 0; i < m_gameStakes.size();++i)
+	{
+		if(mStake == m_gameStakes[i])
+		{
+			int nextStake = (i+1) % m_gameStakes.size();
+			return m_gameStakes[nextStake];
+		}
+	}
+
+	return m_gameStakes[0];//error
 }

@@ -26,6 +26,9 @@ Handles all button deck functions
 #define BUTTONPRESS 0
 #define BUTTONACTIVE 1
 
+class Object2D;
+class Instance2D;
+
 class HardwareButton
 {
 public:
@@ -54,8 +57,11 @@ protected:
 class OSButton
 {
 public:
-	OSButton(const char* objName,const char* objLlegend,const char * objUlegend);	
+	OSButton() {}
+	OSButton(const char *objName,const char* objLlegend,const char * objUlegend);
+	//OSButton(const char *objName, bool instance = false, int instanceNum = 0){}
 	~OSButton();
+	
 	bool CheckPressed();
 	bool IsActive(){return mActive;}
 	bool IsPressed(){return mButtonPressed;}
@@ -67,13 +73,17 @@ public:
 	const char* GetName(){return mName;}
 	const char* GetLegendName(){return mLlegend;}
 
-private:
+//protected:
 	bool mActive;
 	bool mButtonReleased;
 	bool mButtonPressed;
+	bool mInstance;
+	unsigned int mInstanceNum;
 	const char* mName;
 	const char* mLlegend;
 	const char* mUlegend;
+	Object2D *mObject;
+	Instance2D *mInstance2D;
 };
 
 
@@ -92,25 +102,26 @@ public:
 	void DealStartButtons(float DelayTimer);
 	void HoldStartButtons();	
 	void LampsOff();
-
+	
 	void DisableOSButtons(); // Steven
 
 	void SetButtonActivity(bool active, const char* buttonName, unsigned char state = LAMP_OFF);
-	void SetOSButtonActivity(bool active, const char* buttonName, unsigned char state = LAMP_OFF);
+	virtual void SetOSButtonActivity(bool active, const char* buttonName, unsigned char state = LAMP_OFF);
 
 	void SetStandbyType(unsigned int Type){mStandbyType = Type;}
 	void SetStandbyTimer(unsigned int Timer){mStandbyTimer = Timer;}
 	void UpdateButtons();
 	unsigned int GetStandbyType(){return mStandbyType;}
 	unsigned int GetStandbyTimer(){return mStandbyTimer;}
-
+	
 	bool GetButtonProcessStarted() {return mButtonProcessStarted;}
 	void SetButtonProcessEnded(){mButtonProcessStarted = false;}
 
 	void SetVisibility(std::string &button);
 private:
 	void SetLampState(unsigned char Lamp, unsigned char State);
-private:
+//private:
+protected:
 	bool mButtonProcessStarted;
 	typedef std::map<std::string, HardwareButton*> HardwareButtons;
 	typedef std::map<std::string, OSButton*> OnScreenButtons;
@@ -118,6 +129,22 @@ private:
 	OnScreenButtons mOSButtons;
 	unsigned int mStandbyType;
 	unsigned int mStandbyTimer;
+};
+
+
+class InfoButton : public OSButton
+{
+public:
+	InfoButton(const char *objName,const char* objLlegend,const char * objUlegend) {}
+	InfoButton(const char *objName, bool instance = false, int instanceNum = 0); //:
+	//mName(objName)//, mInstance(instance), mInstanceNum(instanceNum)
+	 
+
+	void SetOSButtonActivity(bool active, const char* buttonName, unsigned char state = LAMP_OFF);
+
+protected:
+	void PlayDownSound();
+	void PlayUpSound(){}
 };
 
 typedef Singleton<Buttons> TheButtons;

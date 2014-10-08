@@ -18,7 +18,7 @@ void PokerGame::PayOut(void)
 		case 3: PayOutReflex();
 				PayOutStage = 4;
 				break;
-		case 4: //PayOutPaytransfer(); // DEBUG DEBUG
+		case 4: PayOutPaytransfer();
 				PayOutStage = 5;
 				break;
 		default:

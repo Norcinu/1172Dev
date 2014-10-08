@@ -26,6 +26,11 @@
 
 #define NUMBER_OF_SCREENS 2
 	
+#define B3_25P	25
+#define B3_50P	50
+#define B3_1PND	100
+#define B3_2PND	200
+
 #define MAXIMUM_BET 		200 	//£2
 #define MINIMUM_BET			100		//£1
 #define TOTAL_WINNING_LINES  10
@@ -105,6 +110,20 @@
 #define SensibleStrategy				0
 #define AggressiveStrategy				1
 #define CollectStrategy					2
+
+static const int AllStakes[(TOTAL_STAKES+2)] = 
+{
+	B3_25P,
+	B3_50P,
+	B3_1PND,
+	B3_2PND
+};
+
+static const char* StakeButtons[TOTAL_STAKES] = 
+{
+	"Pop1Pnd",
+	"Pop2Pnd"
+};
 
 #define PublicKey 976458532
 

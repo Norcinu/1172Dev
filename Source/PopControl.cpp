@@ -6,13 +6,12 @@
 
 PopControl::PopControl()
 {
-	
-	mPopOptionsVisible = false;
+	m_popOptionsVisible = false;
 }
 
 PopControl::~PopControl()
 {
-	mPopPositions.clear();
+	m_popPositions.clear();
 }
 
 void PopControl::Initialise(const std::vector<unsigned int>& stakes, unsigned int defaultStakeID)
@@ -30,67 +29,67 @@ void PopControl::Initialise(const std::vector<unsigned int>& stakes, unsigned in
 	for(size_t i = 0; i < stakes.size();++i)
 	{			
 		D3DXVECTOR2 pos = buttons->GetInstance(popCount)->GetPosition();
-		mPopPositions.push_back(pos);
+		m_popPositions.push_back(pos);
 		++popCount;		
 	}
-
-	buttons->GetInstance(defaultStakeID)->SetVisible(true);
-	buttons->GetInstance(defaultStakeID)->SetPosition(mPopPositions[0]);
+	
+//	buttons->GetInstance(defaultStakeID)->SetVisible(true);
+//	buttons->GetInstance(defaultStakeID)->SetPosition(m_popPositions[0]);
 }
 
 void PopControl::ClosePopOptions(unsigned int stakeID)
 {	
 	ChangeType type;
-	if(mPopOptionsVisible)
+	if(m_popOptionsVisible)
 	{
 		type = HIDE_OPTIONS;
-		mPopOptionsVisible = false;
+		m_popOptionsVisible = false;
 	}
 	else
 	{
 		type = UPDATE_OPTIONS;
-		mPopOptionsVisible = false;
+		m_popOptionsVisible = false;
 	}
-	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(m_popPositions, type, stakeID));
 }
 
 void PopControl::ChangeStake(unsigned int stakeID)
 {
 	ChangeType type = SHOW_OPTIONS;	
-	if(mPopOptionsVisible)
+	if (m_popOptionsVisible)
 	{
 		type = HIDE_OPTIONS;
-		mPopOptionsVisible = false;
+		m_popOptionsVisible = false;
 	}
 	else
 	{		
 		type = UPDATE_OPTIONS;
-		mPopOptionsVisible = false;						
+		m_popOptionsVisible = false;						
 	}
+	
+	//THE_BUTTONS->DisableHWButtons();
+	//THE_BUTTONS->DisableOSButtons();
 
-	//GET_BUTTONS->DisableButtons();
-	THE_BUTTONS->DisableOSButtons();
-
-	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(m_popPositions, type, stakeID));
 }
 
 void PopControl::ShowHide(unsigned int stakeID)
 {
 	ChangeType type = SHOW_OPTIONS;	
-	if(mPopOptionsVisible)
+	if(m_popOptionsVisible)
 	{
 		type = HIDE_OPTIONS;
 	}
 	
-	//GET_BUTTONS->DisableButtons();
-	THE_BUTTONS->DisableOSButtons();
+	//THE_BUTTONS->DisableHWButtons();
+	//THE_BUTTONS->DisableOSButtons();
 	
-	mPopOptionsVisible = !mPopOptionsVisible;
+	m_popOptionsVisible = !m_popOptionsVisible;
 
-	ENGINE->GetProcessManager()->AddProcessToQueue(new ShowStakeOptionsProcess(mPopPositions, type, stakeID));
+	ENGINE->GetProcessManager()->AddProcessToQueue(new ShowStakeOptionsProcess(m_popPositions, type, stakeID));
 }
 
 bool PopControl::AreOptionsVisible() const
 {
-	return mPopOptionsVisible;
+	return m_popOptionsVisible;
 }

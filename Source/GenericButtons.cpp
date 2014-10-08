@@ -77,64 +77,75 @@ OSButton::OSButton(const char* objName,const char* objLlegend,const char* objUle
 	mActive = false;
 	mButtonReleased = false;
 	mButtonPressed = false;
+	mObject = TheObjectHandler::Instance()->GetObject2D(mName);
+	mInstanceNum=0;
+	mInstance2D=nullptr;
+	mInstance = false;
 }
+
+OSButton::~OSButton(){}
 
 bool OSButton::CheckPressed()
 {
-	if(TheInput::Instance()->Pick2D(mName))
-	{
-		return true;
-	}
+	if (mName=="PopButtons")
+		int a = 0;
+	if(mInstance)
+		return TheInput::Instance()->Pick2D(mObject, mInstanceNum);
 	else
-	{
-		return false;
-	}
+		return TheInput::Instance()->Pick2D(mName);
 }
 
 void OSButton::SetActive(bool active, unsigned char state)
 {
 	mActive = active;	
 	
-	if(state == LAMP_ON)
+	if (this->mName == "RGlassButtons" || this->mName == "PopButtons")
 	{
-		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
-		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);		
-	}
-	else if(state == LAMP_OFF)
-	{
-		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
-		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
-	}
-	else if(state == LAMP_FLASH)
-	{
-		if (!FlashTog)
-		{
-			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
-			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);
-		}
-		else
-		{
-			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
-			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
-		}
-	}
-	else if(state == LAMP_ANTI)
-	{
-		if (FlashTog)
-		{
-			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
-			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);	
-		}
-		else
-		{
-			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
-			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
-		}
+		TheInput::Instance()->Pick2D(mObject, mInstanceNum);
 	}
 	else
 	{
-		OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
-		OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+		if(state == LAMP_ON)
+		{
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);		
+		}
+		else if(state == LAMP_OFF)
+		{
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
+		}
+		else if(state == LAMP_FLASH)
+		{
+			if (!FlashTog)
+			{
+				OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);
+			}
+			else
+			{
+				OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
+			}
+		}
+		else if(state == LAMP_ANTI)
+		{
+			if (FlashTog)
+			{
+				OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(true);	
+			}
+			else
+			{
+				OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+				OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(true);
+			}
+		}
+		else
+		{
+			OBJECT_HANDLER->GetObject2D(mLlegend)->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D(mUlegend)->SetVisible(false);
+		}
 	}
 }
 
@@ -184,9 +195,19 @@ void Buttons::Initialise()
 	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit"); //05
 	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit"); //03
 	
-	mOSButtons["InfoButton1"]		  = new OSButton("GraphicalButton01","LegendButton1Lit","LegendButton1Nlit");
-	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton02","LegendButton2Lit","LegendButton2Nlit");
-	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton03","LegendButton3Lit","LegendButton3Nlit");	
+	mOSButtons["InfoButton1"]		  = new OSButton("GraphicalButton11","LegendButton1Lit","LegendButton1Nlit"); //01
+	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton12","LegendButton2Lit","LegendButton2Nlit"); //02
+	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton13","LegendButton3Lit","LegendButton3Nlit"); //03
+	
+	mOSButtons["ChangeStake"]		  = new InfoButton("RGlassButtons", true, 0);
+
+	for(int i = 0; i < TOTAL_STAKES;++i)
+	{
+		if(TheGame::Instance()->HasStake(AllStakes[i+2]))//yuk
+		{
+			mOSButtons[StakeButtons[i]] = new InfoButton("PopButtons", true, i);
+		}
+	}
 }
 
 Buttons::~Buttons(void)
@@ -220,7 +241,7 @@ void Buttons::UpdateButtons()
 			if(it->second->IsActive())
 			{
 				if(it->second->CheckPressed())
-				{					
+				{
 					ENGINE->GetProcessManager()->AddProcessToList(new OSButtonProcess(it->second));
 					mButtonProcessStarted = true;
 					return;
@@ -283,7 +304,7 @@ bool Buttons::OSButtonPressed(const char* buttonName)
 		}
 	}
 	return false;
-}
+} 
 
 void Buttons::DisableHWButtons()
 {
@@ -492,6 +513,27 @@ void Buttons::StandbyButtons()
 		if(mStandbyTimer>=(bdelay*8))
 			mStandbyTimer = 0;
 	}
+
+	auto bank = GetBankDeposit();
+	auto credit = GetCredits();
+	auto total = bank + credit;
+	if (THE_GAME->ArePopOptionsVisible())
+	{
+		for (int i = 0; i < TOTAL_STAKES; ++i)
+		{
+			if (THE_GAME->HasStake(AllStakes[i]))
+			{
+				char lamp = (credit >= AllStakes[i]) ? LAMP_FLASH : LAMP_ON;
+				SetOSButtonActivity(true, StakeButtons[i], lamp);
+			}
+		}
+	}
+	else
+	{
+		auto stakeID = THE_GAME->GetStakeID();
+		for (auto i = 0; i < TOTAL_STAKES; ++i)
+			SetOSButtonActivity(false, StakeButtons[i], LAMP_OFF);
+	}
 }
 
 void Buttons::DealStartButtons(float DelayTimer)
@@ -504,24 +546,23 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
 		SetButtonActivity(true, "TopStart", LAMP_ON);
-		//SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
-		//SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
+	//	SetOSButtonActivity(true, "ChangeStake", LAMP_ON);
 	}
 	else if(GetCredits() >= MINIMUM_BET)
 	{
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
-		//SetOSButtonActivity(true, "DealStart1PndButton",LAMP_ON);
+	//	SetOSButtonActivity(true, "ChangeStake", LAMP_ON);
 	}
 	else
 	{
 		SetButtonActivity(false, "FrontStart");
 		SetButtonActivity(false, "Stake");
 		SetButtonActivity(false, "TopStart");
-		//SetOSButtonActivity(false, "DealStart1PndButton");
-		//SetOSButtonActivity(false, "DealStart2PndButton");
 	}
 	
+	SetOSButtonActivity(true, "ChangeStake", LAMP_ON);
+
 	if(GetTerminalFormat() > 1)
 		SetButtonActivity(true, "Menu", LAMP_ON);
 	else
@@ -559,7 +600,6 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetOSButtonActivity(false, "AutoplayButton");
 	}
 
-	
 	if(((GetCredits()+GetBankDeposit() >= GetMinPayoutValue()) ||
 		(GetCredits()+GetBankDeposit()>0 && GetTerminalType() != HOPPER))
 	&& !GetDoorStatus())
@@ -589,19 +629,11 @@ void Buttons::HoldStartButtons()
 	
 	SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 	SetButtonActivity(true, "TopStart", LAMP_ON);
-	SetButtonActivity(false, "Stake");				
+	SetButtonActivity(false, "Stake");
 	
-	if (THE_GAME->GetStake() == MAXIMUM_BET)
-	{
-		//SetOSButtonActivity(true, "DealStart2PndButton",LAMP_ON);
-		//SetOSButtonActivity(false, "DealStart1PndButton");
-	}
-	else
-	{
-		//SetOSButtonActivity(true, "DealStart1PndButton", LAMP_ON);
-		//SetOSButtonActivity(false, "DealStart2PndButton");
-	}
-
+	SetOSButtonActivity(false, "ChangeStake");
+	for(int i = 0; i < TOTAL_STAKES; i++)
+		SetOSButtonActivity(false, StakeButtons[i]);
 	
 	if(GetCredits() >= THE_GAME->GetStake())
 	{
@@ -621,7 +653,7 @@ void Buttons::HoldStartButtons()
 		SetButtonActivity(false, "AutoPlay");
 		SetOSButtonActivity(false, "AutoplayButton");
 	}
-					
+				
 #endif
 }
 
@@ -631,4 +663,25 @@ void Buttons::DisableOSButtons()
 	{
 		b.second->SetActive(false, LAMP_OFF);
 	});
+}
+
+InfoButton::InfoButton(const char *objName, bool instance, int instanceNum)
+	: OSButton(objName, "","")
+{
+	mInstance=instance;
+	mInstanceNum=instanceNum;
+	if (mInstance)
+		mInstance2D = mObject->GetInstance(instanceNum);
+	else
+		mInstance2D = nullptr;
+}
+
+void InfoButton::PlayDownSound()
+{
+	TheAudioManager::Instance()->GetAudioSample("SX_INFO")->Play();
+}
+
+void InfoButton::SetOSButtonActivity(bool active, const char* buttonName, unsigned char state /* = LAMP_OFF */)
+{
+
 }
