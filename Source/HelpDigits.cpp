@@ -12,8 +12,8 @@ void PokerGame::UpdateInfoDigits(bool Visibility)
 	if (Visibility == true)
 	{
 		float Percentage = (float)GetTargetPercentage();		
-		sprintf_s(buff, "%2.0f%%", Percentage);				
-		OBJECT_HANDLER->GetText("HelpInfoDigits")->SetPosition(D3DXVECTOR2((float)1678,(float)232));
+		sprintf_s(buff, "%2.0f%%%%", Percentage);				
+		OBJECT_HANDLER->GetText("HelpInfoDigits")->SetPosition(D3DXVECTOR2((float)1735,(float)185));
 		OBJECT_HANDLER->GetText("HelpInfoDigits")->SetScale(D3DXVECTOR2(1.3f,1.3f));	
 		OBJECT_HANDLER->GetText("HelpInfoDigits")->SetMessage(buff);
 	}
@@ -27,9 +27,9 @@ void PokerGame::UpdateGoldenDigits(bool Visibility)
 	if (Visibility == true)
 	{
 		float Percentage = (float)GetTargetPercentage();		
-		sprintf_s(buff, "%2.0f%%", Percentage);				
-		OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetPosition(D3DXVECTOR2((float)830,(float)500));
-		OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetScale(D3DXVECTOR2(2.3f,2.3f));	
+		sprintf_s(buff, "%2.0f%%%%", Percentage);				
+		OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetPosition(D3DXVECTOR2((float)818,(float)495));
+		OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetScale(D3DXVECTOR2(2.0f,2.0f));	
 		OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetMessage(buff);
 	}
 	OBJECT_HANDLER->GetText("HelpGoldenDigits")->SetVisible(Visibility);	

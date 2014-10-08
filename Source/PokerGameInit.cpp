@@ -64,20 +64,34 @@ bool PokerGame::PokerGameInit()
 	AwardTable[1][11]= 50000;
 	AwardTable[1][12]= 50000;
 	
-	AwardValuesX = 630;
-	AwardValuesY[12] = 46;
-	AwardValuesY[11] = 81;
-	AwardValuesY[10] = 115;
-	AwardValuesY[9]	= 150;
+	AwardValuesX = 710;
+	AwardValuesY[12] = 41;
+	AwardValuesY[11] = 79;
+	AwardValuesY[10] = 114;
+	AwardValuesY[9]	= 149;
 	AwardValuesY[8] = 185;
-	AwardValuesY[7] = 219;
-	AwardValuesY[6] = 254;
-	AwardValuesY[5] = 289;
-	AwardValuesY[4] = 323;
-	AwardValuesY[3] = 358;
-	AwardValuesY[2] = 393;
-	AwardValuesY[1] = 427;
-	AwardValuesY[0] = 450;
+	AwardValuesY[7] = 222;
+	AwardValuesY[6] = 257;
+	AwardValuesY[5] = 291;
+	AwardValuesY[4] = 329;
+	AwardValuesY[3] = 364;
+	AwardValuesY[2] = 399;
+	AwardValuesY[1] = 434;
+	AwardValuesY[0] = 483;
+
+	/*AwardValuesY[12] = 60;
+	AwardValuesY[11] = 100;
+	AwardValuesY[10] = 135;
+	AwardValuesY[9]	= 170;
+	AwardValuesY[8] = 206;
+	AwardValuesY[7] = 243;
+	AwardValuesY[6] = 280;
+	AwardValuesY[5] = 312;
+	AwardValuesY[4] = 350;
+	AwardValuesY[3] = 385;
+	AwardValuesY[2] = 420;
+	AwardValuesY[1] = 459;
+	AwardValuesY[0] = 483;*/
 
 
 	Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");

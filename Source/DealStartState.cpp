@@ -56,7 +56,8 @@ void DealStartState::Enter()
 	ThePokerGame::Instance()->AllowHighWinFlag = 0;
 
 	OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
-	OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(true);
+	if (!THE_GAME->GetAutoplay())
+		OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(true);
 
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
@@ -65,9 +66,6 @@ void DealStartState::Enter()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-
-	/*THE_BUTTONS->SetOSButtonActivity(true, "PopButtons", LAMP_ON);
-	TheObjectHandler::Instance()->GetObject2D("PopButtons")->SetVisible(true);	*/
 	
 	for (int i = 0; i < TOTAL_STAKES; i++)
 	{
@@ -243,7 +241,7 @@ void DealStartState::Update()
 				startGame) && (GetCredits() >= THE_GAME->GetStake()))
 #endif
 			{
-
+				THE_GAME->SetStake(THE_GAME->GetStake()); // To close change stake options if open.
 				SetGameInProgress();
 				THE_GAME->ClearFinalWinValue();
 
@@ -260,8 +258,7 @@ void DealStartState::Update()
 
 				ENGINE->StateTransition("Cointrol");
 			}
-			else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && 
-				     !THE_GAME->GetAutoplay())
+			else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && !THE_GAME->GetAutoplay())
 			{				
 				THE_GAME->SetAutoplay(true);
 			}

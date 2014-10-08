@@ -1,16 +1,163 @@
-﻿Build started 08/10/2014 11:51:31.
+﻿Build started 08/10/2014 14:49:09.
      1>Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Obj\Debug\1172.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1224LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Allow.cpp Source\AutoHeldsProcess.cpp Source\AwardLevel.cpp Source\BankTransfer.cpp Source\ButtonProcess.cpp Source\CheckForDemoPlayProcess.cpp Source\CheckWin.cpp Source\Cointrol.cpp Source\CointrolState.cpp Source\Collect.cpp Source\CollectProcess.cpp Source\CompendiumLoadState.cpp Source\DecDon.cpp Source\DemoMode.cpp Source\DrawHandState.cpp Source\EndGameState.cpp Source\Gamble.cpp Source\GoldenJoker.cpp Source\GoldenJokerCardProcess.cpp Source\GoldenJokerHeldsProcess.cpp Source\GoldenJokerState.cpp Source\HelpDigits.cpp Source\Hilo.cpp Source\HiloGambleState.cpp Source\HiloVideo.cpp Source\HoldStart.cpp Source\PaymentState.cpp Source\PayOut.cpp Source\PayTransferProcess.cpp Source\PokerHandProcess.cpp Source\DealHandState.cpp Source\DealStartState.cpp Source\ErrorProcess.cpp Source\ForcedWins.cpp Source\GameAwards.cpp Source\GenericDisplayErrorMsg.cpp Source\GenericHoppers.cpp Source\HelpState.cpp Source\JackpotProcess.cpp Source\MaxBankProcess.cpp Source\NMI_log.cpp Source\OSButtonProcess.cpp Source\Poker.cpp Source\PokerGameInit.cpp Source\PokerVideo.cpp Source\PopControl.cpp Source\Reflex.cpp Source\Roll.cpp Source\SetupState.cpp Source\ShowStakeOptionsProcess.cpp Source\Soak.cpp Source\SoakData.cpp Source\Sound.cpp Source\Stake.cpp Source\Timing.cpp Source\UpdateProcess.cpp Source\StandbyFlashProcess.cpp Source\GenericGameStoreRestoreData.cpp Source\GenericButtons.cpp Source\GenericGameInit.cpp Source\GenericMainExit.cpp Source\GenericMainInit.cpp Source\GenericMainSetAndGet.cpp Source\GenericQuitGame.cpp Source\GenericUpdateDisplays.cpp Source\GenericWinMain.cpp Source\HoldStartState.cpp Source\StandbyState.cpp Source\VariableSoundProcess.cpp
+         Allow.cpp
+         AutoHeldsProcess.cpp
+         AwardLevel.cpp
+         BankTransfer.cpp
+         ButtonProcess.cpp
+         CheckForDemoPlayProcess.cpp
+         CheckWin.cpp
+         Cointrol.cpp
+         CointrolState.cpp
+         Collect.cpp
+         CollectProcess.cpp
+         CompendiumLoadState.cpp
+         DecDon.cpp
+         DemoMode.cpp
+         DrawHandState.cpp
+         EndGameState.cpp
+         Gamble.cpp
+         GoldenJoker.cpp
+         GoldenJokerCardProcess.cpp
+         GoldenJokerHeldsProcess.cpp
+         Generating Code...
+         Compiling...
+         GoldenJokerState.cpp
+         HelpDigits.cpp
+         Hilo.cpp
+         HiloGambleState.cpp
+         HiloVideo.cpp
+         HoldStart.cpp
+         PaymentState.cpp
+         PayOut.cpp
+         PayTransferProcess.cpp
+         PokerHandProcess.cpp
+         DealHandState.cpp
+         DealStartState.cpp
+         ErrorProcess.cpp
+         ForcedWins.cpp
+         GameAwards.cpp
+         GenericDisplayErrorMsg.cpp
+         GenericHoppers.cpp
+         HelpState.cpp
+         JackpotProcess.cpp
+         MaxBankProcess.cpp
+         Generating Code...
+         Compiling...
+         NMI_log.cpp
+         OSButtonProcess.cpp
+         Poker.cpp
+         PokerGameInit.cpp
+         PokerVideo.cpp
+         PopControl.cpp
+         Reflex.cpp
+         Roll.cpp
+         SetupState.cpp
+         ShowStakeOptionsProcess.cpp
+         Soak.cpp
+         SoakData.cpp
+         Sound.cpp
+         Stake.cpp
+         Timing.cpp
+         UpdateProcess.cpp
+         StandbyFlashProcess.cpp
+         GenericGameStoreRestoreData.cpp
+         GenericButtons.cpp
+     1>c:\heber\projects\1100projects\1172dev\source\genericbuttons.cpp(526): warning C4018: '>=' : signed/unsigned mismatch
+         GenericGameInit.cpp
+         Generating Code...
+         Compiling...
+         GenericMainExit.cpp
+         GenericMainInit.cpp
+         GenericMainSetAndGet.cpp
+         GenericQuitGame.cpp
+         GenericUpdateDisplays.cpp
+         GenericWinMain.cpp
+         HoldStartState.cpp
+         StandbyState.cpp
+         VariableSoundProcess.cpp
+         Generating Code...
        ResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _AFXDLL /l"0x0409" /nologo /fo"Obj\Debug\1172.res" 1172.rc 
        Link:
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"X:\1172\1172L27U010D.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Heber\DevSource\Dx9SDK\Lib\x86 /LIBPATH:C:\Heber\Projects\GenericsLibrary\Libs\Release_2 /LIBPATH:C:\Heber\Projects\Bo_Library\Lib VizTechD.lib PreDefinedShaders.res 1224D.lib GenericsD.lib /MANIFEST /ManifestFile:"Obj\Debug\1172L27U010D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"X:\1172\1172L27U010D.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"X:\1172\1172L27U010D.lib" /MACHINE:X86 Obj\Debug\1172.res
+         Obj\Debug\Allow.obj
+         Obj\Debug\AutoHeldsProcess.obj
+         Obj\Debug\AwardLevel.obj
+         Obj\Debug\BankTransfer.obj
+         Obj\Debug\ButtonProcess.obj
+         Obj\Debug\CheckForDemoPlayProcess.obj
+         Obj\Debug\CheckWin.obj
+         Obj\Debug\Cointrol.obj
+         Obj\Debug\CointrolState.obj
+         Obj\Debug\Collect.obj
+         Obj\Debug\CollectProcess.obj
+         Obj\Debug\CompendiumLoadState.obj
+         Obj\Debug\DecDon.obj
+         Obj\Debug\DemoMode.obj
+         Obj\Debug\DrawHandState.obj
+         Obj\Debug\EndGameState.obj
+         Obj\Debug\Gamble.obj
+         Obj\Debug\GoldenJoker.obj
+         Obj\Debug\GoldenJokerCardProcess.obj
+         Obj\Debug\GoldenJokerHeldsProcess.obj
+         Obj\Debug\GoldenJokerState.obj
+         Obj\Debug\HelpDigits.obj
+         Obj\Debug\Hilo.obj
+         Obj\Debug\HiloGambleState.obj
+         Obj\Debug\HiloVideo.obj
+         Obj\Debug\HoldStart.obj
+         Obj\Debug\PaymentState.obj
+         Obj\Debug\PayOut.obj
+         Obj\Debug\PayTransferProcess.obj
+         Obj\Debug\PokerHandProcess.obj
+         Obj\Debug\DealHandState.obj
+         Obj\Debug\DealStartState.obj
+         Obj\Debug\ErrorProcess.obj
+         Obj\Debug\ForcedWins.obj
+         Obj\Debug\GameAwards.obj
+         Obj\Debug\GenericDisplayErrorMsg.obj
+         Obj\Debug\GenericHoppers.obj
+         Obj\Debug\HelpState.obj
+         Obj\Debug\JackpotProcess.obj
+         Obj\Debug\MaxBankProcess.obj
+         Obj\Debug\NMI_log.obj
+         Obj\Debug\OSButtonProcess.obj
+         Obj\Debug\Poker.obj
+         Obj\Debug\PokerGameInit.obj
+         Obj\Debug\PokerVideo.obj
+         Obj\Debug\PopControl.obj
+         Obj\Debug\Reflex.obj
+         Obj\Debug\Roll.obj
+         Obj\Debug\SetupState.obj
+         Obj\Debug\ShowStakeOptionsProcess.obj
+         Obj\Debug\Soak.obj
+         Obj\Debug\SoakData.obj
+         Obj\Debug\Sound.obj
+         Obj\Debug\Stake.obj
+         Obj\Debug\Timing.obj
+         Obj\Debug\UpdateProcess.obj
+         Obj\Debug\StandbyFlashProcess.obj
+         Obj\Debug\GenericGameStoreRestoreData.obj
+         Obj\Debug\GenericButtons.obj
+         Obj\Debug\GenericGameInit.obj
+         Obj\Debug\GenericMainExit.obj
+         Obj\Debug\GenericMainInit.obj
+         Obj\Debug\GenericMainSetAndGet.obj
+         Obj\Debug\GenericQuitGame.obj
+         Obj\Debug\GenericUpdateDisplays.obj
+         Obj\Debug\GenericWinMain.obj
+         Obj\Debug\HoldStartState.obj
+         Obj\Debug\StandbyState.obj
+         Obj\Debug\VariableSoundProcess.obj
+     1>Allow.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
          1172.vcxproj -> X:\1172\1172L27U010D.exe
        Manifest:
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"X:\1172\1172L27U010D.exe;#1" /manifest Obj\Debug\1172L27U010D.exe.intermediate.manifest "C:\Program Files\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
        FinalizeBuildStatus:
          Deleting file "Obj\Debug\1172.unsuccessfulbuild".
          Touching "Obj\Debug\1172.lastbuildstate".
@@ -18,4 +165,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.12
+Time Elapsed 00:02:20.03

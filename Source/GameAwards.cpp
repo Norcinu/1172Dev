@@ -17,7 +17,7 @@ void PokerGame::UpdateAwardDigits()
 			sprintf_s(buff2, "AwardLevel0%d",i);
 		else
 			sprintf_s(buff2, "AwardLevel%d",i);
-		//ooh yeah!
+		
 		float AwardValue = (float)AwardTable[GameIndex][i];
 		AwardValue /= 100.0f;
 		sprintf_s(buff, "£%.02f", AwardValue);
@@ -25,9 +25,9 @@ void PokerGame::UpdateAwardDigits()
 		OBJECT_HANDLER->GetText(buff2)->SetPosition(D3DXVECTOR2((float)AwardValuesX,(float)AwardValuesY[i]));
 		OBJECT_HANDLER->GetText(buff2)->SetScale(D3DXVECTOR2(1.3f,1.2f)); //1.0f, 0.8f
 		if (AwardDigitColour[i])
-			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.f));
 		else
-			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(0.f, 0.f, 0.f, 1.0f));
+			OBJECT_HANDLER->GetText(buff2)->SetColour(D3DXCOLOR(1.f, 1.f, 0.f, 1.0f));
 		OBJECT_HANDLER->GetText(buff2)->SetMessage(buff);
 		OBJECT_HANDLER->GetText(buff2)->SetVisible(true);
 	}
