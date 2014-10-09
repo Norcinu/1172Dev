@@ -33,10 +33,13 @@ void EndGameState::Enter()
 	if (ThePokerGame::Instance()->GetGameLengthTime() < MIN_GAME_TIME)
 		RemainingTime = MIN_GAME_TIME-ThePokerGame::Instance()->GetGameLengthTime();	
 
-	if (RemainingTime > 1.0f)
+	//if (RemainingTime > 1.0f)
+	//	mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
+	//else
+	if (THE_GAME->GetAutoplay())
 		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
 	else
-		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);	
+		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.25f);	//1.0f
 }
 
 void EndGameState::Exit()
@@ -55,6 +58,7 @@ void EndGameState::Update()
 		return;
 	}
 
+	auto timerrrrr = ENGINE->GetSystemTimer().GetRunningTime();
 	if (ENGINE->GetSystemTimer().GetRunningTime() < mEndGameDelayTimer)
 	{
 		return;

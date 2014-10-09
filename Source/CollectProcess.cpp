@@ -28,12 +28,12 @@ void CollectProcess::Init()
 {
 	THE_BUTTONS->DisableHWButtons();	
 
-	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	

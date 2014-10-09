@@ -59,8 +59,11 @@ void DrawHandState::Update()
 		{
 			if (ThePokerGame::Instance()->InsertDoubleJokerFlag)
 				ENGINE->StateTransition("GoldenJoker");
-			else if (ThePokerGame::Instance()->PokerHiloCondition())
+			else if (ThePokerGame::Instance()->PokerHiloCondition()) 
+			{
 				ENGINE->StateTransition("HiloGamble");
+				THE_GAME->SetAutoplay(false);
+			}
 			else
 				ENGINE->StateTransition("Payment");
 		}

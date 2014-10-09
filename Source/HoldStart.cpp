@@ -3,7 +3,7 @@
 
 void PokerGame::HoldCardButtons(void)
 {
-	if (THE_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0))
+	if (THE_BUTTONS->OSButtonPressed("Hold1Button") || ReadCardHoldPb(0))
 	{
 		if (!PokerHand[0].hold)
 			PokerHand[0].hold = 1;
@@ -31,7 +31,7 @@ void PokerGame::HoldCardButtons(void)
 		else
 			PokerHand[3].hold = 0;
 	}
-	else if (THE_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4))
+	else if (THE_BUTTONS->OSButtonPressed("Hold5Button") || ReadCardHoldPb(4))
 	{		
 		if (!PokerHand[4].hold)
 			PokerHand[4].hold = 1;
@@ -313,11 +313,10 @@ unsigned int Id,i;
 
 void PokerGame::SetHoldStartLamps(void)
 {	
-
 	if (PokerHand[4].hold)		
-		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold5Button",LAMP_ON);		 
 	else
-		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH); 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold5Button",LAMP_FLASH); 
 
 	if (PokerHand[3].hold)		
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_ON);		 
@@ -335,26 +334,25 @@ void PokerGame::SetHoldStartLamps(void)
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH); 
 		
 	if (PokerHand[0].hold)		
-		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);		 
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button",LAMP_ON);		 
 	else
-		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH); 
-		
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button",LAMP_FLASH); 
 }
 
 bool PokerGame::CardHoldPb(int button)
 {
-bool Picked=false;
+	bool Picked=false;
 
 	Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");
-	float CardX = allCards->GetInstance(button)->GetPosition().x;
-	float CardY = allCards->GetInstance(button)->GetPosition().y;
 	float CardWidth = 235;
 	float CardHeight= 264;
+	float CardX = allCards->GetInstance(button)->GetPosition().x - (CardWidth / 2);
+	float CardY = allCards->GetInstance(button)->GetPosition().y - (CardHeight / 2);
 
-	RECT rect = {(long)CardX, (long)CardY, (long)(CardX+CardWidth), (long)(CardY+CardHeight)};
+	RECT rect = {(long)CardX, (long)CardY, (long)(CardX+(CardWidth+CardWidth/2)), (long)(CardY+(CardHeight + CardHeight/2))};
 
-//	if (TheInput::Instance()->Pick2D(D3DXVECTOR2(CardX,CardY),rect))						
-//		Picked = true;
+	if (TheInput::Instance()->Pick2D(D3DXVECTOR2(CardX, CardY), rect, 0))
+		Picked = true;
 
 	return(Picked);
 }

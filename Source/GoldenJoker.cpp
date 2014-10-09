@@ -101,32 +101,32 @@ unsigned char BestPos;
 
 	if ((THE_BUTTONS->OSButtonPressed("HoldInfoButton") || ReadCardHoldPb(0)) && !(DrawHand[0]&CARD_HELD))
 	{		
-		DrawHand[0] = JOKER_CARD;
-		PutCard(0,JOKER_CARD);			
+		DrawHand[0] = GOLDEN_JOKER_CARD;//JOKER_CARD;
+		PutCard(0, GOLDEN_JOKER_CARD);//JOKER_CARD);			
 		Flag = true;
 	}
 	else if ((THE_BUTTONS->OSButtonPressed("Hold2Button") || ReadCardHoldPb(1)) && !(DrawHand[1]&CARD_HELD))
 	{
-		DrawHand[1] = JOKER_CARD;
-		PutCard(1,JOKER_CARD);		
+		DrawHand[1] = GOLDEN_JOKER_CARD;
+		PutCard(1,GOLDEN_JOKER_CARD);		
 		Flag = true;
 	}
 	else if ((THE_BUTTONS->OSButtonPressed("Hold3Button") || ReadCardHoldPb(2)) && !(DrawHand[2]&CARD_HELD))
 	{
-		DrawHand[2] = JOKER_CARD;
-		PutCard(2,JOKER_CARD);		
+		DrawHand[2] = GOLDEN_JOKER_CARD;
+		PutCard(2,GOLDEN_JOKER_CARD);		
 		Flag = true;
 	}
 	else if ((THE_BUTTONS->OSButtonPressed("Hold4Button") || ReadCardHoldPb(3)) && !(DrawHand[3]&CARD_HELD))
 	{		
-		DrawHand[3] = JOKER_CARD;
-		PutCard(3,JOKER_CARD);		
+		DrawHand[3] = GOLDEN_JOKER_CARD;
+		PutCard(3,GOLDEN_JOKER_CARD);		
 		Flag = true;
 	}
-	else if ((THE_BUTTONS->OSButtonPressed("HoldTransferButton") || ReadCardHoldPb(4)) && !(DrawHand[4]&CARD_HELD))
+	else if ((THE_BUTTONS->OSButtonPressed("Hold5Button") || ReadCardHoldPb(4)) && !(DrawHand[4]&CARD_HELD))
 	{		
-		DrawHand[4] = JOKER_CARD;
-		PutCard(4,JOKER_CARD);		
+		DrawHand[4] = GOLDEN_JOKER_CARD;
+		PutCard(4,GOLDEN_JOKER_CARD);		
 		Flag = true;
 	}
 
@@ -150,11 +150,11 @@ void PokerGame::SetGoldenJokerLamps(void)
 {
 	if (!PokerHand[4].hold)	
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "HoldTransferButton",LAMP_FLASH);  
+		THE_BUTTONS->SetOSButtonActivity(true, "Hold5Button",LAMP_FLASH);  
 		ThePokerGame::Instance()->SetActiveCardButton(true,4);
 	}
 	else
-		THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton",LAMP_OFF);		  
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button",LAMP_OFF);		  
 
 	if (!PokerHand[3].hold)
 	{
@@ -203,7 +203,7 @@ void PokerGame::GoldenJokerRemoveHolds(void)
 {	
 	for (int i=0; i<5; i++)
 	{
-		if ((DrawHand[i]&~CARD_HELD) != JOKER_CARD)
+		if ((DrawHand[i]&~CARD_HELD) != GOLDEN_JOKER_CARD) //joker_card
 		{
 			if (PokerHand[i].hold)
 			{				
@@ -234,7 +234,7 @@ unsigned char PokerGame::CheckForUnheldCards(unsigned char *DealtHand)
 
 unsigned char PokerGame::AllowGoldenJokerFeature(void)
 {
-unsigned char Allow=0;
+	unsigned char Allow=0;
 
 	if (CheckForUnheldCards(DrawHand) && !CheckForJokerCard(DrawHand) && CheckForGoldenJokerBenefit(DrawHand) && GoldenJokerControl())
 		Allow = 1;
@@ -253,7 +253,7 @@ unsigned char TempDrawHand[5];
 			TempDrawHand[j] = DrawHand[j];
 		}
 		 
-		TempDrawHand[i] = JOKER_CARD;
+		TempDrawHand[i] = GOLDEN_JOKER_CARD;//JOKER_CARD;
 		CurrentPay = Chkwin(TempDrawHand,1);
 
 		if (CurrentPay > BestPay)
@@ -322,7 +322,7 @@ unsigned  int BasicWin, GoldenJokerWin, DoubleJokerWin;
 		{
 			CardPos = Position[i];
 			StoreCard[0] = InternalDrawHand[CardPos];
-			InternalDrawHand[CardPos] = JOKER_CARD;
+			InternalDrawHand[CardPos] = GOLDEN_JOKER_CARD;//JOKER_CARD;
 			GoldenJokerWin = Chkwin(InternalDrawHand,1);
 			
 			if (GoldenJokerWin >= BasicWin)
@@ -332,7 +332,7 @@ unsigned  int BasicWin, GoldenJokerWin, DoubleJokerWin;
 					if (j != CardPos)
 					{
 						StoreCard[1]   = InternalDrawHand[j];
-						InternalDrawHand[j] = JOKER_CARD;
+						InternalDrawHand[j] = GOLDEN_JOKER_CARD;//JOKER_CARD;
 						DoubleJokerWin = Chkwin(InternalDrawHand,1);
 						InternalDrawHand[j] = StoreCard[1];
 						if (DoubleJokerWin > GoldenJokerWin)

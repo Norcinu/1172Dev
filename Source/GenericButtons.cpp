@@ -180,17 +180,18 @@ void Buttons::Initialise()
 	mButtons["Menu"] = new HardwareButton("Menu",LH2_BUTTON, LH2_LAMP);
 	mButtons["Collect"] = new HardwareButton("Collect",LH1_BUTTON, LH1_LAMP);
 		
-	mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
+	/*mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
 	mOSButtons["DealStart2PndButton"] = new OSButton("GraphicalButton08","Legend2DealDrawLit","Legend2DealDrawNlit");
 	mOSButtons["DealStart1PndButton"] = new OSButton("GraphicalButton07","Legend1DealDrawLit","Legend1DealDrawNlit");
-	mOSButtons["HoldTransferButton"]  = new OSButton("GraphicalButton06","LegendHoldTransferLit","LegendHoldTransferNlit");
+	mOSButtons["Hold5Button"]  = new OSButton("GraphicalButton06","LegendHold5Lit","LegendHold5Nlit");
 	mOSButtons["Hold4Button"]		  = new OSButton("GraphicalButton05","LegendHold4Lit","LegendHold4Nlit");
 	mOSButtons["Hold3Button"]		  = new OSButton("GraphicalButton04","LegendHold3Lit","LegendHold3Nlit");
 	mOSButtons["Hold2Button"]		  = new OSButton("GraphicalButton03","LegendHold2Lit","LegendHold2Nlit");
-	mOSButtons["HoldInfoButton"]	  = new OSButton("GraphicalButton02","LegendHoldInfoLit","LegendHoldInfoNlit");
-	mOSButtons["CollectButton"]		  = new OSButton("GraphicalButton01","LegendCollectLit","LegendCollectNlit");
+	mOSButtons["HoldInfoButton"]	  = new OSButton("GraphicalButton02","LegendHold1Lit","LegendHold1Nlit");
+	mOSButtons["Hold1Button"]		  = new OSButton("GraphicalButton01","LegendHold1Lit","LegendHold1Nlit");
 
-	//mOSButtons["Swop2PndButton"]	  = new OSButton("GraphicalButton08","Legend2SwopLit","Legend2SwopNlit");
+	mOSButtons["EnterInfoPage"]	     = new OSButton("GraphicalButton14", "LegenedEnterInfoLit", "LegendEnterInfoNlit");
+
 	mOSButtons["SwopButton"]		  = new OSButton("GraphicalButton10","Legend1SwopLit","Legend1SwopNlit"); //11
 	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit"); //05
 	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit"); //03
@@ -199,6 +200,26 @@ void Buttons::Initialise()
 	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton12","LegendButton2Lit","LegendButton2Nlit"); //02
 	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton13","LegendButton3Lit","LegendButton3Nlit"); //03
 	
+	mOSButtons["ChangeStake"]		  = new InfoButton("RGlassButtons", true, 0);*/
+
+	mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
+	mOSButtons["DealStart2PndButton"] = new OSButton("GraphicalButton08","Legend2DealDrawLit","Legend2DealDrawNlit");
+	mOSButtons["DealStart1PndButton"] = new OSButton("GraphicalButton07","Legend1DealDrawLit","Legend1DealDrawNlit");
+	mOSButtons["Hold5Button"]		  = new OSButton("GraphicalButton06","LegendHoldTransferLit","LegendHoldTransferNlit");
+	mOSButtons["Hold4Button"]		  = new OSButton("GraphicalButton05","LegendHold4Lit","LegendHold4Nlit");
+	mOSButtons["Hold3Button"]		  = new OSButton("GraphicalButton04","LegendHold3Lit","LegendHold3Nlit");
+	mOSButtons["Hold2Button"]		  = new OSButton("GraphicalButton03","LegendHold2Lit","LegendHold2Nlit");
+	mOSButtons["HoldInfoButton"]	  = new OSButton("GraphicalButton02","LegendHoldInfoLit","LegendHoldInfoNlit");
+	mOSButtons["Hold1Button"]		  = new OSButton("GraphicalButton01","LegendCollectLit","LegendCollectNlit");
+
+	mOSButtons["SwopButton"]		  = new OSButton("GraphicalButton10","Legend1SwopLit","Legend1SwopNlit"); //11
+	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit"); //05
+	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit"); //03
+
+	mOSButtons["InfoButton1"]		  = new OSButton("GraphicalButton11","LegendButton1Lit","LegendButton1Nlit"); //01
+	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton12","LegendButton2Lit","LegendButton2Nlit"); //02
+	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton13","LegendButton3Lit","LegendButton3Nlit"); //03
+
 	mOSButtons["ChangeStake"]		  = new InfoButton("RGlassButtons", true, 0);
 
 	for(int i = 0; i < TOTAL_STAKES;++i)
@@ -344,7 +365,7 @@ void Buttons::SetOSButtonActivity(bool active, const char* buttonName, unsigned 
 				state = LAMP_ON;
 			else if (it->second->GetName() == "AutoPlay" && buttonName == "AutoplayButton")
 				state = LAMP_ON;
-			else if (it->second->GetName() == "Collect" && buttonName == "CollectButton")
+			else if (it->second->GetName() == "Collect" && buttonName == "Hold1Button")
 				state = LAMP_ON;
 			else
 				state = LAMP_OFF;
@@ -405,12 +426,12 @@ void Buttons::StandbyButtons()
 		&& !GetDoorStatus())
 	{
 		THE_BUTTONS->SetButtonActivity(true, "Collect", LAMP_ON);
-		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton", LAMP_ON);
+		//THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button", LAMP_ON);
 	}
 	else
 	{
 		THE_BUTTONS->SetButtonActivity(false, "Collect");
-		THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+		//THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
 	}
 	
 	unsigned int bdelay = 16; //needs this delay in standby, otherwise too slow??
@@ -573,12 +594,12 @@ void Buttons::DealStartButtons(float DelayTimer)
 		if(GetCredits() < THE_GAME->GetStake())
 			lamp = LAMP_FLASH;
 		SetButtonActivity(true, "Transfer", lamp);
-		SetOSButtonActivity(true, "HoldTransferButton",LAMP_ON);		
+		//SetOSButtonActivity(true, "Hold5Button",LAMP_ON);		
 	}
 	else
 	{
 		SetButtonActivity(false, "Transfer");
-		SetOSButtonActivity(false, "HoldTransferButton");
+	//	SetOSButtonActivity(false, "Hold5Button");
 	}
 		
 	if(GetCredits() >= THE_GAME->GetStake())
@@ -605,12 +626,12 @@ void Buttons::DealStartButtons(float DelayTimer)
 	&& !GetDoorStatus())
 	{
 		SetButtonActivity(true, "Collect", LAMP_ON);
-		SetOSButtonActivity(true, "CollectButton",LAMP_ON);
+		//SetOSButtonActivity(true, "Hold1Button",LAMP_ON);
 	}
 	else
 	{
 		SetButtonActivity(false, "Collect");
-		SetOSButtonActivity(false, "CollectButton");
+		//SetOSButtonActivity(false, "Hold1Button");
 	}
 
 	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime())
@@ -630,8 +651,9 @@ void Buttons::HoldStartButtons()
 	SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 	SetButtonActivity(true, "TopStart", LAMP_ON);
 	SetButtonActivity(false, "Stake");
-	
+
 	SetOSButtonActivity(false, "ChangeStake");
+
 	for(int i = 0; i < TOTAL_STAKES; i++)
 		SetOSButtonActivity(false, StakeButtons[i]);
 	
@@ -685,3 +707,43 @@ void InfoButton::SetOSButtonActivity(bool active, const char* buttonName, unsign
 {
 
 }
+
+void CardButton::SetOSButtonActivity(const char *objName, bool instance, int instanceNum)
+{
+
+}
+
+void Buttons::EnableHiloButtons()
+{
+	THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "HiButton");
+
+	OBJECT_HANDLER->GetObject2D("LegendCollectNlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHold2Nlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHold3Nlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHold4Nlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(true);
+
+	OBJECT_HANDLER->GetObject2D("LegendHiNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendLoNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("Legend1SwopLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1SwopNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(true);
+
+	OBJECT_HANDLER->GetObject2D("LegendAutoPlayNlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendHoldInfoNlit")->SetVisible(true);
+
+	OBJECT_HANDLER->GetObject2D("GraphicalButton01")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton04")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(true);
+}
+
+/*
+void Buttons::DisableHiloButtons()
+{
+
+}*/

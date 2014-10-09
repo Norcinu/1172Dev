@@ -55,12 +55,12 @@ void HoldStartState::Exit()
 	THE_BUTTONS->SetButtonActivity(false, "Collect");
 	THE_BUTTONS->SetButtonActivity(false, "Transfer");
 
-	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	
@@ -119,7 +119,6 @@ void HoldStartState::Update()
 		
 		if ((THE_BUTTONS->ButtonPressed("FrontStart") || 
 			 THE_BUTTONS->ButtonPressed("TopStart") ||
-			 THE_GAME->GetAutoplay() || 
 			 THE_GAME->GetAutoplay() || 
 			 startGame))
 		{

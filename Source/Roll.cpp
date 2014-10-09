@@ -146,7 +146,6 @@ void PokerGame::DealRoll(void)
 		//Win = Chkwin(DealHand,0);
 */
 	}
-
 }
 
 /* Roll off undesired second hand wins */

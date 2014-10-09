@@ -5,7 +5,7 @@
 
 bool PokerGame::YesDemoPb(void)
 {
-bool Picked=false;
+	bool Picked=false;
 
 	Object2D* DemoBox = OBJECT_HANDLER->GetObject2D("RGDemoMode");
 	float X = DemoBox->GetPosition().x;
@@ -15,8 +15,8 @@ bool Picked=false;
 
 	RECT rect = {(long)X, (long)Y, (long)(X+Width), (long)(Y+Height)};
 
-//	if (TheInput::Instance()->Pick2D(D3DXVECTOR2(X,Y),rect))						
-//		Picked = true;
+	if (TheInput::Instance()->Pick2D(D3DXVECTOR2(X,Y),rect, 0))
+		Picked = true;
 
 	return(Picked);
 }

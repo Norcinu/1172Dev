@@ -82,11 +82,73 @@ bool EntryFlag=false;
 	return(EntryFlag);
 }
 
+void TurnOffButtons()
+{
+	THE_BUTTONS->SetButtonActivity(false, "FrontStart");
+	THE_BUTTONS->SetButtonActivity(false, "Stake");	
+	THE_BUTTONS->SetButtonActivity(false, "TopStart");	
+	THE_BUTTONS->SetButtonActivity(false, "Collect");
+
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+
+	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendAutoPlayLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendAutoPlayNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHoldInfoLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHoldInfoNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendCollectNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendCollectLit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHold2Nlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHold2Lit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHold3Nlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHold3Lit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHold4Nlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHold4Lit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferLit")->SetVisible(false);
+	
+	OBJECT_HANDLER->GetObject2D("LegendHiNlit")->SetVisible(true);
+	OBJECT_HANDLER->GetObject2D("LegendLoNlit")->SetVisible(true);
+	
+	OBJECT_HANDLER->GetObject2D("LegendHoldTransferNlit")->SetVisible(false);
+
+	OBJECT_HANDLER->GetObject2D("Legend1SwopNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1SwopLit")->SetVisible(false);
+
+
+	OBJECT_HANDLER->GetObject2D("GraphicalButton01")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton04")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton06")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(false);
+}
+
+
 void PokerGame::EnterHiloGambleScreen(unsigned char JokerWin)
 {
-	DealDraw2PndPbLamp(MLAMP_OFF); 
-	DealDraw1PndPbLamp(MLAMP_OFF);
+	//DealDraw2PndPbLamp(MLAMP_OFF); 
+	//DealDraw1PndPbLamp(MLAMP_OFF);
 
+
+	TurnOffButtons();
 	/*if (GetGameIndex() == Game200p)
 	{		
 		THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
@@ -251,26 +313,19 @@ unsigned char PokerGame::PlayHiloGambleInitializeGame(unsigned char *HiloStatusA
 			Perct = 90;
 		
 
-		if( GetLocalCharRandomNumber(100) < Perct 
+		if (GetLocalCharRandomNumber(100) < Perct 
 			&& (HiloRepeatTab[LevelCtr]||GetLocalCharRandomNumber(100)<5) 
 			&& JokerWin 
-			&& HiloStore[GameIndex] > HiloStoreMinValue[GameIndex])		
+			&& HiloStore[GameIndex] > HiloStoreMinValue[GameIndex])
 		{
 			FirstTimeEntry = false;
 			AllowSwap = ExternAllowSwap = 1;
-			/*if (GetGameIndex() == Game200p)				
-				Swop2PndPbLamp(MLAMP_FLASH);
-			else*/
-				Swop1PndPbLamp(MLAMP_FLASH);
+			
+			Swop1PndPbLamp(MLAMP_FLASH);
 				
 			TheAudioManager::Instance()->GetAudioSample("WOLF_SND")->Play();
 			OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(true);
 			THE_BUTTONS->SetButtonActivity(true, "SwopButton");
-			
-			/*if (GetGameIndex() == Game200p)				
-				Swop2PndPbLamp(MLAMP_FLASH);
-			else*/
-			//	Swop1PndPbLamp(MLAMP_FLASH);
 		}
 		else
 			AllowSwap = ExternAllowSwap = 0;
@@ -549,10 +604,11 @@ unsigned char PokerGame::PlayHiloGambleProcessSelection(unsigned char *HiloStatu
 		}while(CardValue > 13);
 	}
 
-	if (GetGameIndex() == Game200p)
+	/*if (GetGameIndex() == Game200p)
 		Swop2PndPbLamp(MLAMP_OFF);
-	else
-		Swop1PndPbLamp(MLAMP_OFF);
+	else*/
+//	Swop1PndPbLamp(MLAMP_OFF);
+//	THE_BUTTONS->SetOSButtonActivity(false, "SwopButton");
 	
 	CollectPbLamp(MLAMP_OFF);
 	if(Lo)
@@ -784,42 +840,32 @@ unsigned char InitialCard;
 
 BOOL PokerGame::SpecialSwopCardPb(void)
 {
-	if (THE_GAME->GetStake() == MINIMUM_BET)
-	{
-		if(/*THE_BUTTONS->ButtonPressed("Stake") || */THE_BUTTONS->OSButtonPressed("SwopButton"))
-			return(true);
-		else
-			return(false);
-	}
+	if(THE_BUTTONS->ButtonPressed("TopStart") || THE_BUTTONS->OSButtonPressed("SwopButton"))
+		return(true);
 	else
-	{
-		if(THE_BUTTONS->ButtonPressed("TopStart"))// || GET_BUTTONS->OSButtonPressed("Swop2PndButton"))
-			return(true);
-		else
-			return(false);
-	}
+		return(false);
 }
 
 void PokerGame::CollectPbLamp(unsigned char state)
 {
 	if(state==MLAMP_ON)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ON);
+		//THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button",LAMP_ON);
 		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ON);
 	}			
 	else if(state==MLAMP_FLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_FLASH);
+		//THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button",LAMP_FLASH);
 		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_FLASH);
 	}
 	else if(state==MLAMP_AFLASH)
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, "CollectButton",LAMP_ANTI);
+		//THE_BUTTONS->SetOSButtonActivity(true, "Hold1Button",LAMP_ANTI);
 		THE_BUTTONS->SetButtonActivity(true, "Collect",LAMP_ANTI);
 	}
 	else	
 	{
-		THE_BUTTONS->SetOSButtonActivity(false, "CollectButton",LAMP_OFF);
+		//THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button",LAMP_OFF);
 		THE_BUTTONS->SetButtonActivity(false, "Collect",LAMP_OFF);
 	}
 }
@@ -966,7 +1012,13 @@ void PokerGame::Swop1PndPbLamp(unsigned char state)
 	else	
 	{
 		if (!FirstTimeEntry)
+		{
 			THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",LAMP_OFF);
+			OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
+			//THE_BUTTONS->SetOSButtonActivity(false, "SwopButton");
+			OBJECT_HANDLER->GetObject2D("Legend1SwopNlit")->SetVisible(false);
+			OBJECT_HANDLER->GetObject2D("Legend1SwopLit")->SetVisible(false);
+		}
 		THE_BUTTONS->SetButtonActivity(false, "Stake",LAMP_OFF);
 	}
 }
@@ -1047,7 +1099,7 @@ bool PokerGame::ReadLoPb(void)
 
 bool PokerGame::ReadCollectPb(void)
 {
-	if (THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton"))
+	if (THE_BUTTONS->ButtonPressed("Collect"))// || THE_BUTTONS->OSButtonPressed("Hold1Button"))
 		return(true);
 	else
 		return(false);	

@@ -86,7 +86,7 @@ void StandbyState::Update()
 
 		if((GetCredits()+GetBankDeposit() > 0))
 		{
-			if(THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton"))
+			if(THE_BUTTONS->ButtonPressed("Collect"))// || THE_BUTTONS->OSButtonPressed("Hold1Button"))
 			{
 				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);	
 			}

@@ -94,7 +94,8 @@ private:
 	friend class Singleton<Buttons>;
 public:
 	void Initialise();
-	~Buttons(void);
+	virtual ~Buttons(void);
+	
 	bool ButtonPressed(const char* buttonName);
 	bool OSButtonPressed(const char* buttonName);
 	void DisableHWButtons();//used to lock out hw buttons when boxes are displayed etc
@@ -118,6 +119,8 @@ public:
 	void SetButtonProcessEnded(){mButtonProcessStarted = false;}
 
 	void SetVisibility(std::string &button);
+
+	void EnableHiloButtons();
 private:
 	void SetLampState(unsigned char Lamp, unsigned char State);
 //private:
@@ -138,13 +141,27 @@ public:
 	InfoButton(const char *objName,const char* objLlegend,const char * objUlegend) {}
 	InfoButton(const char *objName, bool instance = false, int instanceNum = 0); //:
 	//mName(objName)//, mInstance(instance), mInstanceNum(instanceNum)
-	 
+	~InfoButton() {}
 
 	void SetOSButtonActivity(bool active, const char* buttonName, unsigned char state = LAMP_OFF);
 
 protected:
 	void PlayDownSound();
-	void PlayUpSound(){}
+	void PlayUpSound() {}
+};
+
+
+class CardButton : public OSButton
+{
+public:
+	CardButton(const char *objName, const char* objLlegend, const char * objUlegend) {}
+	~CardButton() {}
+
+	void SetOSButtonActivity(const char *objName, bool instance = false, int instanceNum = 0);
+
+protected:
+	void PlayDownSound();
+	void PlayUpSound() {}
 };
 
 typedef Singleton<Buttons> TheButtons;

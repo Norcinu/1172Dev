@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<MD5>
+
+<Texture Filename="Spectrum.png" />
+
+<Texture Filename="SpectrumBlue.png" />
+
+<Texture Filename="SpectrumPurple.png" />
+
+<Texture Filename="Jackpot.png" />
+
+<Texture Filename="TSplash.png" />
+
+<Texture Filename="LInsertCoinLit.png" />
+
+<Texture Filename="RGDemoMode.png" />
+
+<Texture Filename="Demo.png" />
+
+<Texture Filename="LDoorOpenLit.png" />
+
+<Texture Filename="RGE_HOPARM.png" />
+
+<Texture Filename="RGE_HOPEMP.png" />
+
+<Texture Filename="RGE_HOPOPT.png" />
+
+<Texture Filename="RGE_HOP10P.png" />
+
+<Texture Filename="RGE_ERREDC.png" />
+
+<Texture Filename="RGErrGen.png" />
+
+<Texture Filename="RGErrInit.png" />
+
+<Texture Filename="RGErrLib.png" />
+
+<Texture Filename="RGErrShel.png" />
+
+<Texture Filename="RGCollectOrPrintTicket.png" />
+
+<Texture Filename="RGHandPay.png" />
+
+<Texture Filename="RGMaxBank.png" />
+
+<Texture Filename="ScaleSpectrum.png" />
+
+<Texture Filename="ColourSpectrum.png" />
+
+<Texture Filename="RGInfoPage01.png" />
+
+<Texture Filename="RGInfoPage02.png" />
+
+<Texture Filename="RGInfoPage03.png" />
+
+<Texture Filename="RGInfoPage04.png" />
+
+<Texture Filename="buttonpresssprites.png" >
+	<Atlas>
+		<Piece Name="ButtonUp.png" OffsetX="0.0f" OffsetY="0.0f" Width="0.2f" Height="1.0f" />
+		<Piece Name="ButtonPress1.png" OffsetX="0.2f" OffsetY="0.0f" Width="0.2f" Height="1.0f" />
+		<Piece Name="ButtonPress2.png" OffsetX="0.4f" OffsetY="0.0f" Width="0.2f" Height="1.0f" />
+		<Piece Name="ButtonPress3.png" OffsetX="0.6f" OffsetY="0.0f" Width="0.2f" Height="1.0f" />
+		<Piece Name="ButtonDown.png" OffsetX="0.8f" OffsetY="0.0f" Width="0.2f" Height="1.0f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="Cards.png">
+	<Atlas>		
+		<Piece Name="ClubA" OffsetX="0.2508f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club2" OffsetX="0.2508f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club3" OffsetX="0.3757f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club4" OffsetX="0.5005f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club5" OffsetX="0.6254f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club6" OffsetX="0.7503f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club7" OffsetX="0.8751f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club8" OffsetX="0.0010f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Club9" OffsetX="0.1259f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="Club10" OffsetX="0.1259f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="ClubJ" OffsetX="0.3757f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="ClubQ" OffsetX="0.6254f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="ClubK" OffsetX="0.5005f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="HeartA" OffsetX="0.6254f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="Heart2" OffsetX="0.6254f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart3" OffsetX="0.7503f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart4" OffsetX="0.8751f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart5" OffsetX="0.0010f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart6" OffsetX="0.1259f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart7" OffsetX="0.2508f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart8" OffsetX="0.3757f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart9" OffsetX="0.5005f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Heart10" OffsetX="0.5005f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="HeartJ" OffsetX="0.7503f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="HeartQ" OffsetX="0.0010f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="HeartK" OffsetX="0.8751f" OffsetY="0.5719f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="SpadeA" OffsetX="0.3757f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="Spade2" OffsetX="0.3757f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade3" OffsetX="0.5005f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade4" OffsetX="0.6254f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade5" OffsetX="0.7503f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade6" OffsetX="0.8751f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade7" OffsetX="0.0010f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade8" OffsetX="0.1259f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade9" OffsetX="0.2508f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Spade10" OffsetX="0.2508f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="SpadeJ" OffsetX="0.5005f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="SpadeQ" OffsetX="0.7503f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="SpadeK" OffsetX="0.6254f" OffsetY="0.8573f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="DiamondA" OffsetX="0.8751f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond2" OffsetX="0.8751f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond3" OffsetX="0.0010f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond4" OffsetX="0.1259f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond5" OffsetX="0.2508f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond6" OffsetX="0.3757f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond7" OffsetX="0.5005f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond8" OffsetX="0.6254f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond9" OffsetX="0.7503f" OffsetY="0.2865f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="Diamond10" OffsetX="0.7503f" OffsetY="0.1438f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="DiamondJ" OffsetX="0.0010f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />		
+		<Piece Name="DiamondQ" OffsetX="0.2508f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="DiamondK" OffsetX="0.1259f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />					
+		<Piece Name="Joker" OffsetX="0.1259f" OffsetY="0.7146f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="GoldenJoker" OffsetX="0.3757f" OffsetY="0.4292f" Width="0.1238f" Height="0.1416f" />
+		<Piece Name="CardBack" OffsetX="0.0010f" OffsetY="0.0011f" Width="0.1238f" Height="0.1416f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="Held.png" />
+
+<Texture Filename="HI.png" />
+
+<Texture Filename="LO.png" />
+
+<Texture Filename="DealStartMsg.png" />
+
+<Texture Filename="HoldStartMsg.png" />
+
+<Texture Filename="GoldenJokerMsg.png" />
+
+<Texture Filename="GameOverMsg.png" />
+
+<Texture Filename="ScreenButton.png" />
+
+<Texture Filename="ScreenButton02.png" />
+
+<Texture Filename="LegendCollectLit.png" />
+
+<Texture Filename="LegendHold1Lit.png" />
+
+<Texture Filename="LegendHold5Lit.png" />
+
+<Texture Filename="LegendHoldLit.png" />
+
+<Texture Filename="LegendHoldTransferLit.png" />
+
+<Texture Filename="Legend1DealDrawLit.png" />
+
+<Texture Filename="Legend2DealDrawLit.png" />
+
+<Texture Filename="LegendAutoPlayLit.png" />
+
+<Texture Filename="LegendLoLit.png" />
+
+<Texture Filename="LegendHiLit.png" />
+
+<Texture Filename="LegendSwopLit.png" />
+
+<Texture Filename="LegendExitLit.png" />
+
+<Texture Filename="LegendForwardLit.png" />
+
+<Texture Filename="LegendBackwardLit.png" />
+
+<Texture Filename="LegendEnterInfoLit.png" />
+
+<Texture Filename="LegendHoldInfoNlit.png" />
+
+<Texture Filename="LegendCollectNlit.png" />
+
+<Texture Filename="LegendHold1Nlit.png" />
+
+<Texture Filename="LegendHoldNlit.png" />
+
+<Texture Filename="LegendHoldTransferNlit.png" />
+
+<Texture Filename="Legend1DealDrawNlit.png" />
+
+<Texture Filename="Legend2DealDrawNlit.png" />
+
+<Texture Filename="LegendAutoPlayNlit.png" />
+
+<Texture Filename="LegendLoNlit.png" />
+
+<Texture Filename="LegendHiNlit.png" />
+
+<Texture Filename="LegendSwopNlit.png" />
+
+<Texture Filename="LegendExitNlit.png" />
+
+<Texture Filename="LegendForwardNlit.png" />
+
+<Texture Filename="LegendBackwardNlit.png" />
+
+<Texture Filename="LegendEnterInfoNlit.png" />
+
+<Texture Filename="LegendHold5Nlit.png" />
+
+<Texture Filename="LegendHoldInfoLit.png" />
+
+<Texture Filename="LegendBlank.png" />
+
+<Texture Filename="Play100p.png" />
+
+<Texture Filename="Play200p.png" />
+
+<Texture Filename="AwardText.png">
+	<Atlas>
+		<Piece Name="." OffsetX="0.0079f" OffsetY="0.0714f" Width="0.0315f" Height="0.8571f" />
+		<Piece Name="0" OffsetX="0.0472f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="1" OffsetX="0.1339f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="2" OffsetX="0.2205f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="3" OffsetX="0.3071f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="4" OffsetX="0.3937f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="5" OffsetX="0.4803f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="6" OffsetX="0.5669f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="7" OffsetX="0.6535f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="8" OffsetX="0.7402f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="9" OffsetX="0.8268f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+		<Piece Name="£" OffsetX="0.9134f" OffsetY="0.0714f" Width="0.0787f" Height="0.8571f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="BlueText.png">
+	<Atlas>
+		<Piece Name="," OffsetX="0.0000f" OffsetY="0.0000f" Width="0.0331f" Height="1.0000f" />
+		<Piece Name="." OffsetX="0.0331f" OffsetY="0.0000f" Width="0.0343f" Height="1.0000f" />
+		<Piece Name="0" OffsetX="0.0674f" OffsetY="0.0000f" Width="0.0875f" Height="1.0000f" />
+		<Piece Name="1" OffsetX="0.1548f" OffsetY="0.0000f" Width="0.0674f" Height="1.0000f" />
+		<Piece Name="2" OffsetX="0.2222f" OffsetY="0.0000f" Width="0.0851f" Height="1.0000f" />
+		<Piece Name="3" OffsetX="0.3073f" OffsetY="0.0000f" Width="0.0875f" Height="1.0000f" />
+		<Piece Name="4" OffsetX="0.3948f" OffsetY="0.0000f" Width="0.0898f" Height="1.0000f" />
+		<Piece Name="5" OffsetX="0.4846f" OffsetY="0.0000f" Width="0.0887f" Height="1.0000f" />
+		<Piece Name="6" OffsetX="0.5733f" OffsetY="0.0000f" Width="0.0887f" Height="1.0000f" />
+		<Piece Name="7" OffsetX="0.6619f" OffsetY="0.0000f" Width="0.0733f" Height="1.0000f" />
+		<Piece Name="8" OffsetX="0.7352f" OffsetY="0.0000f" Width="0.0875f" Height="1.0000f" />
+		<Piece Name="9" OffsetX="0.8227f" OffsetY="0.0000f" Width="0.0887f" Height="1.0000f" />
+		<Piece Name="?" OffsetX="0.9113f" OffsetY="0.0000f" Width="0.0887f" Height="1.0000f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="RedText.png">
+	<Atlas>
+		<Piece Name="," OffsetX="0.0000f" OffsetY="0.0000f" Width="0.0332f" Height="1.0000f" />
+		<Piece Name="." OffsetX="0.0332f" OffsetY="0.0000f" Width="0.0332f" Height="1.0000f" />
+		<Piece Name="0" OffsetX="0.0664f" OffsetY="0.0000f" Width="0.0877f" Height="1.0000f" />
+		<Piece Name="1" OffsetX="0.1540f" OffsetY="0.0000f" Width="0.0675f" Height="1.0000f" />
+		<Piece Name="2" OffsetX="0.2216f" OffsetY="0.0000f" Width="0.0853f" Height="1.0000f" />
+		<Piece Name="3" OffsetX="0.3069f" OffsetY="0.0000f" Width="0.0877f" Height="1.0000f" />
+		<Piece Name="4" OffsetX="0.3945f" OffsetY="0.0000f" Width="0.0900f" Height="1.0000f" />
+		<Piece Name="5" OffsetX="0.4846f" OffsetY="0.0000f" Width="0.0889f" Height="1.0000f" />
+		<Piece Name="6" OffsetX="0.5735f" OffsetY="0.0000f" Width="0.0889f" Height="1.0000f" />
+		<Piece Name="7" OffsetX="0.6623f" OffsetY="0.0000f" Width="0.0735f" Height="1.0000f" />
+		<Piece Name="8" OffsetX="0.7358f" OffsetY="0.0000f" Width="0.0877f" Height="1.0000f" />
+		<Piece Name="9" OffsetX="0.8235f" OffsetY="0.0000f" Width="0.0889f" Height="1.0000f" />
+		<Piece Name="?" OffsetX="0.9123f" OffsetY="0.0000f" Width="0.0877f" Height="1.0000f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="ArialText.png">
+	<Atlas>
+		<Piece Name="l" OffsetX="0.0080f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="i" OffsetX="0.0400f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name=";" OffsetX="0.0720f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="!" OffsetX="0.1040f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="," OffsetX="0.1360f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name=":" OffsetX="0.1680f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="." OffsetX="0.2000f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="I" OffsetX="0.2320f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="'" OffsetX="0.2640f" OffsetY="0.0075f" Width="0.0240f" Height="0.1343f" />
+		<Piece Name="j" OffsetX="0.2960f" OffsetY="0.0075f" Width="0.0400f" Height="0.1343f" />
+		<Piece Name="(" OffsetX="0.3440f" OffsetY="0.0075f" Width="0.0440f" Height="0.1343f" />
+		<Piece Name=")" OffsetX="0.3960f" OffsetY="0.0075f" Width="0.0440f" Height="0.1343f" />
+		<Piece Name="/" OffsetX="0.4480f" OffsetY="0.0075f" Width="0.0480f" Height="0.1343f" />
+		<Piece Name="-" OffsetX="0.5040f" OffsetY="0.0075f" Width="0.0480f" Height="0.1343f" />
+		<Piece Name="\" OffsetX="0.5600f" OffsetY="0.0075f" Width="0.0480f" Height="0.1343f" />
+		<Piece Name="t" OffsetX="0.6160f" OffsetY="0.0075f" Width="0.0480f" Height="0.1343f" />
+		<Piece Name="r" OffsetX="0.6720f" OffsetY="0.0075f" Width="0.0520f" Height="0.1343f" />
+		<Piece Name="1" OffsetX="0.7320f" OffsetY="0.0075f" Width="0.0520f" Height="0.1343f" />
+		<Piece Name="f" OffsetX="0.7920f" OffsetY="0.0075f" Width="0.0520f" Height="0.1343f" />
+		<Piece Name="J" OffsetX="0.8520f" OffsetY="0.0075f" Width="0.0680f" Height="0.1343f" />
+		<Piece Name=" " OffsetX="0.9220f" OffsetY="0.0075f" Width="0.0300f" Height="0.1343f" />
+		<Piece Name="u" OffsetX="0.0080f" OffsetY="0.1493f" Width="0.0680f" Height="0.1343f" />
+		<Piece Name="b" OffsetX="0.0840f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="h" OffsetX="0.1640f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="d" OffsetX="0.2440f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="n" OffsetX="0.3240f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="p" OffsetX="0.4040f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="s" OffsetX="0.4840f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="k" OffsetX="0.5640f" OffsetY="0.1493f" Width="0.0720f" Height="0.1343f" />
+		<Piece Name="+" OffsetX="0.6440f" OffsetY="0.1493f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="c" OffsetX="0.7280f" OffsetY="0.1493f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="q" OffsetX="0.8120f" OffsetY="0.1493f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="g" OffsetX="0.8960f" OffsetY="0.1493f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="?" OffsetX="0.0080f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="v" OffsetX="0.0920f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="x" OffsetX="0.1760f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="z" OffsetX="0.2600f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="e" OffsetX="0.3440f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="0" OffsetX="0.4280f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="5" OffsetX="0.5120f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="F" OffsetX="0.5960f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="6" OffsetX="0.6800f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="9" OffsetX="0.7640f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="8" OffsetX="0.8480f" OffsetY="0.2910f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="7" OffsetX="0.0080f" OffsetY="0.4328f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="L" OffsetX="0.0920f" OffsetY="0.4328f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="a" OffsetX="0.1760f" OffsetY="0.4328f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="2" OffsetX="0.2600f" OffsetY="0.4328f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="3" OffsetX="0.3440f" OffsetY="0.4328f" Width="0.0760f" Height="0.1343f" />
+		<Piece Name="o" OffsetX="0.4280f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name=">" OffsetX="0.5160f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name="<" OffsetX="0.6040f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name="=" OffsetX="0.6920f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name="4" OffsetX="0.7800f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name="y" OffsetX="0.8680f" OffsetY="0.4328f" Width="0.0800f" Height="0.1343f" />
+		<Piece Name="?" OffsetX="0.0080f" OffsetY="0.5746f" Width="0.0840f" Height="0.1343f" />
+		<Piece Name="B" OffsetX="0.1000f" OffsetY="0.5746f" Width="0.0880f" Height="0.1343f" />
+		<Piece Name="P" OffsetX="0.1960f" OffsetY="0.5746f" Width="0.0880f" Height="0.1343f" />
+		<Piece Name="E" OffsetX="0.2920f" OffsetY="0.5746f" Width="0.0880f" Height="0.1343f" />
+		<Piece Name="N" OffsetX="0.3880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="U" OffsetX="0.4880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="Z" OffsetX="0.5880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="T" OffsetX="0.6880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="S" OffsetX="0.7880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="H" OffsetX="0.8880f" OffsetY="0.5746f" Width="0.0920f" Height="0.1343f" />
+		<Piece Name="D" OffsetX="0.0080f" OffsetY="0.7164f" Width="0.0960f" Height="0.1343f" />
+		<Piece Name="&" OffsetX="0.1120f" OffsetY="0.7164f" Width="0.0960f" Height="0.1343f" />
+		<Piece Name="K" OffsetX="0.2160f" OffsetY="0.7164f" Width="0.0960f" Height="0.1343f" />
+		<Piece Name="V" OffsetX="0.3200f" OffsetY="0.7164f" Width="0.1000f" Height="0.1343f" />
+		<Piece Name="X" OffsetX="0.4280f" OffsetY="0.7164f" Width="0.1000f" Height="0.1343f" />
+		<Piece Name="C" OffsetX="0.5360f" OffsetY="0.7164f" Width="0.1000f" Height="0.1343f" />
+		<Piece Name="R" OffsetX="0.6440f" OffsetY="0.7164f" Width="0.1000f" Height="0.1343f" />
+		<Piece Name="Y" OffsetX="0.7520f" OffsetY="0.7164f" Width="0.1000f" Height="0.1343f" />
+		<Piece Name="G" OffsetX="0.8600f" OffsetY="0.7164f" Width="0.1040f" Height="0.1343f" />
+		<Piece Name="Q" OffsetX="0.0080f" OffsetY="0.8582f" Width="0.1080f" Height="0.1343f" />
+		<Piece Name="A" OffsetX="0.1240f" OffsetY="0.8582f" Width="0.1080f" Height="0.1343f" />
+		<Piece Name="m" OffsetX="0.2400f" OffsetY="0.8582f" Width="0.1080f" Height="0.1343f" />
+		<Piece Name="O" OffsetX="0.3560f" OffsetY="0.8582f" Width="0.1080f" Height="0.1343f" />
+		<Piece Name="M" OffsetX="0.4720f" OffsetY="0.8582f" Width="0.1080f" Height="0.1343f" />
+		<Piece Name="%" OffsetX="0.5880f" OffsetY="0.8582f" Width="0.1160f" Height="0.1343f" />
+		<Piece Name="w" OffsetX="0.7120f" OffsetY="0.8582f" Width="0.1160f" Height="0.1343f" />
+		<Piece Name="W" OffsetX="0.8360f" OffsetY="0.8582f" Width="0.1400f" Height="0.1343f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="ArialNumbers.png">
+	<Atlas>
+		<Piece Name="0" OffsetX="0.0074f" OffsetY="0.0068f" Width="0.2296f" Height="0.3243f" />
+		<Piece Name="1" OffsetX="0.2444f" OffsetY="0.0068f" Width="0.1667f" Height="0.3243f" />
+		<Piece Name="2" OffsetX="0.4185f" OffsetY="0.0068f" Width="0.2296f" Height="0.3243f" />
+		<Piece Name="3" OffsetX="0.6556f" OffsetY="0.0068f" Width="0.2296f" Height="0.3243f" />
+		<Piece Name="4" OffsetX="0.0074f" OffsetY="0.3378f" Width="0.2407f" Height="0.3243f" />
+		<Piece Name="5" OffsetX="0.2556f" OffsetY="0.3378f" Width="0.2296f" Height="0.3243f" />
+		<Piece Name="6" OffsetX="0.4926f" OffsetY="0.3378f" Width="0.2259f" Height="0.3243f" />
+		<Piece Name="7" OffsetX="0.7259f" OffsetY="0.3378f" Width="0.2259f" Height="0.3243f" />
+		<Piece Name="8" OffsetX="0.0074f" OffsetY="0.6689f" Width="0.2259f" Height="0.3243f" />
+		<Piece Name="9" OffsetX="0.2407f" OffsetY="0.6689f" Width="0.2259f" Height="0.3243f" />
+		<Piece Name="." OffsetX="0.4741f" OffsetY="0.6689f" Width="0.0963f" Height="0.3243f" />
+		<Piece Name="£" OffsetX="0.5778f" OffsetY="0.6689f" Width="0.2333f" Height="0.3243f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="BankText.png">
+  <Atlas>
+    <Piece Name="." OffsetX="0.0066f" OffsetY="0.0455f" Width="0.0399f" Height="0.8864f" />
+    <Piece Name="0" OffsetX="0.0532f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="1" OffsetX="0.1395f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="2" OffsetX="0.2259f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="3" OffsetX="0.3123f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="4" OffsetX="0.3987f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="5" OffsetX="0.4850f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="6" OffsetX="0.5714f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="7" OffsetX="0.6578f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="8" OffsetX="0.7442f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="9" OffsetX="0.8306f" OffsetY="0.0455f" Width="0.0797f" Height="0.8864f" />
+    <Piece Name="£" OffsetX="0.9169f" OffsetY="0.0455f" Width="0.0731f" Height="0.8864f" />
+  </Atlas>
+</Texture>
+
+<Texture Filename="PokerScreen.png" />
+
+<Texture Filename="RotatingCoinSprites.png">
+	<Atlas>
+		<Piece Name="Coin1.png" OffsetX="0.0f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin2.png" OffsetX="0.125f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin3.png" OffsetX="0.25f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin4.png" OffsetX="0.375f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin5.png" OffsetX="0.5f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin6.png" OffsetX="0.625f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin7.png" OffsetX="0.75f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin8.png" OffsetX="0.875f" OffsetY="0.0f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin9.png" OffsetX="0.0f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin10.png" OffsetX="0.125f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin11.png" OffsetX="0.25f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin12.png" OffsetX="0.375f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin13.png" OffsetX="0.5f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin14.png" OffsetX="0.625f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin15.png" OffsetX="0.75f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin16.png" OffsetX="0.875f" OffsetY="0.1f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin17.png" OffsetX="0.0f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin18.png" OffsetX="0.125f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin19.png" OffsetX="0.25f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin20.png" OffsetX="0.375f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin21.png" OffsetX="0.5f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin22.png" OffsetX="0.625f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin23.png" OffsetX="0.75f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin24.png" OffsetX="0.875f" OffsetY="0.2f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin25.png" OffsetX="0.0f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin26.png" OffsetX="0.125f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin27.png" OffsetX="0.25f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin28.png" OffsetX="0.375f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin29.png" OffsetX="0.5f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin30.png" OffsetX="0.625f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin31.png" OffsetX="0.75f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin32.png" OffsetX="0.875f" OffsetY="0.3f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin33.png" OffsetX="0.0f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin34.png" OffsetX="0.125f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin35.png" OffsetX="0.25f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin36.png" OffsetX="0.375f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin37.png" OffsetX="0.5f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin38.png" OffsetX="0.625f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin39.png" OffsetX="0.75f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin40.png" OffsetX="0.875f" OffsetY="0.4f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin41.png" OffsetX="0.0f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin42.png" OffsetX="0.125f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin43.png" OffsetX="0.25f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin44.png" OffsetX="0.375f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin45.png" OffsetX="0.5f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin46.png" OffsetX="0.625f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin47.png" OffsetX="0.75f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin48.png" OffsetX="0.875f" OffsetY="0.5f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin49.png" OffsetX="0.0f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin50.png" OffsetX="0.125f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin51.png" OffsetX="0.25f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin52.png" OffsetX="0.375f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin53.png" OffsetX="0.5f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin54.png" OffsetX="0.625f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin55.png" OffsetX="0.75f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin56.png" OffsetX="0.875f" OffsetY="0.6f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin57.png" OffsetX="0.0f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin58.png" OffsetX="0.125f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin59.png" OffsetX="0.25f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin60.png" OffsetX="0.375f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin61.png" OffsetX="0.5f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin62.png" OffsetX="0.625f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin63.png" OffsetX="0.75f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="Coin64.png" OffsetX="0.875f" OffsetY="0.7f" Width="0.125f" Height="0.1f" />
+		<Piece Name="BlankParticle.png" OffsetX="0.0f" OffsetY="0.8f" Width="0.125f" Height="0.1f" />
+		<Piece Name="DiamondParticle.png" OffsetX="0.125f" OffsetY="0.8f" Width="0.125f" Height="0.1f" />
+		<Piece Name="GreyDiamondParticle.png" OffsetX="0.25f" OffsetY="0.8f" Width="0.125f" Height="0.1f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="InfoDigits.png">
+	<Atlas>
+		<Piece Name="0" OffsetX="0.0104f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="1" OffsetX="0.0990f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="2" OffsetX="0.1875f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="3" OffsetX="0.2760f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="4" OffsetX="0.3646f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="5" OffsetX="0.4531f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="6" OffsetX="0.5417f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="7" OffsetX="0.6302f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="8" OffsetX="0.7188f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="9" OffsetX="0.8073f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+		<Piece Name="%" OffsetX="0.8958f" OffsetY="0.0606f" Width="0.0781f" Height="0.8788f" />
+	</Atlas>
+</Texture>
+
+
+<Texture Filename="Digits.png">
+	<Atlas>
+		<Piece Name="0" OffsetX="0.0078f" OffsetY="0.0435f" Width="0.0902f" Height="0.9130f" />
+		<Piece Name="1" OffsetX="0.1059f" OffsetY="0.0435f" Width="0.0784f" Height="0.9130f" />
+		<Piece Name="2" OffsetX="0.1922f" OffsetY="0.0435f" Width="0.0902f" Height="0.9130f" />
+		<Piece Name="3" OffsetX="0.2902f" OffsetY="0.0435f" Width="0.0902f" Height="0.9130f" />
+		<Piece Name="4" OffsetX="0.3882f" OffsetY="0.0435f" Width="0.0941f" Height="0.9130f" />
+		<Piece Name="5" OffsetX="0.4902f" OffsetY="0.0435f" Width="0.0863f" Height="0.9130f" />
+		<Piece Name="6" OffsetX="0.5843f" OffsetY="0.0435f" Width="0.0863f" Height="0.9130f" />
+		<Piece Name="7" OffsetX="0.6784f" OffsetY="0.0435f" Width="0.0863f" Height="0.9130f" />
+		<Piece Name="8" OffsetX="0.7725f" OffsetY="0.0435f" Width="0.0863f" Height="0.9130f" />
+		<Piece Name="9" OffsetX="0.8667f" OffsetY="0.0435f" Width="0.0824f" Height="0.9130f" />
+		<Piece Name="dot" OffsetX="0.9569f" OffsetY="0.0435f" Width="0.0353f" Height="0.9130f" />
+	</Atlas>
+</Texture>
+
+<!--<Texture Filename="ChangeStakeUp.png" />
+
+<Texture Filename="ChangeStakeDown.png" />
+
+<Texture Filename="£1Down.png" />
+
+<Texture Filename="£1Up.png" />
+
+<Texture Filename="£2Down.png" />
+
+<Texture Filename="£2Up.png" />
+
+<Texture Filename="25pUp.png" />
+
+<Texture Filename="25pDown.png" />
+
+<Texture Filename="50pUp.png" />
+
+<Texture Filename="50pDown.png" />-->
+
+<Texture Filename="StakeButtons.png">
+	<Atlas>
+		<Piece Name="TouchUp.png" OffsetX="0.0053f" OffsetY="0.0085f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="TouchDown.png" OffsetX="0.5027f" OffsetY="0.0085f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="ChangeStakeUp.png" OffsetX="0.0053f" OffsetY="0.5043f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="ChangeStakeDown.png" OffsetX="0.5027f" OffsetY="0.5043f" Width="0.4920f" Height="0.4872f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="PopOptions.png">
+	<Atlas>
+		<Piece Name="£2Up.png" OffsetX="0.0057f" OffsetY="0.0084f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£2Down.png" OffsetX="0.5029f" OffsetY="0.0084f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£1Up.png" OffsetX="0.0057f" OffsetY="0.2563f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£1Down.png" OffsetX="0.5029f" OffsetY="0.2563f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="50pUp.png" OffsetX="0.0057f" OffsetY="0.5042f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="50pDown.png" OffsetX="0.5029f" OffsetY="0.5042f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="25pUp.png" OffsetX="0.0057f" OffsetY="0.7521f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="25pDown.png" OffsetX="0.5029f" OffsetY="0.7521f" Width="0.4914f" Height="0.2395f" />
+	</Atlas>
+</Texture>
+
+</MD5>

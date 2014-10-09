@@ -63,9 +63,11 @@ void DealStartState::Enter()
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",NO_LEGEND);
 
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	
 	for (int i = 0; i < TOTAL_STAKES; i++)
 	{
@@ -117,9 +119,9 @@ void DealStartState::Exit()
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	}
 	
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "CollectButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldTransferButton");
+	//THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
+	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
 
 	for (int i = 0; i < TOTAL_STAKES; i++)
@@ -229,8 +231,8 @@ void DealStartState::Update()
 				}
 			}
 			
-			if(THE_BUTTONS->ButtonPressed("Transfer") ||
-			   THE_BUTTONS->OSButtonPressed("HoldTransferButton"))
+			if(THE_BUTTONS->ButtonPressed("Transfer"))/* ||
+			   THE_BUTTONS->OSButtonPressed("Hold5Button"))*/
 			{
 				ThePokerGame::Instance()->SetTransferBankToCredits(true);
 			}
@@ -244,6 +246,8 @@ void DealStartState::Update()
 				THE_GAME->SetStake(THE_GAME->GetStake()); // To close change stake options if open.
 				SetGameInProgress();
 				THE_GAME->ClearFinalWinValue();
+
+				THE_BUTTONS->EnableHiloButtons();
 
 				if(THE_GAME->GetStake() == MINIMUM_BET)
 					ThePokerGame::Instance()->WageredAmount = MINIMUM_BET;
@@ -259,20 +263,23 @@ void DealStartState::Update()
 				ENGINE->StateTransition("Cointrol");
 			}
 			else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && !THE_GAME->GetAutoplay())
-			{				
+			{			
+				THE_BUTTONS->EnableHiloButtons();
 				THE_GAME->SetAutoplay(true);
 			}
-			else if((THE_BUTTONS->ButtonPressed("Collect") || THE_BUTTONS->OSButtonPressed("CollectButton")) && (GetCredits()+GetBankDeposit()>0))
+			else if((THE_BUTTONS->ButtonPressed("Collect")/* || THE_BUTTONS->OSButtonPressed("Hold1Button")*/) && (GetCredits()+GetBankDeposit()>0))
 			{
 				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);
 				return;
 			}
 			else if(changeStake)
 			{
+				auto stake = THE_GAME->GetStake();
 				if(THE_GAME->GetStake() == MINIMUM_BET)
 				{					
 					THE_GAME->SetStake(MAXIMUM_BET);
 					ThePokerGame::Instance()->SetGameIndex(Game200p);
+
 				}
 				else if(THE_GAME->GetStake() == MAXIMUM_BET)
 				{					
@@ -280,6 +287,7 @@ void DealStartState::Update()
 					ThePokerGame::Instance()->SetGameIndex(Game100p);
 				}
 				
+				changeStake = false;
 				ThePokerGame::Instance()->DisplayStake();
 			}
 			else if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
