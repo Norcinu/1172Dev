@@ -263,7 +263,10 @@ public:
 	unsigned int SoakBuildPressButton(bool (PokerGame::*ReadButton)(),unsigned int StakeValue,unsigned int GameIndexValue);
 	void SoakStoreThisGame(void);
 
-	
+	void TurnOffButtons();
+
+	bool GetHoldHiloGraphics() const { return HoldHiloGraphics; }
+	void SetHoldHiloGraphics(const bool holding=true) { HoldHiloGraphics = holding; }
 public:
 
 	bool RegisterCardBtnArray[5];
@@ -375,6 +378,7 @@ public:
 			 long SoakDoubleJokerFlag;
 
 private:
+	bool HoldHiloGraphics;
 	unsigned int AwardTable[2][MAX_AWARDS];
 	unsigned int AwardValuesX;
 	unsigned int AwardValuesY[MAX_AWARDS];

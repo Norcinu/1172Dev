@@ -602,7 +602,7 @@ void Buttons::DealStartButtons(float DelayTimer)
 	//	SetOSButtonActivity(false, "Hold5Button");
 	}
 		
-	if(GetCredits() >= THE_GAME->GetStake())
+	if(GetCredits() >= THE_GAME->GetStake() && !ThePokerGame::Instance()->GetHoldHiloGraphics())
 	{
 		if (THE_GAME->GetAutoplay())
 		{
@@ -617,8 +617,17 @@ void Buttons::DealStartButtons(float DelayTimer)
 	}
 	else
 	{
-		SetButtonActivity(false, "AutoPlay");
-		SetOSButtonActivity(false, "AutoplayButton");
+		if (ThePokerGame::Instance()->GetHoldHiloGraphics())
+		{
+			SetButtonActivity(true, "AutoPlay", LAMP_FLASH);
+			OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(true);
+			SetOSButtonActivity(true, "AutoplayButton", LAMP_FLASH);
+		}
+		else
+		{
+			SetButtonActivity(false, "AutoPlay");
+			SetOSButtonActivity(false, "AutoplayButton");
+		}
 	}
 
 	if(((GetCredits()+GetBankDeposit() >= GetMinPayoutValue()) ||
@@ -634,7 +643,7 @@ void Buttons::DealStartButtons(float DelayTimer)
 		//SetOSButtonActivity(false, "Hold1Button");
 	}
 
-	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime())
+	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime() && !ThePokerGame::Instance()->GetHoldHiloGraphics())
 	{
 		SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);
 	}

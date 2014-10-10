@@ -6,6 +6,7 @@
 #include "DrawHandState.h"
 #include "PokerHandProcess.h"
 #include "PokerGame.h"
+#include "DelayProcess.h"
 
 static bool Registered = ENGINE->AddState("DrawHand", new DrawHandState());
 
@@ -23,6 +24,8 @@ DrawHandState::~DrawHandState()
 
 void DrawHandState::Enter()
 {
+	m_sleep = false;
+	m_firstHand = true;
 	ThePokerGame::Instance()->PokerHandProcessComplete = false;
 
 	ThePokerGame::Instance()->DrawRoll();
@@ -52,22 +55,40 @@ void DrawHandState::Update()
 	{
 		return;
 	}
-
+	
 	if(!global_quit)
 	{
-		if (ThePokerGame::Instance()->PokerHandProcessComplete)
+		if (!ENGINE->GetProcessManager()->GetNumQueueProcesses())
 		{
-			if (ThePokerGame::Instance()->InsertDoubleJokerFlag)
-				ENGINE->StateTransition("GoldenJoker");
-			else if (ThePokerGame::Instance()->PokerHiloCondition()) 
+			if (!m_sleep)
 			{
-				ENGINE->StateTransition("HiloGamble");
-				THE_GAME->SetAutoplay(false);
+				if (THE_GAME->GetAutoplay() && m_firstHand)
+				{
+					ENGINE->GetProcessManager()->AddProcessToQueue(new DelayProcess(0.75f));
+					m_firstHand = false;
+				}
+				else
+					ENGINE->GetProcessManager()->AddProcessToQueue(new DelayProcess(0.35f));
+				m_sleep = true;
 			}
 			else
-				ENGINE->StateTransition("Payment");
+			{
+				m_sleep = false;
+				if (ThePokerGame::Instance()->PokerHandProcessComplete)
+				{
+					if (ThePokerGame::Instance()->InsertDoubleJokerFlag)
+						ENGINE->StateTransition("GoldenJoker");
+					else if (ThePokerGame::Instance()->PokerHiloCondition()) 
+					{
+						ENGINE->StateTransition("HiloGamble");
+						THE_GAME->SetAutoplay(false);
+					}
+					else
+						ENGINE->StateTransition("Payment");
+				}
+				else
+					ENGINE->GetProcessManager()->AddProcessToQueue(new PokerHandProcess);
+			}
 		}
-		else
-			ENGINE->GetProcessManager()->AddProcessToQueue(new PokerHandProcess);
 	}
 }

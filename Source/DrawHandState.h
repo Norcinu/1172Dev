@@ -12,7 +12,8 @@ public:
 	void Update() override;
 	void Exit() override;
 private:
-
+	bool m_sleep;
+	bool m_firstHand;
 };
 
 #endif DRAWHANDSTATE_H

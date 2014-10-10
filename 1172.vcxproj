@@ -223,6 +223,7 @@
     <ClInclude Include="Source\CointrolState.h" />
     <ClInclude Include="Source\CollectProcess.h" />
     <ClInclude Include="Source\CompendiumLoad.h" />
+    <ClInclude Include="Source\DelayProcess.h" />
     <ClInclude Include="Source\DrawHandState.h" />
     <ClInclude Include="Source\EndGameState.h" />
     <ClInclude Include="Source\GoldenJokerCardProcess.h" />
@@ -276,6 +277,7 @@
     <ClCompile Include="Source\CollectProcess.cpp" />
     <ClCompile Include="Source\CompendiumLoadState.cpp" />
     <ClCompile Include="Source\DecDon.cpp" />
+    <ClCompile Include="Source\DelayProcess.cpp" />
     <ClCompile Include="Source\DemoMode.cpp" />
     <ClCompile Include="Source\DrawHandState.cpp" />
     <ClCompile Include="Source\EndGameState.cpp" />

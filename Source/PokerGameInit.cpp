@@ -22,6 +22,8 @@ bool PokerGame::PokerGameInit()
 
 	DisplayStake();
 	
+	HoldHiloGraphics = false;
+
 	for (i=0; i<MAX_AWARDS; i++)
 	{
 		AwardDigitColour[i] = 1;
@@ -78,21 +80,6 @@ bool PokerGame::PokerGameInit()
 	AwardValuesY[2] = 399;
 	AwardValuesY[1] = 434;
 	AwardValuesY[0] = 483;
-
-	/*AwardValuesY[12] = 60;
-	AwardValuesY[11] = 100;
-	AwardValuesY[10] = 135;
-	AwardValuesY[9]	= 170;
-	AwardValuesY[8] = 206;
-	AwardValuesY[7] = 243;
-	AwardValuesY[6] = 280;
-	AwardValuesY[5] = 312;
-	AwardValuesY[4] = 350;
-	AwardValuesY[3] = 385;
-	AwardValuesY[2] = 420;
-	AwardValuesY[1] = 459;
-	AwardValuesY[0] = 483;*/
-
 
 	Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");
 	allCards->GetInstance(0)->SetCurrentSprite(54);

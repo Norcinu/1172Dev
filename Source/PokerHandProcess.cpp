@@ -69,7 +69,7 @@ void PokerHandProcess::Update()
 				Object2D* allCards = OBJECT_HANDLER->GetObject2D("Cards");			
 				TheAudioManager::Instance()->GetAudioSample("CFLIP")->Play();						
 				allCards->GetInstance(mCardIndex)->SetVisible(true);
-				allCards->GetInstance(mCardIndex)->SetCurrentSprite(ThePokerGame::Instance()->PokerHand[mCardIndex].id - 1);				
+				allCards->GetInstance(mCardIndex)->SetCurrentSprite(ThePokerGame::Instance()->PokerHand[mCardIndex].id - 1);
 				mCardDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(ThePokerGame::Instance()->GetSoundDelay(CFLIP,50));
 			}
 		}

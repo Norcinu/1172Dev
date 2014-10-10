@@ -59,28 +59,29 @@ void DealStartState::Enter()
 	if (!THE_GAME->GetAutoplay())
 		OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(true);
 
-	THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",NO_LEGEND);
-
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-	
-	for (int i = 0; i < TOTAL_STAKES; i++)
+	if (!ThePokerGame::Instance()->GetHoldHiloGraphics())
 	{
-		THE_BUTTONS->SetOSButtonActivity(true, StakeButtons[i], LAMP_ON);
+		THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
+		THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
+		THE_BUTTONS->SetOSButtonActivity(false, "SwopButton",NO_LEGEND);
+
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
+		THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	}
 	
+	for (int i = 0; i < TOTAL_STAKES; i++)
+		THE_BUTTONS->SetOSButtonActivity(true, StakeButtons[i], LAMP_ON);
+
 	if (ThePokerGame::Instance()->ResetAutoPlayFlag)
 	{
 		THE_GAME->SetAutoplay(true);
 		ThePokerGame::Instance()->ResetAutoPlayFlag = 0;
 	}
-
-	if((GetCredits() > lCredit || GetCredits() < THE_GAME->GetStake()))	
+		
+	if ((GetCredits() > lCredit || GetCredits() < THE_GAME->GetStake()))	
 		THE_GAME->SetAutoplay(false);
 		
 	ENGINE->GetProcessManager()->FlushProcessQueue();
@@ -204,38 +205,22 @@ void DealStartState::Update()
 
 			if(THE_GAME->GetStake() == MINIMUM_BET)
 			{
-				if (THE_BUTTONS->ButtonPressed("TopStart") ||
-				    THE_BUTTONS->ButtonPressed("FrontStart")) /*||
-				    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))*/
-				{					
+				if (THE_BUTTONS->ButtonPressed("TopStart") || THE_BUTTONS->ButtonPressed("FrontStart"))
 					startGame = true;
-				}
-				else if (THE_BUTTONS->ButtonPressed("Stake"))// ||
-					     //THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))
-				{
+				else if (THE_BUTTONS->ButtonPressed("Stake"))
 					changeStake = true;
-				}
 			}
 			else
 			{
-				if(THE_BUTTONS->ButtonPressed("FrontStart") ||
-				   THE_BUTTONS->ButtonPressed("TopStart"))/* ||
-				   THE_BUTTONS->OSButtonPressed("DealStart2PndButton"))*/
-				{					
+				if(THE_BUTTONS->ButtonPressed("FrontStart") || THE_BUTTONS->ButtonPressed("TopStart"))
 					startGame = true;
-				}
-				else if(THE_BUTTONS->ButtonPressed("Stake"))/* ||
-					    THE_BUTTONS->OSButtonPressed("DealStart1PndButton"))*/
-				{
+				else if(THE_BUTTONS->ButtonPressed("Stake"))
 					changeStake = true;
-				}
 			}
 			
-			if(THE_BUTTONS->ButtonPressed("Transfer"))/* ||
-			   THE_BUTTONS->OSButtonPressed("Hold5Button"))*/
-			{
+			if(THE_BUTTONS->ButtonPressed("Transfer"))
 				ThePokerGame::Instance()->SetTransferBankToCredits(true);
-			}
+
 #ifdef SOAK_BUILD
 			if(GetCredits() >= THE_GAME->GetStake())
 #else			
@@ -246,6 +231,9 @@ void DealStartState::Update()
 				THE_GAME->SetStake(THE_GAME->GetStake()); // To close change stake options if open.
 				SetGameInProgress();
 				THE_GAME->ClearFinalWinValue();
+
+				if (ThePokerGame::Instance()->GetHoldHiloGraphics())
+					ThePokerGame::Instance()->SetHoldHiloGraphics(false);
 
 				THE_BUTTONS->EnableHiloButtons();
 
@@ -267,7 +255,7 @@ void DealStartState::Update()
 				THE_BUTTONS->EnableHiloButtons();
 				THE_GAME->SetAutoplay(true);
 			}
-			else if((THE_BUTTONS->ButtonPressed("Collect")/* || THE_BUTTONS->OSButtonPressed("Hold1Button")*/) && (GetCredits()+GetBankDeposit()>0))
+			else if(THE_BUTTONS->ButtonPressed("Collect") && GetCredits()+GetBankDeposit()>0)
 			{
 				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);
 				return;

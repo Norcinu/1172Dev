@@ -40,6 +40,7 @@ void HiloGambleState::Enter()
 	ThePokerGame::Instance()->HiloGambleStage = 1;
 	ThePokerGame::Instance()->HiloDelayTimer = 0;
 	
+	ThePokerGame::Instance()->SetHoldHiloGraphics();
 	/*OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
