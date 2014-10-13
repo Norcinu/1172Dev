@@ -59,7 +59,7 @@ void PokerHandProcess::Update()
 	{
 		return;
 	}
-
+	
 	if (mCardIndex < 5)
 	{
 		if (ThePokerGame::Instance()->PokerHand[mCardIndex].id)

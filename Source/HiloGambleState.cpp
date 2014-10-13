@@ -41,6 +41,7 @@ void HiloGambleState::Enter()
 	ThePokerGame::Instance()->HiloDelayTimer = 0;
 	
 	ThePokerGame::Instance()->SetHoldHiloGraphics();
+
 	/*OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
@@ -75,10 +76,20 @@ void HiloGambleState::Exit()
 {
 	ThePokerGame::Instance()->HiloGambleStage = 0;
 	ThePokerGame::Instance()->ActivateHiloGambleGraphics = 0;
-	/*THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton");
 
-	OBJECT_HANDLER->GetObject2D("LegendCollectNlit")->SetVisible(true);
+	if (ThePokerGame::Instance()->GetEnteredOnAutoplay())
+	{
+		THE_GAME->SetAutoplay(true);
+		ThePokerGame::Instance()->SetEnteredOnAutoplay(false);
+		ThePokerGame::Instance()->AutoPlayFlag = 1;
+	}
+
+	//if (ThePokerGame::Instance()->ResetAutoPlayFlag)
+	//	THE_GAME->SetAutoplay(true);
+
+	/*OBJECT_HANDLER->GetObject2D("LegendCollectNlit")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("LegendHold2Nlit")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("LegendHold3Nlit")->SetVisible(true);
 	OBJECT_HANDLER->GetObject2D("LegendHold4Nlit")->SetVisible(true);

@@ -4,7 +4,7 @@
     <RemoteDebuggerCommand>\\169.254.1.3\d$\1172\$(TargetName)$(TargetExt)</RemoteDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FinalRelease|Win32'">
-    <RemoteDebuggerCommand>\\169.254.1.3\d$\1172\$(TargetName)$(TargetExt)</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>\\169.254.1.9\d$\1172\$(TargetName)$(TargetExt)</RemoteDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <RemoteDebuggerWorkingDirectory>D:\1172</RemoteDebuggerWorkingDirectory>
@@ -16,7 +16,7 @@
     <RemoteDebuggerServerName>RDBTERMINAL01:4015</RemoteDebuggerServerName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FinalRelease|Win32'">
-    <RemoteDebuggerServerName>TOMTERMINAL:4105</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>169.254.1.9:4105</RemoteDebuggerServerName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
@@ -35,9 +35,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AutoPlay|Win32'">
     <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommand>\\169.254.1.3\d$\1172\$(TargetName)$(TargetExt)</RemoteDebuggerCommand>
+    <RemoteDebuggerCommand>\\169.254.1.9\d$\1172\$(TargetName)$(TargetExt)</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>D:\1172</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>169.254.1.3:4015</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>169.254.1.9:4015</RemoteDebuggerServerName>
     <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
 </Project>

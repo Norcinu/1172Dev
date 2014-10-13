@@ -85,11 +85,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AutoPlay|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>X:\1172\</OutDir>
+    <OutDir>y:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1172L27U010APD</TargetName>
-    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_2;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
-    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_2;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>1172L27U010_APD</TargetName>
+    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
+    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -104,8 +104,8 @@
     <OutDir>X:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
     <TargetName>1172L27U010R</TargetName>
-    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_2;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
-    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_2;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
+    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AutoplayStandard|Win32'">
     <OutDir>X:\1145\</OutDir>

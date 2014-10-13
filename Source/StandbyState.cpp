@@ -11,6 +11,10 @@ static bool Registered = ENGINE->AddState("Standby", new StandbyState());
 
 extern unsigned char global_quit;
 
+#ifdef SOAK_BUILD
+extern unsigned long add_cdeposit(unsigned long value);
+#endif
+
 StandbyState::StandbyState()
 {
 	m_standbyFlash = 0;
@@ -51,7 +55,9 @@ void StandbyState::Update()
 	if(!global_quit)
 	{
 #ifdef SOAK_BUILD
-		SetAutoCreditFlag();
+		//SetAutoCreditFlag();
+		//add_cdeposit_rc(20000);
+		add_cdeposit(2000);
 #endif
 		THE_BUTTONS->StandbyButtons();
 

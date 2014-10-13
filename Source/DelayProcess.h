@@ -10,6 +10,7 @@ public:
 	~DelayProcess(){}
 	void Init();
 	void Update();
+	void Abort(){}
 private:
 	float mTimer;
 	float mHoldTime;

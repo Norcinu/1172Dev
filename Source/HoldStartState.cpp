@@ -117,15 +117,12 @@ void HoldStartState::Update()
 		if (THE_BUTTONS->ButtonPressed("TopStart") || THE_BUTTONS->ButtonPressed("FrontStart"))
 			startGame = true;
 		
-		if ((THE_BUTTONS->ButtonPressed("FrontStart") || 
-			 THE_BUTTONS->ButtonPressed("TopStart") ||
-			 THE_GAME->GetAutoplay() || 
-			 startGame))
+		if ((THE_BUTTONS->ButtonPressed("FrontStart") || THE_BUTTONS->ButtonPressed("TopStart") ||
+			 THE_GAME->GetAutoplay() || startGame))
 		{
 			ENGINE->StateTransition("DrawHand");
 		}
-		else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && 
-				    !THE_GAME->GetAutoplay())
+		else if((THE_BUTTONS->ButtonPressed("AutoPlay") || THE_BUTTONS->OSButtonPressed("AutoplayButton")) && !THE_GAME->GetAutoplay())
 		{
 			TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
 			THE_GAME->SetAutoplay(true);

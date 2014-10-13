@@ -11,7 +11,10 @@ static bool FirstTimeEntry = true;
 void PokerGame::EnterHiloGambleInitialize(unsigned char JokerWin)
 {
 	if (AutoPlayFlag)
+	{
 		ResetAutoPlayFlag = 1;
+		HiloEnteredOnAP = true;
+	}
 	AutoPlayFlag = 0;
 
 	THE_GAME->SetAutoplay(false);

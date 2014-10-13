@@ -267,6 +267,11 @@ public:
 
 	bool GetHoldHiloGraphics() const { return HoldHiloGraphics; }
 	void SetHoldHiloGraphics(const bool holding=true) { HoldHiloGraphics = holding; }
+
+	bool GetEnteredOnAutoplay() const { return HiloEnteredOnAP; }
+	void SetEnteredOnAutoplay(const bool value) { HiloEnteredOnAP = value; }
+
+
 public:
 
 	bool RegisterCardBtnArray[5];
@@ -382,6 +387,7 @@ private:
 	unsigned int AwardTable[2][MAX_AWARDS];
 	unsigned int AwardValuesX;
 	unsigned int AwardValuesY[MAX_AWARDS];
+	bool HiloEnteredOnAP;
 };
 
 typedef Singleton<PokerGame> ThePokerGame;

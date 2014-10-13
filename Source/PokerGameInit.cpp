@@ -23,6 +23,7 @@ bool PokerGame::PokerGameInit()
 	DisplayStake();
 	
 	HoldHiloGraphics = false;
+	HiloEnteredOnAP = false;
 
 	for (i=0; i<MAX_AWARDS; i++)
 	{

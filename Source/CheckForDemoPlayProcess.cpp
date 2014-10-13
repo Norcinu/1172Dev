@@ -43,8 +43,8 @@ void CheckForDemoPlayProcess::Update()
 				THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 				THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
 				THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-				THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-				THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+				//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
+				//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
 				THE_GAME->SetAutoplay(false);
 				OBJECT_HANDLER->GetObject2D("RGDemoMode")->SetVisible(true);												

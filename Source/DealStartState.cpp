@@ -291,6 +291,7 @@ void DealStartState::Update()
 				THE_GAME->TogglePopOptions();	
 			}
 			
+#ifndef SOAK_BUILD
 			for(int i = 0; i < TOTAL_STAKES; ++i)
 			{
 				if (TheButtons::Instance()->OSButtonPressed(StakeButtons[i]))
@@ -299,7 +300,16 @@ void DealStartState::Update()
 					stake = AllStakes[i+2];
 				}
 			}
-		
+#else
+			if (GetCredits() < THE_GAME->GetStake() && THE_GAME->GetStake() == MAXIMUM_BET) // standby
+			{
+				changeStake = true;
+				stake = 100;
+			}
+			else if (GetCredits() < THE_GAME->GetStake() && THE_GAME->GetStake() == MINIMUM_BET)
+				ENGINE->StateTransition("Standby");
+#endif
+
 			if (changeStake)
 			{
 				THE_GAME->SetStake(stake);

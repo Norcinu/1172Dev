@@ -15,7 +15,8 @@ OSButtonProcess::OSButtonProcess(OSButton* button)
 		 mButton->GetLegendName() == "LegendHold2Lit" ||		
 		 mButton->GetLegendName() == "LegendHold3Lit" ||		
 		 mButton->GetLegendName() == "LegendHold4Lit" ||		
-		 mButton->GetLegendName() == "LegendHoldTransferLit"))
+		 mButton->GetLegendName() == "LegendHoldTransferLit" ||
+		 mButton->GetLegendName() == "LegendCollectLit"))
 
 		TheAudioManager::Instance()->GetAudioSample("CLICK")->Play();
 	else
@@ -37,7 +38,7 @@ void OSButtonProcess::Update()
 {		
 	mButton->SetPressed();		
 
-	if(mButton->IsReleased())
+	if(mButton->IsReleased() || !mButton->IsActive())
 	{		
 		SetCompleted();
 	}	

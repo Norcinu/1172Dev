@@ -2,11 +2,12 @@
 #include "ButtonProcess.h"
 #include "Game.h"
 #include "bo.h"
+#include "DelayProcess.h"
 
 ButtonProcess::ButtonProcess(HardwareButton* button)
 {
 	mButton = button;
-	TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
+//	TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
 }
 
 ButtonProcess::~ButtonProcess()
@@ -28,6 +29,7 @@ void ButtonProcess::Update()
 	
 		if(mButton->IsReleased())
 		{
+			TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
 			SetCompleted();
 		}
 	}	

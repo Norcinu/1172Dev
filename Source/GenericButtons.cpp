@@ -305,6 +305,7 @@ bool Buttons::ButtonPressed(const char* buttonName)
 	{
 		if(it->second->IsPressed())
 		{
+
 			it->second->Release();
 			return true;
 		}
@@ -318,7 +319,7 @@ bool Buttons::OSButtonPressed(const char* buttonName)
 	OnScreenButtons::iterator it = mOSButtons.find(buttonName);
 	if(it != mOSButtons.end())
 	{
-		if(it->second->IsPressed())
+		if(it->second->IsPressed() && it->second->IsActive())
 		{
 			it->second->Release();
 			return true;
@@ -355,6 +356,7 @@ void Buttons::SetButtonActivity(bool active, const char* buttonName, unsigned ch
 
 void Buttons::SetOSButtonActivity(bool active, const char* buttonName, unsigned char state)
 {
+#ifndef SOAK_BUILD
 	for(HardwareButtons::iterator it = mButtons.begin(); it != mButtons.end();it++)
 	{
 		if (it->second->CheckPressed() && it->second->IsActive())
@@ -378,6 +380,7 @@ void Buttons::SetOSButtonActivity(bool active, const char* buttonName, unsigned 
 	{
 		it->second->SetActive(active, state);
 	}
+#endif
 }
 
 void Buttons::LampsOff()
