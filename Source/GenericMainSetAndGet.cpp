@@ -35,9 +35,9 @@ void Game::SetAutoplay(bool autoplay)
 	m_autoplay = autoplay;
 
 	if (m_autoplay)
-		ThePokerGame::Instance()->AutoPlayFlag = 1;
+		POKER_GAME->AutoPlayFlag = 1;
 	else
-		ThePokerGame::Instance()->AutoPlayFlag = 0;
+		POKER_GAME->AutoPlayFlag = 0;
 }
 
 void Game::SetDeduct(unsigned int deduct)
@@ -110,7 +110,7 @@ void Game::SetStake(unsigned int stake)
 	if (mStake != stake)
 	{
 		mStake = stake;
-		ThePokerGame::Instance()->SetGameIndex((mStake == MAXIMUM_BET) ? 1 : 0);
+		POKER_GAME->SetGameIndex((mStake == MAXIMUM_BET) ? 1 : 0);
 		m_popControl->ChangeStake(GetStakeID()); 
 	}
 	else

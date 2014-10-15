@@ -79,15 +79,15 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>X:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1172L27U010R</TargetName>
-    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
-    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
+    <TargetName>1172L28U010R</TargetName>
+    <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
+    <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AutoPlay|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>y:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1172L27U010_APD</TargetName>
+    <TargetName>1172L28U010_APD</TargetName>
     <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
     <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -95,7 +95,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>X:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1172L27U010D</TargetName>
+    <TargetName>1172L28U010D</TargetName>
     <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
     <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -103,7 +103,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>X:\1172\</OutDir>
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1172L27U010R</TargetName>
+    <TargetName>1172L28U010R</TargetName>
     <IncludePath>.\Source\WinData;C:\Heber\DevLibrary\VizTechLib\Source\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\BaseClasses;C:\Heber\DevSource\Dx9SDK\DirectShow\Include;C:\Heber\DevSource\Dx9SDK\Include;C:\Heber\Projects\GenericsLibrary\Include\Release_2;$(IncludePath);WinData</IncludePath>
     <LibraryPath>C:\Heber\DevLibrary\VizTechLib\Lib\Release_4;C:\Heber\DevSource\Dx9SDK\DirectShow\Lib\x86;C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\DevSource\VC98\MFC\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -124,7 +124,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FinalReleaseStandard|Win32'">
     <IntDir>Obj\$(Configuration)\</IntDir>
-    <TargetName>1145L27U030R</TargetName>
+    <TargetName>1145L28U030R</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -134,7 +134,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1224LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1424LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -143,7 +143,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>VizTechR.lib;PreDefinedShaders.res;1224R.lib;GenericsR.lib</AdditionalDependencies>
+      <AdditionalDependencies>VizTechR.lib;PreDefinedShaders.res;1424R.lib;GenericsR.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\Projects\GenericsLibrary\Libs\Release_2;C:\Heber\Projects\Bo_Library\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -155,7 +155,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1224LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1424LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_AUTOPLAY;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -165,7 +165,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>VizTechD.lib;PreDefinedShaders.res;1224D.lib;GenericsD.lib</AdditionalDependencies>
+      <AdditionalDependencies>VizTechD.lib;PreDefinedShaders.res;1424D.lib;GenericsD.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\Projects\GenericsLibrary\Libs\Release_2;C:\Heber\Projects\Bo_Library\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -177,7 +177,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1224LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1424LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -189,7 +189,7 @@
       </EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>VizTechD.lib;PreDefinedShaders.res;1224D.lib;GenericsD.lib</AdditionalDependencies>
+      <AdditionalDependencies>VizTechD.lib;PreDefinedShaders.res;1424D.lib;GenericsD.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\Projects\GenericsLibrary\Libs\Release_2;C:\Heber\Projects\Bo_Library\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -201,7 +201,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1224LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\heber\projects\Bo_Library\1424LibSource;C:\heber\DevSource\DX9SDK\Include;C:\heber\DevSource\DX9SDK\DirectShow\Include;C:\heber\DevSource\DX9SDK\DirectShow\BaseClasses;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -210,7 +210,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>VizTechFinalR.lib;PreDefinedShaders.res;1224R.lib;GenericsR.lib</AdditionalDependencies>
+      <AdditionalDependencies>VizTechFinalR.lib;PreDefinedShaders.res;1424R.lib;GenericsR.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\Projects\GenericsLibrary\Libs\Release_2;C:\Heber\Projects\Bo_Library\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

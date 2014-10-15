@@ -29,24 +29,26 @@ HoldStartState::~HoldStartState()
 
 void HoldStartState::Enter()
 {
-	ThePokerGame::Instance()->InitializeCardButtonArray();
+	POKER_GAME->InitializeCardButtonArray();
 	
-	ThePokerGame::Instance()->SetActiveCardButton(true,0);
-	ThePokerGame::Instance()->SetActiveCardButton(true,1);
-	ThePokerGame::Instance()->SetActiveCardButton(true,2);
-	ThePokerGame::Instance()->SetActiveCardButton(true,3);
-	ThePokerGame::Instance()->SetActiveCardButton(true,4);
+	POKER_GAME->SetActiveCardButton(true,0);
+	POKER_GAME->SetActiveCardButton(true,1);
+	POKER_GAME->SetActiveCardButton(true,2);
+	POKER_GAME->SetActiveCardButton(true,3);
+	POKER_GAME->SetActiveCardButton(true,4);
 	
-	ThePokerGame::Instance()->HoldCalc(ThePokerGame::Instance()->DealHand);
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+
+	POKER_GAME->HoldCalc(POKER_GAME->DealHand);
 
 	ENGINE->GetProcessManager()->AddProcessToQueue(new AutoHeldsProcess);
 }
 
 void HoldStartState::Exit()
 {
-	ThePokerGame::Instance()->InitializeCardButtonArray();
+	POKER_GAME->InitializeCardButtonArray();
 
-	ThePokerGame::Instance()->TagHeldCards();
+	POKER_GAME->TagHeldCards();
 	
 	THE_BUTTONS->SetButtonActivity(false, "FrontStart");
 	THE_BUTTONS->SetButtonActivity(false, "Stake");
@@ -61,24 +63,22 @@ void HoldStartState::Exit()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 	
-	ThePokerGame::Instance()->SetActiveCardButton(false,0);
-	ThePokerGame::Instance()->SetActiveCardButton(false,1);
-	ThePokerGame::Instance()->SetActiveCardButton(false,2);
-	ThePokerGame::Instance()->SetActiveCardButton(false,3);
-	ThePokerGame::Instance()->SetActiveCardButton(false,4);
+	POKER_GAME->SetActiveCardButton(false,0);
+	POKER_GAME->SetActiveCardButton(false,1);
+	POKER_GAME->SetActiveCardButton(false,2);
+	POKER_GAME->SetActiveCardButton(false,3);
+	POKER_GAME->SetActiveCardButton(false,4);
 
 	if(!THE_GAME->GetAutoplay())	
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	
 	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
-	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
+	/*OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
-	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);*/
 	OBJECT_HANDLER->GetObject2D("HoldStartMsg")->SetVisible(false);
 }
 
@@ -103,9 +103,9 @@ void HoldStartState::Update()
 		OBJECT_HANDLER->GetObject2D("HoldStartMsg")->SetVisible(true);
 
 		THE_BUTTONS->HoldStartButtons();
-		ThePokerGame::Instance()->HoldCardButtons();
-		ThePokerGame::Instance()->UpdatePokerHelds();
-		ThePokerGame::Instance()->SetHoldStartLamps();
+		POKER_GAME->HoldCardButtons();
+		POKER_GAME->UpdatePokerHelds();
+		POKER_GAME->SetHoldStartLamps();
 			
 		bool startGame = false;
 		bool stakeChange = false;

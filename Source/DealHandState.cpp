@@ -23,32 +23,33 @@ DealHandState::~DealHandState()
 
 void DealHandState::Enter()
 {
-	ThePokerGame::Instance()->PokerHandProcessComplete = false;
+	POKER_GAME->PokerHandProcessComplete = false;
 
 	for (int i=0; i<5; i++)
 	{
-		ThePokerGame::Instance()->PokerHand[i].id = 0;
-		ThePokerGame::Instance()->PokerHand[i].hold = 0;
+		POKER_GAME->PokerHand[i].id = 0;
+		POKER_GAME->PokerHand[i].hold = 0;
 	}
 
 	OBJECT_HANDLER->GetObject2D("GraphicalButton07")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton08")->SetVisible(false);
+/*
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
-	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);*/
 
-	ThePokerGame::Instance()->DealRoll();
-	ThePokerGame::Instance()->DealFirstHand();
-	ThePokerGame::Instance()->Pay = ThePokerGame::Instance()->Chkwin(ThePokerGame::Instance()->DealHand,0);		
-	ThePokerGame::Instance()->JokerWin = ThePokerGame::Instance()->WinInvolvingJoker(ThePokerGame::Instance()->DealHand,ThePokerGame::Instance()->Pay);
-	ThePokerGame::Instance()->PokerGameWin = ThePokerGame::Instance()->Pay;
+	POKER_GAME->DealRoll();
+	POKER_GAME->DealFirstHand();
+	POKER_GAME->Pay = POKER_GAME->Chkwin(POKER_GAME->DealHand,0);		
+	POKER_GAME->JokerWin = POKER_GAME->WinInvolvingJoker(POKER_GAME->DealHand,POKER_GAME->Pay);
+	POKER_GAME->PokerGameWin = POKER_GAME->Pay;
 }
 
 void DealHandState::Exit()
 {
-	ThePokerGame::Instance()->PokerHandProcessComplete = false;
+	POKER_GAME->PokerHandProcessComplete = false;
 }
 
 #include <sstream>
@@ -69,9 +70,9 @@ void DealHandState::Update()
 
 	if(!global_quit)
 	{
-		if (ThePokerGame::Instance()->PokerHandProcessComplete)
+		if (POKER_GAME->PokerHandProcessComplete)
 		{
-			if (ThePokerGame::Instance()->PokerHoldCondition())
+			if (POKER_GAME->PokerHoldCondition())
 				ENGINE->StateTransition("HoldStart");
 			else
 				ENGINE->StateTransition("Payment");

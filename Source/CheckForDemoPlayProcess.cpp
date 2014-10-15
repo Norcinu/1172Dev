@@ -75,7 +75,7 @@ void CheckForDemoPlayProcess::Update()
 					return;
 				}
 
-				if(ThePokerGame::Instance()->ReadYesDemoPb())
+				if(POKER_GAME->ReadYesDemoPb())
 				{										
 					THE_GAME->SetDemoMode(true);
 					AddDemoModeCredits();					

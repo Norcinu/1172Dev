@@ -19,34 +19,25 @@ CollectProcess::~CollectProcess()
 
 void CollectProcess::Complete()
 {
-	ThePokerGame::Instance()->SetActiveCollectBoxButton(false,COLLECT_COINS_PB);
-	ThePokerGame::Instance()->SetActiveCollectBoxButton(false,COLLECT_TICKET_PB);
+	POKER_GAME->SetActiveCollectBoxButton(false,COLLECT_COINS_PB);
+	POKER_GAME->SetActiveCollectBoxButton(false,COLLECT_TICKET_PB);
 	OBJECT_HANDLER->GetObject2D("RGCollectOrPrintTicket")->SetVisible(false);	
 }
 
 void CollectProcess::Init()
 {
-	THE_BUTTONS->DisableHWButtons();	
-
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
-	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
+	THE_BUTTONS->DisableHWButtons();
 	
-	if(GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
-		&& GetCredits() + GetBankDeposit() >= GetMinPayoutValue())
+	if (GetCredits() + GetBankDeposit() < GetPrintPayThreshold() && 
+		GetCredits() + GetBankDeposit() >= GetMinPayoutValue())
 	{	
-		ThePokerGame::Instance()->SetActiveCollectBoxButton(true,COLLECT_COINS_PB);
-		ThePokerGame::Instance()->SetActiveCollectBoxButton(true,COLLECT_TICKET_PB);
+		POKER_GAME->SetActiveCollectBoxButton(true,COLLECT_COINS_PB);
+		POKER_GAME->SetActiveCollectBoxButton(true,COLLECT_TICKET_PB);
 		OBJECT_HANDLER->GetObject2D("RGCollectOrPrintTicket")->SetVisible(true);
 	}
-	else if((GetCredits() + GetBankDeposit() < GetPrintPayThreshold() 
-		&& GetCredits() + 	GetBankDeposit() < GetMinPayoutValue())
-		|| GetCredits() + GetBankDeposit() >= GetPrintPayThreshold())
+	else if((GetCredits() + GetBankDeposit() < GetPrintPayThreshold() && 
+			 GetCredits() +	GetBankDeposit() < GetMinPayoutValue()) || 
+			 GetCredits() + GetBankDeposit() >= GetPrintPayThreshold())
 	{
 		mPayoutConfirmed = true;
 		mType = PRINTER;		
@@ -57,12 +48,12 @@ void CollectProcess::Update()
 {	
 	if(!mPayoutConfirmed)
 	{
-		if(ThePokerGame::Instance()->CollectBoxPb(COLLECT_COINS_PB))
+		if(POKER_GAME->CollectBoxPb(COLLECT_COINS_PB))
 		{
 			mType = HOPPER;
 			mPayoutConfirmed = true;
 		}
-		else if(ThePokerGame::Instance()->CollectBoxPb(COLLECT_TICKET_PB))
+		else if(POKER_GAME->CollectBoxPb(COLLECT_TICKET_PB))
 		{
 			mType = PRINTER;
 			mPayoutConfirmed = true;
@@ -129,7 +120,7 @@ bool CollectProcess::Payout()
 			return true;
 		}
 	}
-	else if (mPayoutState == NOCOLLECT)
+	else if (mPayoutState == NOCOLLECT)	
 	{
 		//resets bank and credits!!
 		return true;

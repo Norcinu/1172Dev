@@ -180,31 +180,8 @@ void Buttons::Initialise()
 	mButtons["Menu"] = new HardwareButton("Menu",LH2_BUTTON, LH2_LAMP);
 	mButtons["Collect"] = new HardwareButton("Collect",LH1_BUTTON, LH1_LAMP);
 		
-	/*mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
-	mOSButtons["DealStart2PndButton"] = new OSButton("GraphicalButton08","Legend2DealDrawLit","Legend2DealDrawNlit");
-	mOSButtons["DealStart1PndButton"] = new OSButton("GraphicalButton07","Legend1DealDrawLit","Legend1DealDrawNlit");
-	mOSButtons["Hold5Button"]  = new OSButton("GraphicalButton06","LegendHold5Lit","LegendHold5Nlit");
-	mOSButtons["Hold4Button"]		  = new OSButton("GraphicalButton05","LegendHold4Lit","LegendHold4Nlit");
-	mOSButtons["Hold3Button"]		  = new OSButton("GraphicalButton04","LegendHold3Lit","LegendHold3Nlit");
-	mOSButtons["Hold2Button"]		  = new OSButton("GraphicalButton03","LegendHold2Lit","LegendHold2Nlit");
-	mOSButtons["HoldInfoButton"]	  = new OSButton("GraphicalButton02","LegendHold1Lit","LegendHold1Nlit");
-	mOSButtons["Hold1Button"]		  = new OSButton("GraphicalButton01","LegendHold1Lit","LegendHold1Nlit");
-
-	mOSButtons["EnterInfoPage"]	     = new OSButton("GraphicalButton14", "LegenedEnterInfoLit", "LegendEnterInfoNlit");
-
-	mOSButtons["SwopButton"]		  = new OSButton("GraphicalButton10","Legend1SwopLit","Legend1SwopNlit"); //11
-	mOSButtons["LoButton"]			  = new OSButton("GraphicalButton05","LegendLoLit","LegendLoNlit"); //05
-	mOSButtons["HiButton"]			  = new OSButton("GraphicalButton03","LegendHiLit","LegendHiNlit"); //03
-	
-	mOSButtons["InfoButton1"]		  = new OSButton("GraphicalButton11","LegendButton1Lit","LegendButton1Nlit"); //01
-	mOSButtons["InfoButton2"]		  = new OSButton("GraphicalButton12","LegendButton2Lit","LegendButton2Nlit"); //02
-	mOSButtons["InfoButton3"]		  = new OSButton("GraphicalButton13","LegendButton3Lit","LegendButton3Nlit"); //03
-	
-	mOSButtons["ChangeStake"]		  = new InfoButton("RGlassButtons", true, 0);*/
 
 	mOSButtons["AutoplayButton"]	  = new OSButton("GraphicalButton09","LegendAutoPlayLit","LegendAutoPlayNlit");
-	mOSButtons["DealStart2PndButton"] = new OSButton("GraphicalButton08","Legend2DealDrawLit","Legend2DealDrawNlit");
-	mOSButtons["DealStart1PndButton"] = new OSButton("GraphicalButton07","Legend1DealDrawLit","Legend1DealDrawNlit");
 	mOSButtons["Hold5Button"]		  = new OSButton("GraphicalButton06","LegendHoldTransferLit","LegendHoldTransferNlit");
 	mOSButtons["Hold4Button"]		  = new OSButton("GraphicalButton05","LegendHold4Lit","LegendHold4Nlit");
 	mOSButtons["Hold3Button"]		  = new OSButton("GraphicalButton04","LegendHold3Lit","LegendHold3Nlit");
@@ -272,9 +249,9 @@ void Buttons::UpdateButtons()
 
 		if (!mButtonProcessStarted)
 		{
-			ThePokerGame::Instance()->RegisterCardButtons();
-			ThePokerGame::Instance()->RegisterYesDemoButton();
-			ThePokerGame::Instance()->RegisterCollectBoxButtons();
+			POKER_GAME->RegisterCardButtons();
+			POKER_GAME->RegisterYesDemoButton();
+			POKER_GAME->RegisterCollectBoxButtons();
 		}
 	}
 
@@ -570,13 +547,11 @@ void Buttons::DealStartButtons(float DelayTimer)
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
 		SetButtonActivity(true, "TopStart", LAMP_ON);
-	//	SetOSButtonActivity(true, "ChangeStake", LAMP_ON);
 	}
 	else if(GetCredits() >= MINIMUM_BET)
 	{
 		SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 		SetButtonActivity(true, "Stake",LAMP_ON);
-	//	SetOSButtonActivity(true, "ChangeStake", LAMP_ON);
 	}
 	else
 	{
@@ -597,15 +572,13 @@ void Buttons::DealStartButtons(float DelayTimer)
 		if(GetCredits() < THE_GAME->GetStake())
 			lamp = LAMP_FLASH;
 		SetButtonActivity(true, "Transfer", lamp);
-		//SetOSButtonActivity(true, "Hold5Button",LAMP_ON);		
 	}
 	else
 	{
 		SetButtonActivity(false, "Transfer");
-	//	SetOSButtonActivity(false, "Hold5Button");
 	}
 		
-	if(GetCredits() >= THE_GAME->GetStake() && !ThePokerGame::Instance()->GetHoldHiloGraphics())
+	if(GetCredits() >= THE_GAME->GetStake() && !POKER_GAME->GetHoldHiloGraphics())
 	{
 		if (THE_GAME->GetAutoplay())
 		{
@@ -620,7 +593,7 @@ void Buttons::DealStartButtons(float DelayTimer)
 	}
 	else
 	{
-		if (ThePokerGame::Instance()->GetHoldHiloGraphics())
+		if (POKER_GAME->GetHoldHiloGraphics())
 		{
 			SetButtonActivity(true, "AutoPlay", LAMP_FLASH);
 			OBJECT_HANDLER->GetObject2D("GraphicalButton09")->SetVisible(true);
@@ -638,15 +611,13 @@ void Buttons::DealStartButtons(float DelayTimer)
 	&& !GetDoorStatus())
 	{
 		SetButtonActivity(true, "Collect", LAMP_ON);
-		//SetOSButtonActivity(true, "Hold1Button",LAMP_ON);
 	}
 	else
 	{
 		SetButtonActivity(false, "Collect");
-		//SetOSButtonActivity(false, "Hold1Button");
 	}
 
-	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime() && !ThePokerGame::Instance()->GetHoldHiloGraphics())
+	if(DelayTimer < ENGINE->GetSystemTimer().GetRunningTime() && !POKER_GAME->GetHoldHiloGraphics())
 	{
 		SetOSButtonActivity(true, "HoldInfoButton",LAMP_ON);
 	}
@@ -663,6 +634,7 @@ void Buttons::HoldStartButtons()
 	SetButtonActivity(true, "FrontStart", LAMP_FLASH);
 	SetButtonActivity(true, "TopStart", LAMP_ON);
 	SetButtonActivity(false, "Stake");
+	SetButtonActivity(false, "HoldInfoButton", LAMP_OFF);
 
 	SetOSButtonActivity(false, "ChangeStake");
 

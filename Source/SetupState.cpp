@@ -29,13 +29,13 @@ void SetupState::Update()
 	}
 	else
 	{
-		if(GetTerminalFormat() > 1 && !(GetCredits() + GetBankDeposit()))
+		if (GetGameAutoLoaded())
 		{
 			TheEngine::Instance()->StateTransition("CompendiumLoad");
 		}
 		else
 		{
-			//TheAudioManager::Instance()->GetAudioSample("SX_NOCREDIT")->Play();
+			TheAudioManager::Instance()->GetAudioSample("SX_NOCREDIT")->Play();
 			TheEngine::Instance()->StateTransition("Standby");
 		}
 	}

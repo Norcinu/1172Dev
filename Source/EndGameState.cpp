@@ -24,22 +24,19 @@ void EndGameState::Enter()
 {
 	float RemainingTime = 0;
 
-	OBJECT_HANDLER->GetObject2D("GameOverMsg")->SetVisible(true);	
+	OBJECT_HANDLER->GetObject2D("GameOverMsg")->SetVisible(true);
 	ClearGameInProgress();	
 	THE_GAME->StoreData();
-	ThePokerGame::Instance()->SoakStoreThisGame();
-	ThePokerGame::Instance()->SetGameEndTime();
+	POKER_GAME->SoakStoreThisGame();
+	POKER_GAME->SetGameEndTime();
 
-	if (ThePokerGame::Instance()->GetGameLengthTime() < MIN_GAME_TIME)
-		RemainingTime = MIN_GAME_TIME-ThePokerGame::Instance()->GetGameLengthTime();	
+	if (POKER_GAME->GetGameLengthTime() < MIN_GAME_TIME)
+		RemainingTime = MIN_GAME_TIME-POKER_GAME->GetGameLengthTime();
 
-	//if (RemainingTime > 1.0f)
-	//	mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
-	//else
-	if (THE_GAME->GetAutoplay())
-		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(RemainingTime);
-	else
-		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.25f);	//1.0f
+//	if (THE_GAME->GetAutoplay())
+//		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + POKER_GAME->GeneralSetGameDelay(RemainingTime);
+//	else
+		mEndGameDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + POKER_GAME->GeneralSetGameDelay(0.3f);	//1.0f
 }
 
 void EndGameState::Exit()
@@ -58,7 +55,6 @@ void EndGameState::Update()
 		return;
 	}
 
-	auto timerrrrr = ENGINE->GetSystemTimer().GetRunningTime();
 	if (ENGINE->GetSystemTimer().GetRunningTime() < mEndGameDelayTimer)
 	{
 		return;

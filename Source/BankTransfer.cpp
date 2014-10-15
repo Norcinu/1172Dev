@@ -26,7 +26,7 @@ static int Stage = 1;
 		}
 		else
 		{	
-			if (TransferAmount)
+			if (TransferAmount && GetCredits() < GetVariableValue(MAX_CREDITS))
 			{
 				TheAudioManager::Instance()->GetAudioSample("WIN10")->Play();
 				if (TransferAmount < Unit)

@@ -1,5 +1,5 @@
 
-#define TESTHOUSE_NMI_LOG_PATH "d:\\1170\\1170NMI.log"
+#define TESTHOUSE_NMI_LOG_PATH "d:\\1172\\1172NMI.log"
 
 #define NMI_RECORD_GAMES		1
 #define NMI_RECORD_CREDBE		2

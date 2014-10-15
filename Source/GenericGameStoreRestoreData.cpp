@@ -30,7 +30,7 @@ void Game::StoreDataThread()
 	SetFileAction();
 
 	std::string gameControlPath = ENGINE->GetWriteablePath();
-	gameControlPath.append("\\1170G.dat");
+	gameControlPath.append("\\1172G.dat");
 
 	file = _open(gameControlPath.c_str(), FILE_WRITE, _S_IREAD | _S_IWRITE);
 	
@@ -41,41 +41,41 @@ void Game::StoreDataThread()
 		return;
 	}
 
-	value   = ThePokerGame::Instance()->WageredAmount;_write(file,&value,4);
+	value   = POKER_GAME->WageredAmount;_write(file,&value,4);
 	status  = value;
 
-	value   = ThePokerGame::Instance()->FinalWinValue;_write(file,&value,4);
+	value   = POKER_GAME->FinalWinValue;_write(file,&value,4);
 	status += value;
 
 	for (int i=0; i < MaxSelectableGames; i++)
 	{
 
-		value   = ThePokerGame::Instance()->StandardStore[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->StandardStore[i];
+		value   = POKER_GAME->StandardStore[i];_write(file,&value,4);
+		status += POKER_GAME->StandardStore[i];
 
-		value   = ThePokerGame::Instance()->HiloStore[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->HiloStore[i];
+		value   = POKER_GAME->HiloStore[i];_write(file,&value,4);
+		status += POKER_GAME->HiloStore[i];
 
-		value   = ThePokerGame::Instance()->HiloStore2[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->HiloStore2[i];
+		value   = POKER_GAME->HiloStore2[i];_write(file,&value,4);
+		status += POKER_GAME->HiloStore2[i];
 
-		value   = ThePokerGame::Instance()->ModeStore[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->ModeStore[i];
+		value   = POKER_GAME->ModeStore[i];_write(file,&value,4);
+		status += POKER_GAME->ModeStore[i];
 		
-		value   = ThePokerGame::Instance()->ModeStoreTrigger[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->ModeStoreTrigger[i];
+		value   = POKER_GAME->ModeStoreTrigger[i];_write(file,&value,4);
+		status += POKER_GAME->ModeStoreTrigger[i];
 
-		value   = ThePokerGame::Instance()->ModeStoreExit[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->ModeStoreExit[i];
+		value   = POKER_GAME->ModeStoreExit[i];_write(file,&value,4);
+		status += POKER_GAME->ModeStoreExit[i];
 
-		value   = ThePokerGame::Instance()->ModeGameIn[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->ModeGameIn[i];  
+		value   = POKER_GAME->ModeGameIn[i];_write(file,&value,4);
+		status += POKER_GAME->ModeGameIn[i];  
 
 		value   = ModeGameInCtr[i];_write(file,&value,4);
 		status += ModeGameInCtr[i]; 
 		
-		value   = ThePokerGame::Instance()->HighStore[i];_write(file,&value,4);
-		status += ThePokerGame::Instance()->HighStore[i]; 
+		value   = POKER_GAME->HighStore[i];_write(file,&value,4);
+		status += POKER_GAME->HighStore[i]; 
 	}
 			
 	value = status;_write(file,&value,4);
@@ -109,7 +109,7 @@ void Game::RestoreData()
 	SetFileAction();
 
 	std::string gameControlPath = ENGINE->GetWriteablePath();
-	gameControlPath.append("\\1170G.dat");
+	gameControlPath.append("\\1172G.dat");
 
 	file = _open(gameControlPath.c_str(), FILE_READ, _S_IREAD | _S_IWRITE);
 
@@ -120,42 +120,42 @@ void Game::RestoreData()
 	}
 	
 	if(_read(file, &value, 4) > 0) 
-		ThePokerGame::Instance()->WageredAmount = value; 
+		POKER_GAME->WageredAmount = value; 
 	LiveCsum += value;
 
 	if(_read(file, &value, 4) > 0) 
-		ThePokerGame::Instance()->FinalWinValue = value; 
+		POKER_GAME->FinalWinValue = value; 
 	LiveCsum += value;
 
 
 	for (int i=0; i < MaxSelectableGames; i++)
 	{		
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->StandardStore[i] = value;
+			POKER_GAME->StandardStore[i] = value;
 		LiveCsum += value; 
 		
 		if(_read(file, &value, 4) > 0)
-			ThePokerGame::Instance()->HiloStore[i] = value;
+			POKER_GAME->HiloStore[i] = value;
 		LiveCsum += value; 
 
 		if(_read(file, &value, 4) > 0)
-			ThePokerGame::Instance()->HiloStore2[i] = value;
+			POKER_GAME->HiloStore2[i] = value;
 		LiveCsum += value; 
 		
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->ModeStore[i] = value;	
+			POKER_GAME->ModeStore[i] = value;	
 		LiveCsum += value; 
 		
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->ModeStoreTrigger[i] = value;	
+			POKER_GAME->ModeStoreTrigger[i] = value;	
 		LiveCsum += value; 
 
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->ModeStoreExit[i] = value;	
+			POKER_GAME->ModeStoreExit[i] = value;	
 		LiveCsum += value; 
 
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->ModeGameIn[i] = value;	
+			POKER_GAME->ModeGameIn[i] = value;	
 		LiveCsum += value; 
 
 		if(_read(file, &value, 4) > 0) 
@@ -163,7 +163,7 @@ void Game::RestoreData()
 		LiveCsum += value; 
 
 		if(_read(file, &value, 4) > 0) 
-			ThePokerGame::Instance()->HighStore[i] = value;	
+			POKER_GAME->HighStore[i] = value;	
 		LiveCsum += value; 
 	}
 	
@@ -172,12 +172,12 @@ void Game::RestoreData()
 	
 	_close(file);
 	ClearFileAction();
-
+	
 	if((LiveCsum != StoredCsum)||!StoredCsum)
 	{
 		mStake = 0;		
 		mGameCounter = 0;
-		ThePokerGame::Instance()->Rinit();
+		POKER_GAME->Rinit();
 		StoreData();
 		if(LiveCsum != StoredCsum)
 		{

@@ -43,7 +43,7 @@ void CointrolState::Update()
 
 	if(!global_quit)
 	{
-		ThePokerGame::Instance()->Cointrol();		
+		POKER_GAME->Cointrol();		
 		THE_GAME->UpdateDigits();
 		ENGINE->StateTransition("DealHand");
 	}

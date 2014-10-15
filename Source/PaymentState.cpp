@@ -23,12 +23,12 @@ PaymentState::~PaymentState()
 
 void PaymentState::Enter()
 {
-	ThePokerGame::Instance()->PayOutStage = 1;
+	POKER_GAME->PayOutStage = 1;
 }
 
 void PaymentState::Exit()
 {
-	ThePokerGame::Instance()->PayOutStage = 0;
+	POKER_GAME->PayOutStage = 0;
 }
 
 #include <sstream>
@@ -50,11 +50,13 @@ void PaymentState::Update()
 
 	if(!global_quit)
 	{		
-		if (ThePokerGame::Instance()->PayOutStage > 4)
+		if (POKER_GAME->PayOutStage > 4)
+		{
 			ENGINE->StateTransition("EndGame");
+		}
 		else
 		{
-			ThePokerGame::Instance()->PayOut();			
+			POKER_GAME->PayOut();			
 		}
 	}
 }

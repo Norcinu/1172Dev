@@ -24,7 +24,7 @@ void Game::UpdateDigits()
 	OBJECT_HANDLER->GetText("BANK_TEXT")->SetMessage(buff);
 
 	
-	float winnings = (float)ThePokerGame::Instance()->FinalWinValue;
+	float winnings = (float)POKER_GAME->FinalWinValue;
 	winnings /= 100.0f;
 	sprintf_s(buff, "£%.02f", winnings);
 

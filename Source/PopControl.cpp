@@ -32,9 +32,6 @@ void PopControl::Initialise(const std::vector<unsigned int>& stakes, unsigned in
 		m_popPositions.push_back(pos);
 		++popCount;		
 	}
-	
-//	buttons->GetInstance(defaultStakeID)->SetVisible(true);
-//	buttons->GetInstance(defaultStakeID)->SetPosition(m_popPositions[0]);
 }
 
 void PopControl::ClosePopOptions(unsigned int stakeID)
@@ -66,9 +63,6 @@ void PopControl::ChangeStake(unsigned int stakeID)
 		type = UPDATE_OPTIONS;
 		m_popOptionsVisible = false;						
 	}
-	
-	//THE_BUTTONS->DisableHWButtons();
-	//THE_BUTTONS->DisableOSButtons();
 
 	ENGINE->GetProcessManager()->AddProcessToList(new ShowStakeOptionsProcess(m_popPositions, type, stakeID));
 }
@@ -80,9 +74,6 @@ void PopControl::ShowHide(unsigned int stakeID)
 	{
 		type = HIDE_OPTIONS;
 	}
-	
-	//THE_BUTTONS->DisableHWButtons();
-	//THE_BUTTONS->DisableOSButtons();
 	
 	m_popOptionsVisible = !m_popOptionsVisible;
 

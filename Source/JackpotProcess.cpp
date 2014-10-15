@@ -69,8 +69,8 @@ void JackpotProcess::Update()
 	else
 	{
 		if (mCurrentStep == 3)
-			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(1.0f);
+			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + POKER_GAME->GeneralSetGameDelay(1.0f);
 		else
-			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.01f);
+			mJackpotDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + POKER_GAME->GeneralSetGameDelay(0.01f);
 	}
 }

@@ -19,7 +19,7 @@ HelpState::HelpState()
 
 HelpState::~HelpState()
 {
-
+	
 }
 
 void HelpState::Enter()
@@ -51,8 +51,8 @@ void HelpState::Enter()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton",NO_LEGEND);
-	THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton",NO_LEGEND);
+
+	THE_BUTTONS->SetOSButtonActivity(false, "ChangeStake");
 
 	OBJECT_HANDLER->GetObject2D("GraphicalButton01")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("GraphicalButton02")->SetVisible(false);
@@ -74,7 +74,7 @@ void HelpState::Enter()
 		THE_BUTTONS->SetOSButtonActivity(true, "InfoButton2",LAMP_ON);
 	}
 	
-	ThePokerGame::Instance()->UpdateInfoDigits(true);
+	POKER_GAME->UpdateInfoDigits(true);
 	
 	mHelpScreenNumber = 1;
 	m_timeOut = ENGINE->GetSystemTimer().GetRunningTime() + 30.0f;
@@ -83,8 +83,8 @@ void HelpState::Enter()
 void HelpState::Exit()
 {	
 	//Set Visibility Off
-	ThePokerGame::Instance()->UpdateInfoDigits(false);
-	ThePokerGame::Instance()->UpdateGoldenDigits(false);
+	POKER_GAME->UpdateInfoDigits(false);
+	POKER_GAME->UpdateGoldenDigits(false);
 	OBJECT_HANDLER->GetObject2D("Help")->SetVisible(false);
 	THE_BUTTONS->SetOSButtonActivity(false, "InfoButton1",NO_LEGEND);
 	THE_BUTTONS->SetOSButtonActivity(false, "InfoButton2",NO_LEGEND);
@@ -183,8 +183,8 @@ bool RedrawHelpScreenFlag=false;
 
 		if (RedrawHelpScreenFlag)
 		{
-			ThePokerGame::Instance()->UpdateInfoDigits(false);
-			ThePokerGame::Instance()->UpdateGoldenDigits(false);
+			POKER_GAME->UpdateInfoDigits(false);
+			POKER_GAME->UpdateGoldenDigits(false);
 
 			m_timeOut = ENGINE->GetSystemTimer().GetRunningTime() + 30.0f;				
 			OBJECT_HANDLER->GetObject2D("Help")->SetTextureID(mhelpScreenID+mHelpScreenNumber-1);
@@ -202,7 +202,7 @@ bool RedrawHelpScreenFlag=false;
 				OBJECT_HANDLER->GetObject2D("LegendButton2Nlit")->SetTextureID(mhelpButtonID);
 				THE_BUTTONS->SetOSButtonActivity(true, "InfoButton2",LAMP_ON);
 
-				ThePokerGame::Instance()->UpdateInfoDigits(true);
+				POKER_GAME->UpdateInfoDigits(true);
 			}
 
 			if (mHelpScreenNumber > 1 && mHelpScreenNumber < NUM_INFO_SCREEN)
@@ -240,7 +240,7 @@ bool RedrawHelpScreenFlag=false;
 			}
 			
 			if (mHelpScreenNumber == 2)
-				ThePokerGame::Instance()->UpdateGoldenDigits(true);
+				POKER_GAME->UpdateGoldenDigits(true);
 		}				
 	}
 }

@@ -1,14 +1,14 @@
-﻿Build started 13/10/2014 14:09:25.
+﻿Build started 14/10/2014 16:49:00.
      1>Project "C:\heber\Projects\1100Projects\1172Dev\1172.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Obj\Debug\1172.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1224LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\HiloGambleState.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\heber\projects\Bo_Library\1424LibSource /IC:\heber\DevSource\DX9SDK\Include /IC:\heber\DevSource\DX9SDK\DirectShow\Include /IC:\heber\DevSource\DX9SDK\DirectShow\BaseClasses /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_DEPRECATE /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /D _AFXDLL /Gm- /EHsc /MDd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Obj\Debug\\" /Fd"Obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Source\HiloGambleState.cpp
          HiloGambleState.cpp
        ResourceCompile:
          All outputs are up-to-date.
        Link:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"X:\1172\1172L27U010D.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Heber\DevSource\Dx9SDK\Lib\x86 /LIBPATH:C:\Heber\Projects\GenericsLibrary\Libs\Release_2 /LIBPATH:C:\Heber\Projects\Bo_Library\Lib VizTechD.lib PreDefinedShaders.res 1224D.lib GenericsD.lib /MANIFEST /ManifestFile:"Obj\Debug\1172L27U010D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"X:\1172\1172L27U010D.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"X:\1172\1172L27U010D.lib" /MACHINE:X86 Obj\Debug\1172.res
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"X:\1172\1172L28U010D.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Heber\DevSource\Dx9SDK\Lib\x86 /LIBPATH:C:\Heber\Projects\GenericsLibrary\Libs\Release_2 /LIBPATH:C:\Heber\Projects\Bo_Library\Lib VizTechD.lib PreDefinedShaders.res 1424D.lib GenericsD.lib /MANIFEST /ManifestFile:"Obj\Debug\1172L28U010D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"X:\1172\1172L28U010D.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"X:\1172\1172L28U010D.lib" /MACHINE:X86 Obj\Debug\1172.res
          Obj\Debug\Allow.obj
          Obj\Debug\AutoHeldsProcess.obj
          Obj\Debug\AwardLevel.obj
@@ -80,9 +80,9 @@
          Obj\Debug\StandbyState.obj
          Obj\Debug\VariableSoundProcess.obj
      1>Allow.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
-         1172.vcxproj -> X:\1172\1172L27U010D.exe
+         1172.vcxproj -> X:\1172\1172L28U010D.exe
        Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"X:\1172\1172L27U010D.exe;#1" /manifest Obj\Debug\1172L27U010D.exe.intermediate.manifest "C:\Program Files\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"X:\1172\1172L28U010D.exe;#1" /manifest Obj\Debug\1172L28U010D.exe.intermediate.manifest "C:\Program Files\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
        FinalizeBuildStatus:
          Deleting file "Obj\Debug\1172.unsuccessfulbuild".
          Touching "Obj\Debug\1172.lastbuildstate".
@@ -90,4 +90,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:09.70
+Time Elapsed 00:00:09.31

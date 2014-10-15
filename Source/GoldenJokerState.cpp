@@ -24,8 +24,8 @@ GoldenJokerState::~GoldenJokerState()
 
 void GoldenJokerState::Enter()
 {
-	ThePokerGame::Instance()->GoldenJokerStage = 1;
-	ThePokerGame::Instance()->GoldenJokerHeldProcessEnd = false;
+	POKER_GAME->GoldenJokerStage = 1;
+	POKER_GAME->GoldenJokerHeldProcessEnd = false;
 
 	THE_BUTTONS->SetButtonActivity(false, "FrontStart");
 	THE_BUTTONS->SetButtonActivity(false, "Stake");
@@ -43,11 +43,11 @@ void GoldenJokerState::Enter()
 	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart1PndButton");
 	//THE_BUTTONS->SetOSButtonActivity(false, "DealStart2PndButton");
 
-	ThePokerGame::Instance()->SetActiveCardButton(false,0);
-	ThePokerGame::Instance()->SetActiveCardButton(false,1);
-	ThePokerGame::Instance()->SetActiveCardButton(false,2);
-	ThePokerGame::Instance()->SetActiveCardButton(false,3);
-	ThePokerGame::Instance()->SetActiveCardButton(false,4);
+	POKER_GAME->SetActiveCardButton(false,0);
+	POKER_GAME->SetActiveCardButton(false,1);
+	POKER_GAME->SetActiveCardButton(false,2);
+	POKER_GAME->SetActiveCardButton(false,3);
+	POKER_GAME->SetActiveCardButton(false,4);
 }
 
 void GoldenJokerState::Exit()
@@ -58,13 +58,13 @@ void GoldenJokerState::Exit()
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
 	
-	ThePokerGame::Instance()->SetActiveCardButton(false,0);
-	ThePokerGame::Instance()->SetActiveCardButton(false,1);
-	ThePokerGame::Instance()->SetActiveCardButton(false,2);
-	ThePokerGame::Instance()->SetActiveCardButton(false,3);
-	ThePokerGame::Instance()->SetActiveCardButton(false,4);
+	POKER_GAME->SetActiveCardButton(false,0);
+	POKER_GAME->SetActiveCardButton(false,1);
+	POKER_GAME->SetActiveCardButton(false,2);
+	POKER_GAME->SetActiveCardButton(false,3);
+	POKER_GAME->SetActiveCardButton(false,4);
 	
-	ThePokerGame::Instance()->PokerGameWin = ThePokerGame::Instance()->Pay;
+	POKER_GAME->PokerGameWin = POKER_GAME->Pay;
 }
 
 #include <sstream>
@@ -85,20 +85,20 @@ void GoldenJokerState::Update()
 
 	if(!global_quit)
 	{		
-		ThePokerGame::Instance()->GoldenJokerUpdateDrawHand();
+		POKER_GAME->GoldenJokerUpdateDrawHand();
 
-		if (ThePokerGame::Instance()->GoldenJokerStage == 3)
+		if (POKER_GAME->GoldenJokerStage == 3)
 		{
-			if (!ThePokerGame::Instance()->GoldenJokerHeldProcessEnd)
+			if (!POKER_GAME->GoldenJokerHeldProcessEnd)
 				ENGINE->GetProcessManager()->AddProcessToQueue(new GoldenJokerHeldsProcess);
 			else
 				OBJECT_HANDLER->GetObject2D("GoldenJokerMsg")->SetVisible(true);	
 		}
 
-		if (ThePokerGame::Instance()->GoldenJokerStage == 4)
+		if (POKER_GAME->GoldenJokerStage == 4)
 			ENGINE->GetProcessManager()->AddProcessToQueue(new GoldenJokerCardProcess);
 
-		if (ThePokerGame::Instance()->GoldenJokerStage == 5)
+		if (POKER_GAME->GoldenJokerStage == 5)
 		{
 			OBJECT_HANDLER->GetObject2D("GoldenJokerMsg")->SetVisible(false);
 			ENGINE->StateTransition("HiloGamble");

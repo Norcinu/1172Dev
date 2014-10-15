@@ -8,8 +8,8 @@
 PayTransferProcess::PayTransferProcess()
 {
 	mPayTransferDelayTimer = 0;
-	ThePokerGame::Instance()->FinalWinValue = 0;
-	mAmountToDeduct = ThePokerGame::Instance()->Pay/10;
+	POKER_GAME->FinalWinValue = 0;
+	mAmountToDeduct = POKER_GAME->Pay/10;
 }
 
 PayTransferProcess::~PayTransferProcess()
@@ -30,15 +30,15 @@ void PayTransferProcess::Update()
 		return;
 	}
 		 					
-	if (ThePokerGame::Instance()->Pay)								  
+	if (POKER_GAME->Pay)								  
 	{						
 		TheAudioManager::Instance()->GetAudioSample("WIN10")->Play();
-		if (ThePokerGame::Instance()->Pay < mAmountToDeduct) mAmountToDeduct = ThePokerGame::Instance()->Pay;		
-		ThePokerGame::Instance()->Pay -= mAmountToDeduct;
-        ThePokerGame::Instance()->FinalWinValue += mAmountToDeduct;
+		if (POKER_GAME->Pay < mAmountToDeduct) mAmountToDeduct = POKER_GAME->Pay;		
+		POKER_GAME->Pay -= mAmountToDeduct;
+        POKER_GAME->FinalWinValue += mAmountToDeduct;
 		AddWinToBank(mAmountToDeduct,MODEL_NUMBER);	
 		THE_GAME->UpdateDigits();
-		mPayTransferDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + ThePokerGame::Instance()->GeneralSetGameDelay(0.1f);
+		mPayTransferDelayTimer = ENGINE->GetSystemTimer().GetRunningTime() + POKER_GAME->GeneralSetGameDelay(0.1f);
 	}
 	else	
 		SetCompleted();

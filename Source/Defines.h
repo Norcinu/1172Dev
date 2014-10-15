@@ -10,8 +10,8 @@
 #include <windows.h>   // include important windows stuff
 #include <mmsystem.h>
 #include <stdio.h> 
-#define WINDOW_TITLE  "Project 1170 Game"
-#define MODEL_NUMBER   1170
+#define WINDOW_TITLE  "Project 1172 Game"
+#define MODEL_NUMBER   1172
 
 #define RELEASE_NUMBER   1
 

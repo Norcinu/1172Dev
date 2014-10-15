@@ -54,9 +54,9 @@ bool Game::GameInit()
 
 	THE_BUTTONS->Initialise();
 
-	ThePokerGame::Instance()->PokerGameInit();
+	POKER_GAME->PokerGameInit();
 
-	ThePokerGame::Instance()->UpdateAwardDigits();
+	POKER_GAME->UpdateAwardDigits();
 	
 	UpdateDigits();
 

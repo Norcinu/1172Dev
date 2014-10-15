@@ -29,6 +29,9 @@ StandbyState::~StandbyState()
 
 void StandbyState::Enter()
 {
+	THE_BUTTONS->SetOSButtonActivity(false, "ChangeStake");
+	THE_BUTTONS->SetOSButtonActivity(false, "PopButtons");
+
 	m_standbyFlash = new StandbyFlashProcess();
 	ENGINE->GetProcessManager()->AddProcessToList(m_standbyFlash);
 	m_standbyTimer = ENGINE->GetSystemTimer().GetRunningTime() + STANDBY_TIME;
@@ -46,7 +49,7 @@ void StandbyState::Update()
 	{
 		return;
 	}
-
+	
 	if(GetCurrentError())
 	{
 		return;
@@ -55,8 +58,6 @@ void StandbyState::Update()
 	if(!global_quit)
 	{
 #ifdef SOAK_BUILD
-		//SetAutoCreditFlag();
-		//add_cdeposit_rc(20000);
 		add_cdeposit(2000);
 #endif
 		THE_BUTTONS->StandbyButtons();
@@ -74,12 +75,12 @@ void StandbyState::Update()
 			if((GetTerminalFormat() > 1) && (!GetDynamicDoNotQuitGame(MODEL_NUMBER)))
 				THE_GAME->QuitToMainMenu();
 		}
-
+		
 		if(GetCredits()+GetBankDeposit() >= MINIMUM_BET)
 		{
 			ENGINE->StateTransition("DealStart");
 		}
-
+		
 		if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
 		{
 			ENGINE->StateTransition("Help");
@@ -89,10 +90,10 @@ void StandbyState::Update()
 		{
 			THE_GAME->QuitToMainMenu();
 		}
-
+		
 		if((GetCredits()+GetBankDeposit() > 0))
 		{
-			if(THE_BUTTONS->ButtonPressed("Collect"))// || THE_BUTTONS->OSButtonPressed("Hold1Button"))
+			if(THE_BUTTONS->ButtonPressed("Collect"))
 			{
 				ENGINE->GetProcessManager()->AddProcessToQueue(new CollectProcess);	
 			}

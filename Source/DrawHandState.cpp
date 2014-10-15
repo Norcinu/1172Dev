@@ -26,18 +26,18 @@ void DrawHandState::Enter()
 {
 	m_sleep = false;
 	m_firstHand = true;
-	ThePokerGame::Instance()->PokerHandProcessComplete = false;
+	POKER_GAME->PokerHandProcessComplete = false;
 
-	ThePokerGame::Instance()->DrawRoll();
-	ThePokerGame::Instance()->DealSecondHand();
-	ThePokerGame::Instance()->Pay = ThePokerGame::Instance()->Chkwin(ThePokerGame::Instance()->DrawHand,0);		
-	ThePokerGame::Instance()->JokerWin = ThePokerGame::Instance()->WinInvolvingJoker(ThePokerGame::Instance()->DrawHand,ThePokerGame::Instance()->Pay);
-	ThePokerGame::Instance()->PokerGameWin = ThePokerGame::Instance()->Pay;
+	POKER_GAME->DrawRoll();
+	POKER_GAME->DealSecondHand();
+	POKER_GAME->Pay = POKER_GAME->Chkwin(POKER_GAME->DrawHand,0);		
+	POKER_GAME->JokerWin = POKER_GAME->WinInvolvingJoker(POKER_GAME->DrawHand,POKER_GAME->Pay);
+	POKER_GAME->PokerGameWin = POKER_GAME->Pay;
 }
 
 void DrawHandState::Exit()
 {
-	ThePokerGame::Instance()->PokerHandProcessComplete = false;
+	POKER_GAME->PokerHandProcessComplete = false;
 }
 
 #include <sstream>
@@ -74,14 +74,18 @@ void DrawHandState::Update()
 			else
 			{
 				m_sleep = false;
-				if (ThePokerGame::Instance()->PokerHandProcessComplete)
+				if (POKER_GAME->PokerHandProcessComplete)
 				{
-					if (ThePokerGame::Instance()->InsertDoubleJokerFlag)
+					if (POKER_GAME->InsertDoubleJokerFlag)
 						ENGINE->StateTransition("GoldenJoker");
-					else if (ThePokerGame::Instance()->PokerHiloCondition()) 
+					else if (POKER_GAME->PokerHiloCondition()) 
 					{
+					if (THE_GAME->GetAutoplay())
+						{
+							THE_GAME->SetAutoplay(false);
+							POKER_GAME->SetEnteredOnAutoplay(true);
+						}
 						ENGINE->StateTransition("HiloGamble");
-						THE_GAME->SetAutoplay(false);
 					}
 					else
 						ENGINE->StateTransition("Payment");

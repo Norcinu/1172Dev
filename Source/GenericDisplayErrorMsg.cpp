@@ -38,7 +38,7 @@ void Game::DrawCurrentError()
 		OBJECT_HANDLER->GetObject2D("RGErrorMessage")->SetVisible(true);
 		if (MessageID == TheTextureManager::Instance()->GetTextureID("RGErrGen.png"))
 		{
-			ThePokerGame::Instance()->UpdateErrorDigits(true);
+			POKER_GAME->UpdateErrorDigits(true);
 		}
 	}
 	else												//ACTUAL WARNING OR MESSAGES
@@ -50,7 +50,7 @@ void Game::DrawCurrentError()
 		}
 
 		OBJECT_HANDLER->GetObject2D("RGErrMessage")->SetVisible(false);
-		ThePokerGame::Instance()->UpdateErrorDigits(false);
+		POKER_GAME->UpdateErrorDigits(false);
 		
 	}
 }

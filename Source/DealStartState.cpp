@@ -34,32 +34,32 @@ void DealStartState::Enter()
 	if (GetLocalCharRandomNumber(100) < 50)
 	{
 		THE_GAME->SetStake(MAXIMUM_BET);
-		ThePokerGame::Instance()->SetGameIndex(Game200p);
+		POKER_GAME->SetGameIndex(Game200p);
 	}
 	else
 	{
 		THE_GAME->SetStake(MINIMUM_BET);
-		ThePokerGame::Instance()->SetGameIndex(Game100p);
+		POKER_GAME->SetGameIndex(Game100p);
 	}
 
 	if (GetCredits()+GetBankDeposit() <= MINIMUM_BET)
 	{
 		THE_GAME->SetStake(MINIMUM_BET);
-		ThePokerGame::Instance()->SetGameIndex(Game100p);
+		POKER_GAME->SetGameIndex(Game100p);
 	}
 #endif
 
-	ThePokerGame::Instance()->SetPointerAndMode();
+	POKER_GAME->SetPointerAndMode();
 
-	ThePokerGame::Instance()->DisplayStake();
+	POKER_GAME->DisplayStake();
 
-	ThePokerGame::Instance()->AllowHighWinFlag = 0;
+	POKER_GAME->AllowHighWinFlag = 0;
 
 	OBJECT_HANDLER->GetObject2D("GraphicalButton10")->SetVisible(false);
 	if (!THE_GAME->GetAutoplay())
 		OBJECT_HANDLER->GetObject2D("RGlassButtons")->SetVisible(true);
 
-	if (!ThePokerGame::Instance()->GetHoldHiloGraphics())
+	if (!POKER_GAME->GetHoldHiloGraphics())
 	{
 		THE_BUTTONS->SetOSButtonActivity(false, "HiButton",NO_LEGEND);
 		THE_BUTTONS->SetOSButtonActivity(false, "LoButton",NO_LEGEND);
@@ -75,10 +75,10 @@ void DealStartState::Enter()
 	for (int i = 0; i < TOTAL_STAKES; i++)
 		THE_BUTTONS->SetOSButtonActivity(true, StakeButtons[i], LAMP_ON);
 
-	if (ThePokerGame::Instance()->ResetAutoPlayFlag)
+	if (POKER_GAME->ResetAutoPlayFlag)
 	{
 		THE_GAME->SetAutoplay(true);
-		ThePokerGame::Instance()->ResetAutoPlayFlag = 0;
+		POKER_GAME->ResetAutoPlayFlag = 0;
 	}
 		
 	if ((GetCredits() > lCredit || GetCredits() < THE_GAME->GetStake()))	
@@ -103,10 +103,10 @@ void DealStartState::Enter()
 
 void DealStartState::Exit()
 {
-	ThePokerGame::Instance()->FinalWinValue = 0;
+	POKER_GAME->FinalWinValue = 0;
 
 	for (int i=0;i<LEVEL;i++)
-		ThePokerGame::Instance()->SetAwardValueLitState(i,MLAMP_OFF);
+		POKER_GAME->SetAwardValueLitState(i,MLAMP_OFF);
 
 	THE_BUTTONS->SetButtonActivity(false, "FrontStart");
 	THE_BUTTONS->SetButtonActivity(false, "Stake");
@@ -120,10 +120,9 @@ void DealStartState::Exit()
 		THE_BUTTONS->SetButtonActivity(false, "AutoPlay");
 	}
 	
-	//THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
+	/*THE_BUTTONS->SetOSButtonActivity(false, "Hold1Button");
 	THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button");
-	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");
+	THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton");*/
 
 	for (int i = 0; i < TOTAL_STAKES; i++)
 		THE_BUTTONS->SetOSButtonActivity(false, StakeButtons[i]);
@@ -161,7 +160,7 @@ void DealStartState::Update()
 		return;
 	}
 
-	if(!ThePokerGame::Instance()->GetTransferBanktoCreditTimeElaspsed())
+	if(!POKER_GAME->GetTransferBanktoCreditTimeElaspsed())
 	{
 		return;
 	}
@@ -219,7 +218,7 @@ void DealStartState::Update()
 			}
 			
 			if(THE_BUTTONS->ButtonPressed("Transfer"))
-				ThePokerGame::Instance()->SetTransferBankToCredits(true);
+				POKER_GAME->SetTransferBankToCredits(true);
 
 #ifdef SOAK_BUILD
 			if(GetCredits() >= THE_GAME->GetStake())
@@ -232,21 +231,21 @@ void DealStartState::Update()
 				SetGameInProgress();
 				THE_GAME->ClearFinalWinValue();
 
-				if (ThePokerGame::Instance()->GetHoldHiloGraphics())
-					ThePokerGame::Instance()->SetHoldHiloGraphics(false);
+				if (POKER_GAME->GetHoldHiloGraphics())
+					POKER_GAME->SetHoldHiloGraphics(false);
 
 				THE_BUTTONS->EnableHiloButtons();
 
 				if(THE_GAME->GetStake() == MINIMUM_BET)
-					ThePokerGame::Instance()->WageredAmount = MINIMUM_BET;
+					POKER_GAME->WageredAmount = MINIMUM_BET;
 				else
-					ThePokerGame::Instance()->WageredAmount = MAXIMUM_BET;
+					POKER_GAME->WageredAmount = MAXIMUM_BET;
 
-				ThePokerGame::Instance()->AllowHighWinFlag = ThePokerGame::Instance()->AllowHighWins();
-				if (ThePokerGame::Instance()->AllowHighWinFlag)
-					ThePokerGame::Instance()->AllowedHighWin = ThePokerGame::Instance()->SelectWinType();
+				POKER_GAME->AllowHighWinFlag = POKER_GAME->AllowHighWins();
+				if (POKER_GAME->AllowHighWinFlag)
+					POKER_GAME->AllowedHighWin = POKER_GAME->SelectWinType();
 
-				ThePokerGame::Instance()->SetGameStartTime();
+				POKER_GAME->SetGameStartTime();
 
 				ENGINE->StateTransition("Cointrol");
 			}
@@ -266,17 +265,17 @@ void DealStartState::Update()
 				if(THE_GAME->GetStake() == MINIMUM_BET)
 				{					
 					THE_GAME->SetStake(MAXIMUM_BET);
-					ThePokerGame::Instance()->SetGameIndex(Game200p);
+					POKER_GAME->SetGameIndex(Game200p);
 
 				}
 				else if(THE_GAME->GetStake() == MAXIMUM_BET)
 				{					
 					THE_GAME->SetStake(MINIMUM_BET);
-					ThePokerGame::Instance()->SetGameIndex(Game100p);
+					POKER_GAME->SetGameIndex(Game100p);
 				}
 				
 				changeStake = false;
-				ThePokerGame::Instance()->DisplayStake();
+				POKER_GAME->DisplayStake();
 			}
 			else if(THE_BUTTONS->OSButtonPressed("HoldInfoButton"))
 			{
@@ -313,7 +312,7 @@ void DealStartState::Update()
 			if (changeStake)
 			{
 				THE_GAME->SetStake(stake);
-				ThePokerGame::Instance()->DisplayStake();
+				POKER_GAME->DisplayStake();
 			}
 		}
 	}

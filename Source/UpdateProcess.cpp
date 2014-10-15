@@ -15,11 +15,11 @@ void UpdateProcess::Update()
 {
 	PROFILE(__FUNCTION__);
 
-	ThePokerGame::Instance()->RegulateGraphicalLampFlashSpeed(20);
-	ThePokerGame::Instance()->TransferBankToCredits(GetVariableValue(MAX_WBANK_TRANSFER));
-	ThePokerGame::Instance()->UpdateAwardDigits();
-	ThePokerGame::Instance()->DrawRemoveHelds();
-	ThePokerGame::Instance()->DrawHiloCards();
-	ThePokerGame::Instance()->DrawHiloState();
+	POKER_GAME->RegulateGraphicalLampFlashSpeed(20);
+	POKER_GAME->TransferBankToCredits(GetVariableValue(MAX_WBANK_TRANSFER));
+	POKER_GAME->UpdateAwardDigits();
+	POKER_GAME->DrawRemoveHelds();
+	POKER_GAME->DrawHiloCards();
+	POKER_GAME->DrawHiloState();
 	THE_BUTTONS->UpdateButtons();	
 }

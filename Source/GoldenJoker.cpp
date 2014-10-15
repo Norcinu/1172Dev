@@ -151,7 +151,7 @@ void PokerGame::SetGoldenJokerLamps(void)
 	if (!PokerHand[4].hold)	
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold5Button",LAMP_FLASH);  
-		ThePokerGame::Instance()->SetActiveCardButton(true,4);
+		POKER_GAME->SetActiveCardButton(true,4);
 	}
 	else
 		THE_BUTTONS->SetOSButtonActivity(false, "Hold5Button",LAMP_OFF);		  
@@ -159,7 +159,7 @@ void PokerGame::SetGoldenJokerLamps(void)
 	if (!PokerHand[3].hold)
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold4Button",LAMP_FLASH);  
-		ThePokerGame::Instance()->SetActiveCardButton(true,3);
+		POKER_GAME->SetActiveCardButton(true,3);
 	}
 	else
 		THE_BUTTONS->SetOSButtonActivity(false, "Hold4Button",LAMP_OFF);		
@@ -167,7 +167,7 @@ void PokerGame::SetGoldenJokerLamps(void)
 	if (!PokerHand[2].hold)
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold3Button",LAMP_FLASH);  
-		ThePokerGame::Instance()->SetActiveCardButton(true,2);
+		POKER_GAME->SetActiveCardButton(true,2);
 	}
 	else
 		THE_BUTTONS->SetOSButtonActivity(false, "Hold3Button",LAMP_OFF);	
@@ -176,7 +176,7 @@ void PokerGame::SetGoldenJokerLamps(void)
 	if (!PokerHand[1].hold)
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "Hold2Button",LAMP_FLASH);  
-		ThePokerGame::Instance()->SetActiveCardButton(true,1);
+		POKER_GAME->SetActiveCardButton(true,1);
 	}
 	else
 		THE_BUTTONS->SetOSButtonActivity(false, "Hold2Button",LAMP_OFF);	
@@ -185,7 +185,7 @@ void PokerGame::SetGoldenJokerLamps(void)
 	if (!PokerHand[0].hold)
 	{
 		THE_BUTTONS->SetOSButtonActivity(true, "HoldInfoButton",LAMP_FLASH);  
-		ThePokerGame::Instance()->SetActiveCardButton(true,0);
+		POKER_GAME->SetActiveCardButton(true,0);
 	}
 	else
 		THE_BUTTONS->SetOSButtonActivity(false, "HoldInfoButton",LAMP_OFF);		

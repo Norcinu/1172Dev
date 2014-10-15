@@ -53,7 +53,7 @@ void PokerGame::DrawHiloCards(void)
 			if (HiloHand[i].id)		
 			{			
 				allCards->GetInstance(i)->SetVisible(true);
-				allCards->GetInstance(i)->SetCurrentSprite(ThePokerGame::Instance()->HiloHand[i].id - 1);				
+				allCards->GetInstance(i)->SetCurrentSprite(POKER_GAME->HiloHand[i].id - 1);				
 			}
 			else
 				allCards->GetInstance(i)->SetVisible(false);
