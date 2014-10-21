@@ -18,9 +18,9 @@
 #ifdef _AUTOPLAY
 	#include <crtdbg.h> //needed to trap memory leaks
 	#define SOAK_BUILD
-	//#define FAST_PLAY
+	#define FAST_PLAY
 	#define WORKING_CAPITAL_LOG
-	#define FIXED_POP 100
+	#define FIXED_POP 200//100
 	#define RECORD_NMI_LOG
 #endif
 

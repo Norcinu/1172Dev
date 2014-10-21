@@ -12,7 +12,6 @@ ButtonProcess::ButtonProcess(HardwareButton* button)
 
 ButtonProcess::~ButtonProcess()
 {
-
 }
 
 void ButtonProcess::Complete()
@@ -26,10 +25,11 @@ void ButtonProcess::Update()
 	if (!mButton->CheckPressed())
 	{
 		mButton->SetPressed();
-	
+		
 		if(mButton->IsReleased())
 		{
-			TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
+			if ((strcmp(mButton->GetName(),"TopStart") != 0) && (strcmp(mButton->GetName(), "FrontStart") != 0))
+				TheAudioManager::Instance()->GetAudioSample("DROP")->Play();
 			SetCompleted();
 		}
 	}	

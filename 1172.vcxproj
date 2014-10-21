@@ -162,8 +162,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalDependencies>VizTechD.lib;PreDefinedShaders.res;1424D.lib;GenericsD.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Heber\DevSource\Dx9SDK\Lib\x86;C:\Heber\Projects\GenericsLibrary\Libs\Release_2;C:\Heber\Projects\Bo_Library\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

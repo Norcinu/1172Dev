@@ -79,7 +79,8 @@ void HoldStartState::Exit()
 	OBJECT_HANDLER->GetObject2D("Legend1DealDrawNlit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawLit")->SetVisible(false);
 	OBJECT_HANDLER->GetObject2D("Legend2DealDrawNlit")->SetVisible(false);*/
-	OBJECT_HANDLER->GetObject2D("HoldStartMsg")->SetVisible(false);
+	
+	//OBJECT_HANDLER->GetObject2D("HoldStartMsg")->SetVisible(false);
 }
 
 #include <sstream>

@@ -31,11 +31,13 @@ DealStartState::~DealStartState()
 void DealStartState::Enter()
 {
 #ifdef SOAK_BUILD
+
+/*
 	if (GetLocalCharRandomNumber(100) < 50)
-	{
+	{*/
 		THE_GAME->SetStake(MAXIMUM_BET);
 		POKER_GAME->SetGameIndex(Game200p);
-	}
+	/*}
 	else
 	{
 		THE_GAME->SetStake(MINIMUM_BET);
@@ -46,7 +48,8 @@ void DealStartState::Enter()
 	{
 		THE_GAME->SetStake(MINIMUM_BET);
 		POKER_GAME->SetGameIndex(Game100p);
-	}
+	}*/
+
 #endif
 
 	POKER_GAME->SetPointerAndMode();
@@ -177,7 +180,7 @@ void DealStartState::Update()
 	if(!global_quit)
 	{		
 		OBJECT_HANDLER->GetObject2D("DealStartMsg")->SetVisible(true);
-
+		
 		THE_BUTTONS->DealStartButtons(mHelpActiveDelayTimer);
 
 #ifdef SOAK_BUILD

@@ -26,7 +26,7 @@ void PokerGame::EnterHiloGambleInitialize(unsigned char JokerWin)
 	}
 
 	InitialHiloRptTab(JokerWin|ModeGameIn[GameIndex]);
-	SelectInitialCard();
+//	SelectInitialCard();   RDB 1 CALLED TWICE
 }
 
 void PokerGame::EnterHiloGambleShowAward(unsigned char JokerWin)

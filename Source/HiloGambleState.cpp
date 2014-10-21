@@ -41,6 +41,9 @@ void HiloGambleState::Exit()
 	POKER_GAME->ActivateHiloGambleGraphics = 0;
 	THE_BUTTONS->SetOSButtonActivity(false, "LoButton");
 	THE_BUTTONS->SetOSButtonActivity(false, "HiButton");
+	
+	OBJECT_HANDLER->GetObject2D("Legend1SwopLit")->SetVisible(false);
+	OBJECT_HANDLER->GetObject2D("Legend1SwopNlit")->SetVisible(false);
 
 	if (POKER_GAME->GetEnteredOnAutoplay())
 	{

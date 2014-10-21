@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<MD5>
+	<GlobalSettings>
+		<Display Type="Fullscreen" FrameLimit="false" />		
+	</GlobalSettings>
+	<Screens>
+		<Screen>
+			<ScreenSize Width="1920" Height="1080" />
+			<Position x="0" y="0" />	
+			<ClearColour r="1.0f" g="1.0f" b="1.0f" a="1.0f" />
+		</Screen>
+		<Screen>
+			<ScreenSize Width="1920" Height="1080" />
+			<Position x="1920" y="0" />	
+			<ClearColour r="1.0f" g="1.0f" b="1.0f" a="1.0f" />
+		</Screen>
+	</Screens>	
+</MD5>	

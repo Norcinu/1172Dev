@@ -1,22 +1,24 @@
 #include "PokerGame.h"
 #include <ObjectHandler.h>
 
+//RDB 3
 /*                             HIGHER         1  2  3  4  5  6  7  8  9 10 11 12 13 */
-const 	unsigned char WwHiChance[]       = {0,10,10,10, 4, 4, 4, 4, 4,13,12,12,13,EOT};
-const 	unsigned char WlHiChance[]       = {0, 0, 5,10,14,14,14,14,14,10, 5, 0, 0,EOT};
-const   unsigned char LoseHiChance[]     = {0, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8,EOT};
+const   unsigned char WwHiChance[14]       = {0,13,16, 6, 2, 1, 1, 2, 4, 8,19,15,13,EOT};
+const 	unsigned char WlHiChance[14]       = {0, 0, 5,10,14,14,14,14,14,10, 5, 0, 0,EOT};
+const   unsigned char LoseHiChance[14]     = {0, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8,EOT};
 
 
 /*                             LOWER         1  2  3  4  5  6  7  8  9 10 11 12 13 */
-const 	unsigned char WwLoChance[]=      {13,12,12,13, 4, 4, 4, 4, 4,10,10,10, 0,EOT};
-const 	unsigned char WlLoChance[]=      { 0, 0, 5,10,14,14,14,14,14,10, 5, 0, 0,EOT};
-const   unsigned char LoseLoChance[]=    { 0, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9,EOT};
+const   unsigned char WwLoChance[14]=      {13,15,19, 8, 4, 2, 1, 1, 2, 6,16,13, 0,EOT};
+const 	unsigned char WlLoChance[14]=      { 0, 0, 5,10,14,14,14,14,14,10, 5, 0, 0,EOT};
+const   unsigned char LoseLoChance[14]=    { 0, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9,EOT};
 
-const 	unsigned char HiloThrowTable[]=  { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13};
+const 	unsigned char HiloThrowTable[13]=  { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13};
 
 /***					                   1  2  3  4  5  6  7  8  9 10 11 12 13 */
-const   unsigned char WinSwapChance[] = {8, 8, 8, 8, 8, 5, 5, 5, 5,10,10,10,10};
-const   unsigned char LoseSwapChance[]= {0, 0, 8, 8, 9,13,12,12,13, 9, 8, 8, 0};
+const   unsigned char WinSwapChance[14] = {8, 8, 8, 8, 8, 5, 5, 5, 5,10,10,10,10,EOT};
+const   unsigned char LoseSwapChance[14]= {0, 0, 8, 8, 9,13,12,12,13, 9, 8, 8, 0,EOT};
+
 
 unsigned char PokerGame::DecHiWinWin(unsigned char CardValue)
 {
@@ -169,8 +171,8 @@ unsigned char PokerGame::DecInitialCardValue(void)
 {
  unsigned char Value;
 
-
-	if (HiloRepeatTab[0] && HiloRepeatTab[1])
+ 	if (HiloRepeatTab[0])
+//	if (HiloRepeatTab[0] && HiloRepeatTab[1])  RDB 2
 	{
 		if (GetLocalCharRandomNumber(2))
 			Value =  HiloThrowTable[GetChoice(WwHiChance)];

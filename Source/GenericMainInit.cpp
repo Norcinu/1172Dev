@@ -30,6 +30,8 @@ bool Game::Setup(HINSTANCE hinstance)
 		return false;
 	}
 
+	ENGINE->SetMD5CheckCodes(FILE_NAMES, MDAT_CHECKSUMS, NUMBER_OF_CHECKSUMS);
+
 	if(!ENGINE->Initialize("Config.pdt", GetHardWareType(), hinstance, VIZTECHVERSION, 1))
 	{
 		return false;
@@ -38,23 +40,6 @@ bool Game::Setup(HINSTANCE hinstance)
 	ENGINE->SetWriteablePath("D:\\machine\\game_data\\");
 
 	THE_BUTTONS->LampsOff();
-
-	if(GetDoorStatus() || GetCurrentError() ||
-	   GetBankDeposit() && GetBankDeposit() >= GetVariableValue(MAX_WIN_BANK) ||
-	   GetCredits() && GetCredits() >= GetVariableValue(MAX_CREDITS))
-	{
-		Sleep(100);			
-		DisableNoteValidator();
-		Sleep(100);
-	}
-	else
-	{
-		Sleep(100);			
-		EnableNoteValidator();
-		Sleep(100);
-	}
-	
-	ENGINE->SetMD5CheckCodes(FILE_NAMES, MDAT_CHECKSUMS, NUMBER_OF_CHECKSUMS);
 
 	if(!ENGINE->LoadData("Logo.png", "DealStart", LOAD_LONG))
 	{

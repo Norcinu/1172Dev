@@ -29,11 +29,11 @@ void SetupState::Update()
 	}
 	else
 	{
-		if (GetGameAutoLoaded())
+		/*if (GetGameAutoLoaded()) need to reinstate this DEBUG DEBUG
 		{
 			TheEngine::Instance()->StateTransition("CompendiumLoad");
 		}
-		else
+		else*/
 		{
 			TheAudioManager::Instance()->GetAudioSample("SX_NOCREDIT")->Play();
 			TheEngine::Instance()->StateTransition("Standby");

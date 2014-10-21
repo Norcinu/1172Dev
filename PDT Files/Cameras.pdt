@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<MD5>
 <StaticCamera>
 	<Settings Name="Perspective" />
 	<Position x="0.0f" y="-1.5f" z="-40.0f" />

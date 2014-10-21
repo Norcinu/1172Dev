@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="us-ascii"?>
+<MD5>
 
 <Texture Filename="Spectrum.png" />
 
@@ -193,6 +194,10 @@
 <Texture Filename="LegendForwardNlit.png" />
 
 <Texture Filename="LegendBackwardNlit.png" />
+
+<Texture Filename="LegendEnterInfoLit.png" />
+
+<Texture Filename="LegendEnterInfoNlit.png" />
 
 <Texture Filename="LegendBlank.png" />
 
@@ -481,3 +486,26 @@
 	</Atlas>
 </Texture>
 
+<Texture Filename="StakeButtons.png">
+	<Atlas>
+		<Piece Name="TouchUp.png" OffsetX="0.0053f" OffsetY="0.0085f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="TouchDown.png" OffsetX="0.5027f" OffsetY="0.0085f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="ChangeStakeUp.png" OffsetX="0.0053f" OffsetY="0.5043f" Width="0.4920f" Height="0.4872f" />
+		<Piece Name="ChangeStakeDown.png" OffsetX="0.5027f" OffsetY="0.5043f" Width="0.4920f" Height="0.4872f" />
+	</Atlas>
+</Texture>
+
+<Texture Filename="PopOptions.png">
+	<Atlas>
+		<Piece Name="£2Up.png" OffsetX="0.0057f" OffsetY="0.0084f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£2Down.png" OffsetX="0.5029f" OffsetY="0.0084f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£1Up.png" OffsetX="0.0057f" OffsetY="0.2563f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="£1Down.png" OffsetX="0.5029f" OffsetY="0.2563f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="50pUp.png" OffsetX="0.0057f" OffsetY="0.5042f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="50pDown.png" OffsetX="0.5029f" OffsetY="0.5042f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="25pUp.png" OffsetX="0.0057f" OffsetY="0.7521f" Width="0.4914f" Height="0.2395f" />
+		<Piece Name="25pDown.png" OffsetX="0.5029f" OffsetY="0.7521f" Width="0.4914f" Height="0.2395f" />
+	</Atlas>
+</Texture>
+
+</MD5>

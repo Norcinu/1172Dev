@@ -195,6 +195,10 @@
 
 <Texture Filename="LegendBackwardNlit.png" />
 
+<Texture Filename="LegendEnterInfoLit.png" />
+
+<Texture Filename="LegendEnterInfoNlit.png" />
+
 <Texture Filename="LegendBlank.png" />
 
 <Texture Filename="Play100p.png" />
@@ -481,26 +485,6 @@
 		<Piece Name="dot" OffsetX="0.9569f" OffsetY="0.0435f" Width="0.0353f" Height="0.9130f" />
 	</Atlas>
 </Texture>
-
-<!--<Texture Filename="ChangeStakeUp.png" />
-
-<Texture Filename="ChangeStakeDown.png" />
-
-<Texture Filename="£1Down.png" />
-
-<Texture Filename="£1Up.png" />
-
-<Texture Filename="£2Down.png" />
-
-<Texture Filename="£2Up.png" />
-
-<Texture Filename="25pUp.png" />
-
-<Texture Filename="25pDown.png" />
-
-<Texture Filename="50pUp.png" />
-
-<Texture Filename="50pDown.png" />-->
 
 <Texture Filename="StakeButtons.png">
 	<Atlas>

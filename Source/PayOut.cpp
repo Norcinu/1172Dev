@@ -66,10 +66,14 @@ bool PokerGame::PayOutReflex(void)
 bool PokerGame::PayOutPaytransfer(void)
 {
 	bool Status = false;
-	
+	int a = ((MODEL_NUMBER * 1000) + RELEASE_NUMBER * 10);
 	if (!GetDoorStatus())
 		SendGameOutcome2Server(WageredAmount,0,PokerGameWin,((MODEL_NUMBER * 1000) + RELEASE_NUMBER * 10),Pay);
 
+/*
+#ifdef SOAK_BUILD
+	Sleep(125);
+#endif*/
 	ENGINE->GetProcessManager()->AddProcessToQueue(new PayTransferProcess);
 	return(Status);
 }

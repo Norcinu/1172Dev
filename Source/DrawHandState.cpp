@@ -58,6 +58,8 @@ void DrawHandState::Update()
 	
 	if(!global_quit)
 	{
+		OBJECT_HANDLER->GetObject2D("HoldStartMsg")->SetVisible(false);
+
 		if (!ENGINE->GetProcessManager()->GetNumQueueProcesses())
 		{
 			if (!m_sleep)
@@ -67,7 +69,7 @@ void DrawHandState::Update()
 					ENGINE->GetProcessManager()->AddProcessToQueue(new DelayProcess(0.75f));
 					m_firstHand = false;
 				}
-				else
+				else if (THE_GAME->GetAutoplay())
 					ENGINE->GetProcessManager()->AddProcessToQueue(new DelayProcess(0.35f));
 				m_sleep = true;
 			}
